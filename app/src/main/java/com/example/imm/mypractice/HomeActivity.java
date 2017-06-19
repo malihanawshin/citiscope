@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends BottomBarActivity implements ServiceListAdapter.ClickCallback, View.OnClickListener{
 /*
-    HI MEEEEEEEEEEEEEEEEEEEEEEEEEEEEM ABAAAAAAAAR
+    HI MEEEEEEEEEEEEEEEEEEEEEEEEEEEEM
  */
     ServiceListAdapter adapter;
     ArrayList<ServiceFeature> items = new ArrayList<>();
