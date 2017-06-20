@@ -36,11 +36,17 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         ServiceFeature s3 = new ServiceFeature("Blood Donation",R.drawable.blood);
         ServiceFeature s4 = new ServiceFeature("Doctor",R.drawable.greendoctor);
 
+        ServiceFeature t1 = new ServiceFeature("More Doctor",R.drawable.doctor);
+        ServiceFeature t2 = new ServiceFeature("Flats",R.drawable.cityscape);
+
         items.add(s1);
         items.add(s2);
         items.add(s3);
         items.add(s4);
-    }
+
+        items.add(t1);
+        items.add(t2);
+        }
 
     private View.OnClickListener clickListener = new View.OnClickListener() {
 

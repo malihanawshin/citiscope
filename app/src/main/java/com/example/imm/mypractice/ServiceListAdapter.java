@@ -41,6 +41,8 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
 
             logo = (ImageView) itemView.findViewById(R.id.servicelogo);
             name = (TextView) itemView.findViewById(R.id.servicename);
+            logo.setOnClickListener(this);
+            name.setOnClickListener(this);
 
             service = (LinearLayout) itemView.findViewById(R.id.serviceGridView);
             service.setOnClickListener(this);
@@ -51,7 +53,10 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
         public void onClick(View v) {
 
             switch(v.getId()){
-                case R.id.serviceGridView:
+                case R.id.servicelogo:
+                    startFilterPage();
+                    break;
+                case R.id.servicename:
                     startFilterPage();
                     break;
             }
