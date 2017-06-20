@@ -24,6 +24,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
 
     ServiceListAdapter adapter;
     ArrayList<ServiceFeature> items = new ArrayList<>();
+    // working in git is troublesome
 
     private Spinner cityname;
     private RecyclerView serviceview;
