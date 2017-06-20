@@ -21,9 +21,7 @@ import java.util.ArrayList;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends BottomBarActivity implements ServiceListAdapter.ClickCallback, View.OnClickListener{
-/*
-    HI MEEEEEEEEEEEEEEEEEEEEEEEEEEEEM
- */
+
     ServiceListAdapter adapter;
     ArrayList<ServiceFeature> items = new ArrayList<>();
 
