@@ -1,20 +1,27 @@
-package com.example.imm.mypractice;
+package com.example.imm.mypractice.activities;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.imm.mypractice.R;
+import com.example.imm.mypractice.technicalClasses.Database;
+import com.example.imm.mypractice.technicalClasses.RetrievalData;
+import com.example.imm.mypractice.technicalClasses.VolleyCallback;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -26,10 +33,16 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
     ArrayList<ServiceFeature> items = new ArrayList<>();
     // working in git is troublesome
 
-    private Spinner cityname;
+    private Spinner spnCity;
     private RecyclerView serviceview;
-    private LinearLayout serviceView;
+    private LinearLayout linLay;
     int size;
+
+    private final String DISTRICTFILE = "districts.php";
+
+    Activity parent = this;
+    ArrayList<String> serv;
+    private String district;
 
     public void addServices(){
         ServiceFeature s1 = new ServiceFeature("Tuition",R.drawable.desk);
@@ -71,9 +84,9 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         ButterKnife.bind(this);
         addServices();
 
-        cityname = (Spinner) findViewById(R.id.spn_city);
+        spnCity = (Spinner) findViewById(R.id.spn_city);
         serviceview = (RecyclerView) findViewById(R.id.services);
-        serviceView = (LinearLayout) findViewById(R.id.serviceGridView);
+        linLay = (LinearLayout) findViewById(R.id.serviceGridView);
 
         GridLayoutManager manager = new GridLayoutManager(this,2);
         serviceview.setLayoutManager(manager);
@@ -86,6 +99,8 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
                 setRecycler();
             }
         });
+
+        fillSpinner();
     }
 
     private void setRecycler() {
@@ -119,4 +134,66 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
     startActivity(intent);
     }
 
+
+
+
+
+
+
+
+
+
+
+    private void fillSpinner() {
+        ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();
+
+        Database db = new Database();
+        db.retrieve(new RetrievalData(keys, vals, DISTRICTFILE, parent), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    ArrayAdapter<String> spnAdapter;
+                    ArrayList<String> districts = new ArrayList<String>();
+
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("result");
+
+                    if(result.length()!=0){
+                        System.out.println(result + " X " + result.length());
+                        for(int i=0; i<result.length(); i++) {
+                            try {
+                                JSONObject res = result.getJSONObject(i);
+                                districts.add(res.getString("District"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        spnAdapter = new ArrayAdapter<String>(parent, android.R.layout.simple_spinner_item, districts);
+                        spnCity.setAdapter(spnAdapter);
+                    }
+
+                    setSpinnerListener();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void setSpinnerListener() {
+        spnCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
+                //linLay.removeAllViews();
+                String selected = parent.getItemAtPosition(pos).toString();
+                district = selected;
+                //getServices(selected);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
 }
