@@ -6,7 +6,7 @@
     android:id="@+id/activity_poll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.imm.mypractice.PollActivity">
+    tools:context="com.example.imm.mypractice.activities.PollActivity">
 
 
     <include layout="@layout/bottombar"/>

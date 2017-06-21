@@ -1,14 +1,15 @@
-package com.example.imm.mypractice;
+package com.example.imm.mypractice.activities;
 
 import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.imm.mypractice.R;
+
 import butterknife.ButterKnife;
 
-public class ProfileActivity extends BottomBarActivity {
+public class NotificationActivity extends BottomBarActivity {
 
     @Override
     public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -19,8 +20,8 @@ public class ProfileActivity extends BottomBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        setTitle("Account");
+        setContentView(R.layout.activity_notification);
+        setTitle("Notification");
         ButterKnife.bind(this);
     }
 

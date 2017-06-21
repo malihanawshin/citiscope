@@ -1,4 +1,4 @@
-package com.example.imm.mypractice;
+package com.example.imm.mypractice.activities;
 
 /**
  * Created by imm on 6/17/2017.

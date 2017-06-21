@@ -1,18 +1,6 @@
-package com.example.imm.mypractice;
+package com.example.imm.mypractice.activities;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import java.util.ArrayList;
-
-import static android.support.v7.widget.GridLayoutManager.*;
 
 public class MainActivity extends AppCompatActivity {
 

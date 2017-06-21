@@ -1,7 +1,9 @@
-package com.example.imm.mypractice;
+package com.example.imm.mypractice.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.imm.mypractice.R;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 

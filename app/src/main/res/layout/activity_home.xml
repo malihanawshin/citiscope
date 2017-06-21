@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.example.imm.mypractice.HomeActivity"
+    tools:context="com.example.imm.mypractice.activities.HomeActivity"
     android:orientation="vertical">
 
     <LinearLayout

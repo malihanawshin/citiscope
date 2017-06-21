@@ -1,21 +1,16 @@
-package com.example.imm.mypractice;
+package com.example.imm.mypractice.activities;
 
 /**
  * Created by imm on 6/14/2017.
  */
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.example.imm.mypractice.R;
 
 public class FilterActivity extends AppCompatActivity {
     String service;

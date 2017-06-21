@@ -1,4 +1,4 @@
-package com.example.imm.mypractice;
+package com.example.imm.mypractice.activities;
 
 public class ServiceFeature {
 

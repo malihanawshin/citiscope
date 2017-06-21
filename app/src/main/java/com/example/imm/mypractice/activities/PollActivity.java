@@ -1,10 +1,11 @@
-package com.example.imm.mypractice;
+package com.example.imm.mypractice.activities;
 
 import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.imm.mypractice.R;
 
 import butterknife.ButterKnife;
 
