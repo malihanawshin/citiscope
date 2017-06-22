@@ -31,11 +31,9 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
 
     ServiceListAdapter adapter;
     ArrayList<ServiceFeature> items = new ArrayList<>();
-    // working in git is troublesome
 
     private Spinner spnCity;
     private RecyclerView serviceview;
-    private LinearLayout linLay;
     int size;
 
     private final String DISTRICTFILE = "districts.php";
@@ -44,49 +42,15 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
     ArrayList<String> serv;
     private String district;
 
-    public void addServices(){
-        ServiceFeature s1 = new ServiceFeature("Tuition",R.drawable.desk);
-        ServiceFeature s2 = new ServiceFeature("Apartment",R.drawable.flats);
-        ServiceFeature s3 = new ServiceFeature("Blood Donation",R.drawable.blood);
-        ServiceFeature s4 = new ServiceFeature("Doctor",R.drawable.greendoctor);
-
-        ServiceFeature t1 = new ServiceFeature("More Doctor",R.drawable.doctor);
-        ServiceFeature t2 = new ServiceFeature("Flats",R.drawable.cityscape);
-
-        items.add(s1);
-        items.add(s2);
-        items.add(s3);
-        items.add(s4);
-
-        items.add(t1);
-        items.add(t2);
-    }
-
-    private View.OnClickListener clickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-
-            switch(v.getId()){
-                case R.id.spn_city:
-                    // TODO dynamic changes of city available
-                    break;
-            }
-        }
-    };
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setTitle("Home");
         ButterKnife.bind(this);
-        addServices();
 
         spnCity = (Spinner) findViewById(R.id.spn_city);
         serviceview = (RecyclerView) findViewById(R.id.services);
-        linLay = (LinearLayout) findViewById(R.id.serviceGridView);
 
         GridLayoutManager manager = new GridLayoutManager(this,2);
         serviceview.setLayoutManager(manager);
@@ -109,6 +73,26 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         serviceview.addItemDecoration(new GridSpacingItemDecoration(2, 3, true));
     }
 
+
+    public void addServices(){
+        ServiceFeature s1 = new ServiceFeature("Tuition",R.drawable.desk);
+        ServiceFeature s2 = new ServiceFeature("Apartment",R.drawable.flats);
+        ServiceFeature s3 = new ServiceFeature("Blood Donation",R.drawable.blood);
+        ServiceFeature s4 = new ServiceFeature("Doctor",R.drawable.greendoctor);
+
+        ServiceFeature t1 = new ServiceFeature("More Doctor",R.drawable.doctor);
+        ServiceFeature t2 = new ServiceFeature("Flats",R.drawable.cityscape);
+
+        items.add(s1);
+        items.add(s2);
+        items.add(s3);
+        items.add(s4);
+
+        items.add(t1);
+        items.add(t2);
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -129,9 +113,10 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
 
     @Override
     public void onItemClick(ServiceFeature s) {
-    Intent intent = new Intent(this, FilterActivity.class);
-    intent.putExtra("servicename",s.getServiceName());
-    startActivity(intent);
+        Intent intent = new Intent(this, FilterActivity.class);
+        intent.putExtra("servicename",s.getServiceName());
+        intent.putExtra("district", district);
+        startActivity(intent);
     }
 
 
