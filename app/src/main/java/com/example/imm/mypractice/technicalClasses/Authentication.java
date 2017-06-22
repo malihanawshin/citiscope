@@ -123,9 +123,11 @@ public class Authentication {
         ed.putBoolean("admin", false);
         ed.commit();
 
+        Toast.makeText(act, "Logged Out", Toast.LENGTH_LONG).show();
 
+        Intent intent = new Intent(act, HomeActivity.class);
         act.finish();
-        act.startActivity(act.getIntent());
+        act.startActivity(intent);
     }
 
 

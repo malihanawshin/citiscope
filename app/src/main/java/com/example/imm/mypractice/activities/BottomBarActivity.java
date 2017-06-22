@@ -1,18 +1,22 @@
 package com.example.imm.mypractice.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.imm.mypractice.R;
+import com.example.imm.mypractice.technicalClasses.Authentication;
+import com.example.imm.mypractice.technicalClasses.User;
 
 import butterknife.OnClick;
 import butterknife.Optional;
 
 public class BottomBarActivity extends AppCompatActivity {
-
+    Activity parent = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +35,8 @@ public class BottomBarActivity extends AppCompatActivity {
                 showLoginPage();
                 return true;
             case R.id.action_sign_out:
-
+                Authentication auth = new Authentication();
+                auth.logout(parent);
                 return true;
             case R.id.action_sign_up:
                 showRegisterPage();
@@ -81,10 +86,12 @@ public class BottomBarActivity extends AppCompatActivity {
     @Optional
     @OnClick(R.id.img_profile)
     public void showProfile() {
-        if(!(this instanceof ProfileActivity)) {
-            startActivity(new Intent(this,ProfileActivity.class));
-            finish();
-        }
+        Toast.makeText(parent, User.loggedIn + "__" + User.Email,Toast.LENGTH_LONG).show();
+
+//        if(!(this instanceof ProfileActivity)) {
+//            startActivity(new Intent(this,ProfileActivity.class));
+//            finish();
+//        }
     }
 
     @Optional

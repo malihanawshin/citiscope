@@ -2,6 +2,7 @@ package com.example.imm.mypractice.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,10 +14,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.imm.mypractice.R;
 import com.example.imm.mypractice.technicalClasses.Database;
 import com.example.imm.mypractice.technicalClasses.RetrievalData;
+import com.example.imm.mypractice.technicalClasses.User;
 import com.example.imm.mypractice.technicalClasses.VolleyCallback;
 
 import org.json.JSONArray;
@@ -48,6 +51,8 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         setContentView(R.layout.activity_home);
         setTitle("Home");
         ButterKnife.bind(this);
+
+        getSession();
 
         spnCity = (Spinner) findViewById(R.id.spn_city);
         serviceview = (RecyclerView) findViewById(R.id.services);
@@ -224,5 +229,26 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
                 }
             }
         });
+    }
+
+
+
+
+
+    private void getSession() {
+        SharedPreferences shpr=this.getSharedPreferences("Authentication", Activity.MODE_PRIVATE);
+        Boolean loggedIn = shpr.getBoolean("loggedIn", false);
+
+        if(loggedIn){
+            Toast.makeText(parent,"Logged In",Toast.LENGTH_LONG).show();
+
+            String email = shpr.getString("email", "");
+            String name = shpr.getString("name", "");
+            String phone = shpr.getString("phone", "");
+            String bio = shpr.getString("bio", "");
+            Boolean admin = shpr.getBoolean("admin", false);
+
+            User.setAttributes(email, name, phone, bio, this);
+        }
     }
 }
