@@ -25,4 +25,9 @@ public class ServiceFeature {
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
     }
+
+    @Override
+    public String toString() {
+        return serviceName;
+    }
 }

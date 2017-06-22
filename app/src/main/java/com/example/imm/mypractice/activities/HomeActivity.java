@@ -60,7 +60,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
 
         items.add(t1);
         items.add(t2);
-        }
+    }
 
     private View.OnClickListener clickListener = new View.OnClickListener() {
 
@@ -184,15 +184,59 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         spnCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
-                //linLay.removeAllViews();
                 String selected = parent.getItemAtPosition(pos).toString();
                 district = selected;
-                //getServices(selected);
+                getServices(selected);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+    }
+
+
+    private void getServices(String city) {
+        serv = new ArrayList<>();
+
+        ArrayList<String> vals = new ArrayList<>();
+        vals.add(city);
+
+        ArrayList<String> keys = new ArrayList<>();
+        keys.add("district");
+
+        String file = "serviceNames.php";
+
+        Database db = new Database();
+        db.retrieve(new RetrievalData(keys, vals, file, parent), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("result");
+                    items.clear();
+
+                    if(result.length()!=0){
+                        System.out.println(result + " X " + result.length());
+                        for(int i=0; i<result.length(); i++) {
+                            try {
+                                JSONObject serviceInfo = result.getJSONObject(i);
+                                serv.add(serviceInfo.getString("ServiceName"));
+                                items.add(new ServiceFeature(serviceInfo.getString("ServiceName"), R.drawable.desk));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    System.out.println(items);
+                    adapter.notifyDataSetChanged();
+
+
+                    //createButtons();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
