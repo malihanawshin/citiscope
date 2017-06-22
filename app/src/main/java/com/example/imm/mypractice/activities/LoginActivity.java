@@ -1,13 +1,18 @@
 package com.example.imm.mypractice.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.imm.mypractice.R;
+import com.example.imm.mypractice.technicalClasses.Authentication;
 
 /**
  * A login screen that offers login via email/password.
@@ -17,6 +22,10 @@ public class LoginActivity extends AppCompatActivity {
     Toolbar t;
     private TextView forgotPassword;
     private TextView createAccount;
+
+    private EditText emailText, pwdText;
+
+    Activity parent = this;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +41,28 @@ public class LoginActivity extends AppCompatActivity {
         createAccount = (TextView) findViewById(R.id.text_createAccount);
         createAccount.setOnClickListener(clickListener);
 
+        emailText = (EditText) findViewById(R.id.etxtEmail);
+        pwdText = (EditText) findViewById(R.id.etxtPassword);
+        setListeners();
+    }
+
+    private void setListeners() {
+        Button btnLogIn = (Button) findViewById(R.id.btnLoginSubmit);
+        btnLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String txtEmail = emailText.getText().toString();
+                String txtPwd = pwdText.getText().toString();
+
+                if (txtEmail.equals("") || txtPwd.equals("")) {
+                    Toast.makeText(parent, "Please enter all fields", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Authentication auth = new Authentication();
+                auth.verifyLoginCredentials(txtEmail, txtPwd, parent);
+            }
+        });
     }
 
 
