@@ -20,7 +20,7 @@ public class CitiScope extends Application {
 
     @Override
     public void onCreate(){
-
+        super.onCreate();
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 .denyCacheImageMultipleSizesInMemory()
