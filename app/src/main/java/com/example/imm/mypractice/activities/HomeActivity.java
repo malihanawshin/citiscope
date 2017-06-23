@@ -79,7 +79,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
     }
 
 
-    public void addServices(){
+    /*public void addServices(){
         ServiceFeature s1 = new ServiceFeature("Tuition",R.drawable.desk);
         ServiceFeature s2 = new ServiceFeature("Apartment",R.drawable.flats);
         ServiceFeature s3 = new ServiceFeature("Blood Donation",R.drawable.blood);
@@ -95,7 +95,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
 
         items.add(t1);
         items.add(t2);
-    }
+    }*/
 
 
     @Override
@@ -213,7 +213,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
                             try {
                                 JSONObject serviceInfo = result.getJSONObject(i);
                                 serv.add(serviceInfo.getString("ServiceName"));
-                                items.add(new ServiceFeature(serviceInfo.getString("ServiceName"), R.drawable.desk));
+                                items.add(new ServiceFeature(serviceInfo.getString("ServiceName"), serviceInfo.getString("Logo")));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

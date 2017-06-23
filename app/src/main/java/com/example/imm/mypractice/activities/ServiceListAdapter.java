@@ -8,7 +8,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.example.imm.mypractice.R;
+import com.example.imm.mypractice.technicalClasses.MyDisplayImageOptions;
 
 import java.util.ArrayList;
 
@@ -87,7 +89,11 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
 
         ServiceFeature s = (ServiceFeature) items.get(position);
         holder.name.setText(s.getServiceName());
-        holder.logo.setImageResource(s.getImageURL());
+
+        ImageLoader.getInstance().displayImage(
+            s.getImageURL(),holder.logo, MyDisplayImageOptions.getInstance().getDisplayImageOptions());
+
+
     }
 
     @Override

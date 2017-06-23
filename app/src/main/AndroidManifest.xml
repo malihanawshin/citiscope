@@ -17,7 +17,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="SujisScope"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".technicalClasses.CitiScope"
+        >
         <activity
             android:name=".activities.HomeActivity"
             android:theme="@style/AppTheme">
@@ -44,6 +46,7 @@
         <activity android:name=".activities.CodeConfirmationActivity" />
         <activity android:name=".activities.ResetPasswordActivity"/>
         <activity android:name=".activities.FilterActivity" />
+
 
     </application>
 

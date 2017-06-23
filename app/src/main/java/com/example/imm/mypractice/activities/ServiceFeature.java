@@ -3,9 +3,9 @@ package com.example.imm.mypractice.activities;
 public class ServiceFeature {
 
     String serviceName;
-    int imageURL;
+    String imageURL;
 
-    public ServiceFeature(String name, int image){
+    public ServiceFeature(String name, String image){
         this.serviceName = name;
         this.imageURL = image;
     }
@@ -14,11 +14,11 @@ public class ServiceFeature {
         return serviceName;
     }
 
-    public int getImageURL() {
+    public String getImageURL() {
         return imageURL;
     }
 
-    public void setImageURL(int imageURL) {
+    public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
 
