@@ -6,6 +6,7 @@ package com.example.imm.mypractice.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,12 +28,16 @@ public class FilterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
+        if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent intent = getIntent();
         service = intent.getStringExtra("servicename");
+        setTitle(service);
+
         district = intent.getStringExtra("district");
 
-        txtCaption = (TextView) findViewById(R.id.txtFilterCaption);
-        txtCaption.setText(txtCaption.getText().toString()+ " (" + service + ")");
+        //txtCaption = (TextView) findViewById(R.id.txtFilterCaption);
+        //txtCaption.setText(txtCaption.getText().toString()+ " (" + service + ")");
         ll = (LinearLayout) findViewById(R.id.ll_filters);
         Toast.makeText(this, service, Toast.LENGTH_SHORT).show();
 
@@ -55,6 +60,12 @@ public class FilterActivity extends AppCompatActivity {
         setListeners();
 */
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 
 

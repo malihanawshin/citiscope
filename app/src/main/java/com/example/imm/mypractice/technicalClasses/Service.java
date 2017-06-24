@@ -135,30 +135,30 @@ public class Service {
 
         for(FilterOption fo: filOps){
             createSpinners(fo);
-//            TextView txt = new TextView(parent);
-//            txt.setText(fo.filter);
-//            LinearLayout.LayoutParams layPar = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//            layPar.setMargins(0, 20, 20, 0);
-//            txt.setLayoutParams(layPar);
-//            txt.setTextColor(ContextCompat.getColor(parent, R.color.CitiFont));
-//            txt.setTextSize(20);
-//            linLay.addView(txt);
-//
-//            ArrayList<String> spinnerArray = new ArrayList<String>();
-//
-//            for(int i=0; i<fo.options.size(); i++){
-//                spinnerArray.add(fo.options.get(i));
-//            }
-//
-//            Spinner spinner = new Spinner(parent);
-//            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(parent,android.R.layout.simple_spinner_dropdown_item, spinnerArray);
-//            spinner.setAdapter(spinnerArrayAdapter);
-//            linLay.addView(spinner);
-//            spinners.add(new Pair<String, Spinner>(txt.getText().toString(), spinner));
+            TextView txt = new TextView(parent);
+            txt.setText(fo.filter);
+            LinearLayout.LayoutParams layPar = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layPar.setMargins(0, 20, 20, 0);
+            txt.setLayoutParams(layPar);
+            txt.setTextColor(ContextCompat.getColor(parent, R.color.colorAccent));
+           txt.setTextSize(20);
+            linLay.addView(txt);
 
-//            if(txt.getText().equals("District")){
-//                displayDistrictChosenPreviously(spinner, spinnerArrayAdapter);
-//            }
+            ArrayList<String> spinnerArray = new ArrayList<String>();
+
+            for(int i=0; i<fo.options.size(); i++){
+                spinnerArray.add(fo.options.get(i));
+            }
+
+            Spinner spinner = new Spinner(parent);
+            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(parent,android.R.layout.simple_spinner_dropdown_item, spinnerArray);
+            spinner.setAdapter(spinnerArrayAdapter);
+            linLay.addView(spinner);
+            spinners.add(new Pair<String, Spinner>(txt.getText().toString(), spinner));
+
+            if(txt.getText().equals("District")){
+                displayDistrictChosenPreviously(spinner, spinnerArrayAdapter);
+            }
         }
     }
 
