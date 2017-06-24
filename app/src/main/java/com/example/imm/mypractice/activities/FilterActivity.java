@@ -3,6 +3,7 @@ package com.example.imm.mypractice.activities;
 /**
  * Created by imm on 6/14/2017.
  */
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -11,11 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imm.mypractice.R;
+import com.example.imm.mypractice.technicalClasses.Service;
 
 public class FilterActivity extends AppCompatActivity {
     String service;
     Button btnFilterConfirm;
-    //Service srv;
+    Service srv;
     LinearLayout ll;
     TextView txtCaption;
     private String district;
@@ -24,8 +26,17 @@ public class FilterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
-        String name = getIntent().getStringExtra("servicename");
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+
+        Intent intent = getIntent();
+        service = intent.getStringExtra("servicename");
+        district = intent.getStringExtra("district");
+
+        txtCaption = (TextView) findViewById(R.id.txtFilterCaption);
+        txtCaption.setText(txtCaption.getText().toString()+ " (" + service + ")");
+        ll = (LinearLayout) findViewById(R.id.ll_filters);
+        Toast.makeText(this, service, Toast.LENGTH_SHORT).show();
+
+        setFilters();
 
       /*  FragmentManager fm = getFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -42,7 +53,32 @@ public class FilterActivity extends AppCompatActivity {
 
         setFilters();
         setListeners();
-*/    }
+*/
+
+    }
+
+
+
+    private void setFilters() {
+        srv = new Service(service, this, district);
+        srv.fetchFilters();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*    private void setListeners() {
         btnFilterConfirm = (Button)findViewById(R.id.btnFilterConfirm);
