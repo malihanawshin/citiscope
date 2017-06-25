@@ -34,7 +34,7 @@
             android:label="Sign In"
             android:theme="@style/newTheme" />
         <activity
-            android:name=".activities.RegisterActivity"
+            android:name=".activities.RegistrationActivity"
             android:label="Sign Up"
             android:theme="@style/newTheme" />
 
