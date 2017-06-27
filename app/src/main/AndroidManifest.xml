@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.imm.mypractice">
+    package="com.example.imm.citi">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -18,10 +18,10 @@
         android:label="SujisScope"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".technicalClasses.CitiScope"
+        android:name="com.example.imm.citi.technicalClasses.CitiScope"
         >
         <activity
-            android:name=".activities.HomeActivity"
+            android:name="com.example.imm.citi.activities.HomeActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,24 +30,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.LoginActivity"
+            android:name="com.example.imm.citi.activities.LoginActivity"
             android:label="Sign In"
             android:theme="@style/newTheme" />
         <activity
-            android:name=".activities.RegistrationActivity"
+            android:name="com.example.imm.citi.activities.RegistrationActivity"
             android:label="Sign Up"
             android:theme="@style/newTheme" />
 
 
-        <activity android:name=".activities.BottomBarActivity" />
-        <activity android:name=".activities.ProfileActivity" />
-        <activity android:name=".activities.NotificationActivity" />
-        <activity android:name=".activities.PollActivity" />
-        <activity android:name=".activities.CodeConfirmationActivity" />
-        <activity android:name=".activities.ResetPasswordActivity"/>
+        <activity android:name="com.example.imm.citi.activities.BottomBarActivity" />
+        <activity android:name="com.example.imm.citi.activities.ProfileActivity" />
+        <activity android:name="com.example.imm.citi.activities.NotificationActivity" />
+        <activity android:name="com.example.imm.citi.activities.PollActivity" />
+        <activity android:name="com.example.imm.citi.activities.CodeConfirmationActivity" />
+        <activity android:name="com.example.imm.citi.activities.ResetPasswordActivity"/>
 
         <activity
-            android:name=".activities.FilterActivity"
+            android:name="com.example.imm.citi.activities.FilterActivity"
             android:label="Filters"
 
             />
