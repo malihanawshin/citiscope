@@ -30,9 +30,9 @@ public class User {
         activity.startActivity(intent);
     }
 
-//    public void search(Service srv) {
-//        srv.fetchResult();
-//    }
+    public void search(Service srv) {
+        srv.fetchResult();
+    }
 //
 //    public void bookmark(Agent agent, Activity parent){
 //        agent.addBookmarker(parent);

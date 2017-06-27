@@ -141,7 +141,7 @@ public class Service {
             layPar.setMargins(0, 20, 20, 0);
             txt.setLayoutParams(layPar);
             txt.setTextColor(ContextCompat.getColor(parent, R.color.colorAccent));
-           txt.setTextSize(20);
+            txt.setTextSize(20);
             linLay.addView(txt);
 
             ArrayList<String> spinnerArray = new ArrayList<String>();
@@ -244,7 +244,7 @@ public class Service {
         }
 
         FilterActivity act = (FilterActivity) parent;
-        //act.showResult(agents1);
+        act.showResult(agents1);
     }
 
 

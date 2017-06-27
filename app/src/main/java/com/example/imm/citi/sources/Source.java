@@ -78,7 +78,7 @@ public abstract class Source {
 				}
 
 				FilterActivity act = (FilterActivity) parent;
-				//act.enableSearch();
+				act.enableSearch();
 			}
 		});
 	}

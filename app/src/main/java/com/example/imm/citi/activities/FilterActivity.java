@@ -3,17 +3,23 @@ package com.example.imm.citi.activities;
 /**
  * Created by imm on 6/14/2017.
  */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imm.citi.R;
+import com.example.imm.citi.technicalClasses.Agent;
 import com.example.imm.citi.technicalClasses.Service;
+import com.example.imm.citi.technicalClasses.User;
+
+import java.util.ArrayList;
 
 public class FilterActivity extends AppCompatActivity {
     String service;
@@ -42,6 +48,7 @@ public class FilterActivity extends AppCompatActivity {
         Toast.makeText(this, service, Toast.LENGTH_SHORT).show();
 
         setFilters();
+        setListeners();
 
       /*  FragmentManager fm = getFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -91,7 +98,7 @@ public class FilterActivity extends AppCompatActivity {
 
 
 
-/*    private void setListeners() {
+    private void setListeners() {
         btnFilterConfirm = (Button)findViewById(R.id.btnFilterConfirm);
         btnFilterConfirm.setEnabled(false);
 
@@ -104,7 +111,29 @@ public class FilterActivity extends AppCompatActivity {
         });
     }
 
-    private void setFilters() {
+    public void showResult(ArrayList<Agent> agents){
+        System.out.println("AAAAARRRREEEHHHH\n" + agents);
+//        Intent intent = new Intent(this, AgentListActivity.class);
+//        Bundle b = new Bundle();
+//        b.putParcelableArrayList("agents", agents);
+//        intent.putExtra("agent", b);
+//        intent.putExtra("service", service);
+//        startActivity(intent);
+    }
+
+    public void enableSearch() {
+        btnFilterConfirm.setEnabled(true);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ll.removeAllViews();
+        srv = new Service(service, this, district);
+        srv.fetchFilters();
+    }
+
+/*    private void setFilters() {
         srv = new Service(service, this, district);
         srv.fetchFilters();
     }
