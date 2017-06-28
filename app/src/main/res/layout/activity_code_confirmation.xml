@@ -7,7 +7,7 @@
     android:id="@+id/activity_code_confirmation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.imm.mypractice.activities.CodeConfirmationActivity">
+    tools:context="com.example.imm.citi.activities.CodeConfirmationActivity">
 
 
     <TextView
