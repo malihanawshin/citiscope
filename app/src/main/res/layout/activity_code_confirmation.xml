@@ -9,18 +9,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.imm.mypractice.activities.CodeConfirmationActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:text="CODE CONFIRMATION"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        />
-
 
     <TextView
         android:layout_width="wrap_content"

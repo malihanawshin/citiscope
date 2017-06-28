@@ -23,6 +23,7 @@ public class CodeConfirmationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_confirmation);
+        setTitle("Code Confirmation");
 
         submit = (Button) findViewById(R.id.btnCodeSubmit);
         resend = (Button) findViewById(R.id.btnCodeReset);

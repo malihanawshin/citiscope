@@ -70,6 +70,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         });
 
         fillSpinner();
+        getOverflowMenu();
     }
 
     private void setRecycler() {
@@ -77,25 +78,6 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         serviceview.setAdapter(adapter);
         serviceview.addItemDecoration(new GridSpacingItemDecoration(2, 3, true));
     }
-
-
-    /*public void addServices(){
-        ServiceFeature s1 = new ServiceFeature("Tuition",R.drawable.desk);
-        ServiceFeature s2 = new ServiceFeature("Apartment",R.drawable.flats);
-        ServiceFeature s3 = new ServiceFeature("Blood Donation",R.drawable.blood);
-        ServiceFeature s4 = new ServiceFeature("Doctor",R.drawable.greendoctor);
-
-        ServiceFeature t1 = new ServiceFeature("More Doctor",R.drawable.doctor);
-        ServiceFeature t2 = new ServiceFeature("Flats",R.drawable.cityscape);
-
-        items.add(s1);
-        items.add(s2);
-        items.add(s3);
-        items.add(s4);
-
-        items.add(t1);
-        items.add(t2);
-    }*/
 
 
     @Override
@@ -123,12 +105,6 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         intent.putExtra("district", district);
         startActivity(intent);
     }
-
-
-
-
-
-
 
 
 

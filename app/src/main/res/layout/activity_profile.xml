@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
@@ -8,6 +8,429 @@
     android:layout_height="match_parent"
     tools:context="com.example.imm.mypractice.activities.ProfileActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            >
+
+
+            <RelativeLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                >
+l
+                <ImageView
+                    android:id="@+id/icon_account"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/user"
+                    android:padding="16dp"
+                    android:tint="@color/colorAccent"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linear_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/icon_account"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Username"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="username"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorAccent"
+                        />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/icon_edit_name"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_create_black_24dp"
+                    android:padding="16dp"
+                    android:layout_alignParentRight="true"
+                    android:tint="@color/colorAccent"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".5dp"
+                android:background="@color/colorAccent"
+                />
+
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                >
+
+                <ImageView
+                    android:id="@+id/icon_email"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/mail"
+                    android:padding="16dp"
+                    android:tint="@color/colorAccent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/icon_email"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="abc@gmail.com"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorAccent"
+                        />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".5dp"
+                android:background="@color/colorAccent"
+                />
+
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                >
+
+                <ImageView
+                    android:id="@+id/icon_phone"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/phonecall"
+                    android:padding="16dp"
+                    android:tint="@color/colorAccent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/icon_phone"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Phone"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="set phone no"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorAccent"
+                        />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/icon_edit_phone"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_create_black_24dp"
+                    android:padding="16dp"
+                    android:layout_alignParentRight="true"
+                    android:tint="@color/colorAccent"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".5dp"
+                android:background="@color/colorAccent"
+                />
+
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                >
+
+                <ImageView
+                    android:id="@+id/icon_bio"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/seller"
+                    android:padding="16dp"
+                    android:tint="@color/colorAccent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/icon_bio"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bio"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="write details about you"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorAccent"
+                        />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/icon_edit_bio"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_create_black_24dp"
+                    android:padding="16dp"
+                    android:layout_alignParentRight="true"
+                    android:tint="@color/colorAccent"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorAccent"
+                />
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:id="@+id/reset_password_from_profile"
+                >
+
+
+                <ImageView
+                    android:id="@+id/icon_password"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/key"
+                    android:padding="16dp"
+                    android:tint="@color/colorAccent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/icon_password"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Reset Password"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".5dp"
+                android:background="@color/colorAccent"
+                />
+
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:id="@+id/bookmark_from_profile"
+                >
+
+                <ImageView
+                    android:id="@+id/icon_bookmark"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/bookmark"
+                    android:padding="16dp"
+                    android:tint="@color/colorAccent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/icon_bookmark"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bookmarks"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".5dp"
+                android:background="@color/colorAccent"
+                />
+
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:id="@+id/agent_from_profile"
+                >
+
+                <ImageView
+                    android:id="@+id/icon_agentpro"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/detective1"
+                    android:padding="16dp"
+                    android:tint="@color/colorAccent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/icon_agentpro"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Agent Profiles"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                >
+
+                <ImageView
+                    android:id="@+id/icon_agent"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/detective1"
+                    android:padding="16dp"
+                    android:tint="@color/colorAccent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/icon_agent"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <include layout="@layout/bottombar"/>
-</LinearLayout>
+
+</RelativeLayout>

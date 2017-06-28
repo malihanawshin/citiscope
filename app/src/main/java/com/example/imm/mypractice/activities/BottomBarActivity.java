@@ -6,11 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewConfiguration;
 import android.widget.Toast;
 
 import com.example.imm.mypractice.R;
 import com.example.imm.mypractice.technicalClasses.Authentication;
 import com.example.imm.mypractice.technicalClasses.User;
+
+import java.lang.reflect.Field;
 
 import butterknife.OnClick;
 import butterknife.Optional;
@@ -89,12 +92,12 @@ public class BottomBarActivity extends AppCompatActivity {
     @Optional
     @OnClick(R.id.img_profile)
     public void showProfile() {
-        Toast.makeText(parent, User.loggedIn + "__" + User.Email,Toast.LENGTH_LONG).show();
+       // Toast.makeText(parent, User.loggedIn + "__" + User.Email,Toast.LENGTH_LONG).show();
 
-//        if(!(this instanceof ProfileActivity)) {
-//            startActivity(new Intent(this,ProfileActivity.class));
-//            finish();
-//        }
+        if(!(this instanceof ProfileActivity)) {
+            startActivity(new Intent(this,ProfileActivity.class));
+            finish();
+        }
     }
 
     @Optional
@@ -103,6 +106,19 @@ public class BottomBarActivity extends AppCompatActivity {
         if(!(this instanceof PollActivity)) {
             startActivity(new Intent(this,PollActivity.class));
             finish();
+        }
+    }
+
+    protected void getOverflowMenu() {
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if (menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
