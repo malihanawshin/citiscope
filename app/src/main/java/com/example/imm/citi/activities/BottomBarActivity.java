@@ -2,16 +2,14 @@ package com.example.imm.citi.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
-import android.widget.Toast;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Authentication;
-import com.example.imm.citi.technicalClasses.User;
 
 import java.lang.reflect.Field;
 
@@ -44,13 +42,7 @@ public class BottomBarActivity extends AppCompatActivity {
             case R.id.action_sign_up:
                 showRegisterPage();
                 return true;
-            case R.id.action_password_change:
-                // password change option selected
-                return true;
-            /*case android.R.id.home:
-                onBackPressed();
-                return true;
-            */default:
+            default:
                 return super.onOptionsItemSelected(item);
         }
     }

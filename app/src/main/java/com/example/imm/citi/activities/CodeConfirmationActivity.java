@@ -3,6 +3,7 @@ package com.example.imm.citi.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,7 @@ public class CodeConfirmationActivity extends AppCompatActivity {
         password = getIntent().getStringExtra("password");
         reg = new Registration(email, password, code, confAct);
 
+        if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setListeners();
     }
 
@@ -90,5 +92,11 @@ public class CodeConfirmationActivity extends AppCompatActivity {
         }
         else
             Toast.makeText(confAct,"Invalid Confirmation Code",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -87,17 +87,6 @@ public class FilterActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     private void setListeners() {
         btnFilterConfirm = (Button)findViewById(R.id.btnFilterConfirm);
         btnFilterConfirm.setEnabled(false);

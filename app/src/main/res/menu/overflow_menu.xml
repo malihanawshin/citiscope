@@ -31,17 +31,6 @@
         app:showAsAction="never"
         android:visibility="visible"
         tools:visibility="gone"
-
         />
-
-    <item
-        android:id="@+id/action_password_change"
-        android:title="Reset Password"
-        app:showAsAction="never"
-        android:visibility="visible"
-        tools:visibility="gone"
-
-        />
-
 
 </menu>
