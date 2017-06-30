@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
+import android.widget.Toast;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Authentication;
+import com.example.imm.citi.technicalClasses.User;
 
 import java.lang.reflect.Field;
 
@@ -87,8 +89,13 @@ public class BottomBarActivity extends AppCompatActivity {
        // Toast.makeText(parent, User.loggedIn + "__" + User.Email,Toast.LENGTH_LONG).show();
 
         if(!(this instanceof ProfileActivity)) {
-            startActivity(new Intent(this,ProfileActivity.class));
-            finish();
+            if(User.loggedIn){
+                startActivity(new Intent(this,ProfileActivity.class));
+                finish();
+            }
+            else{
+                Toast.makeText(parent, "Sign in first",Toast.LENGTH_LONG).show();
+            }
         }
     }
 
