@@ -29,7 +29,7 @@ public class ProfileActivity extends BottomBarActivity {
 
     private TextView title;
 
-    private TextView edtName, edtPhone, edtBio;
+    private TextView edtName, edtPhone, edtBio, edtEmail;
 
     @Override
     public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -47,6 +47,8 @@ public class ProfileActivity extends BottomBarActivity {
 
         edtName = (TextView) findViewById(R.id.edt_name);
         edtName.setText(User.Name);
+        edtEmail = (TextView) findViewById(R.id.edt_email);
+        edtEmail.setText(User.Email);
         edtPhone = (TextView) findViewById(R.id.edt_phone);
         edtPhone.setText(User.Phone);
         edtBio = (TextView) findViewById(R.id.edt_bio);

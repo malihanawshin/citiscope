@@ -1,37 +1,24 @@
 package com.example.imm.citi.technicalClasses;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.CountDownTimer;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.example.imm.citi.activities.HomeActivity;
-import com.example.imm.citi.activities.RegistrationActivity;
+import com.example.imm.citi.activities.ProfileActivity;
+import com.example.imm.citi.activities.SuperRegRes;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Sujoy on 4/10/2017.
  */
 
 public class Registration {
-    public String code;
-    final long valTime = 15;
-
-
     ArrayList<String> keysReg, keysConf;
     String regFile = "reg.php", confFile = "regConfirmation.php";
     public String email="", password="";
     Activity parent;
-
-    public Registration(String sMail, String sPwd, String sCode, Activity act) {
-        this(sMail, sPwd, act);
-        code = sCode;
-    }
+    Registration reg = this;
 
     public Registration(String sMail, String sPwd, Activity act) {
         initKeys();
@@ -69,21 +56,14 @@ public class Registration {
                 if(result.equals("false"))
                     Toast.makeText(parent,"Email Already Exists",Toast.LENGTH_LONG).show();
                 else{
-                    sendConfCode();
-                    Toast.makeText(parent,"A Confirmation Code was sent to the email address you specified",Toast.LENGTH_LONG).show();
-                    Toast.makeText(parent,"The Confirmation Code is valid for " + valTime + " minutes",Toast.LENGTH_LONG).show();
+                    ConfirmationCodeGenerator confGen = new ConfirmationCodeGenerator((SuperRegRes)parent, reg);
+                    confGen.sendConfCode(email);
                 }
             }
         });
     }
 
-    public Boolean verifyConfirmationCode(String str){
-        if(str.equals(code))
-            return true;
-        return false;
-    }
-
-    public void register(){
+    public void register(Activity confAct){
         ArrayList<String> vals = new ArrayList<>();
         vals.add(email);
         vals.add(password);
@@ -95,8 +75,12 @@ public class Registration {
                 if(result.equals("false"))
                     Toast.makeText(parent,"Sorry something went wrong. Try again.",Toast.LENGTH_LONG).show();
                 else{
-                    Toast.makeText(parent,"You are successfully registered",Toast.LENGTH_LONG).show();
                     login();
+                    Toast.makeText(parent, "You have successfully registered to CITISCOPE", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(parent, ProfileActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    parent.startActivity(intent);
+                    parent.finish();
                 }
             }
         });
@@ -110,87 +94,87 @@ public class Registration {
 
 
 
-    public void sendConfCode(){
-        new SendMailTask().execute(email);
-    }
-
-    private String getConfCode() {
-        final String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        final int N = alphabet.length();
-
-        Random rand = new Random();
-        code="";
-        for(int i=0; i<6; i++){
-            code += alphabet.charAt(rand.nextInt(N));
-        }
-        parent.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                new CountDownTimer(valTime*60*1000, 12000) {
-                    @Override
-                    public void onTick(long l) {
-
-                    }
-
-                    public void onFinish() {
-                        code="";
-                        Toast.makeText(parent,"The Confirmation Code has expired",Toast.LENGTH_LONG).show();
-                    }
-                }.start();
-            }
-        });
-
-        return code;
-    }
-
-    class SendMailTask extends AsyncTask {
-
-        private ProgressDialog statusDialog;
-        private Activity sendMailActivity;
-
-        protected void onPreExecute() {
-            statusDialog = new ProgressDialog(parent);
-            statusDialog.setMessage("Getting ready...");
-            statusDialog.setIndeterminate(false);
-            statusDialog.setCancelable(false);
-            statusDialog.show();
-        }
-
-        @Override
-        protected Object doInBackground(Object... args) {
-            try {
-                Log.i("SendMailTask", "About to instantiate GMail...");
-
-                publishProgress("Processing input....");
-                CitiMail androidEmail = new CitiMail(args[0].toString(), getConfCode());
-                publishProgress("Preparing mail message....");
-                androidEmail.createEmailMessage();
-                publishProgress("Sending email....");
-                androidEmail.sendEmail();
-                publishProgress("Email Sent.");
-
-                Log.i("SendMailTask", "Mail Sent.");
-            } catch (Exception e) {
-                publishProgress(e.getMessage());
-                Log.e("SendMailTask", e.getMessage(), e);
-                parent.startActivity(new Intent(parent, HomeActivity.class));
-            }
-            return "done";
-        }
-
-        @Override
-        public void onProgressUpdate(Object... values) {
-            statusDialog.setMessage(values[0].toString());
-        }
-
-        @Override
-        public void onPostExecute(Object result) {
-            statusDialog.dismiss();
-            if(parent instanceof RegistrationActivity) {
-                RegistrationActivity regAct = (RegistrationActivity) parent;
-                regAct.startCodeConfirmation();
-            }
-        }
-
-    }
+//    public void sendConfCode(){
+//        new SendMailTask().execute(email);
+//    }
+//
+//    private String getConfCode() {
+//        final String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//        final int N = alphabet.length();
+//
+//        Random rand = new Random();
+//        code="";
+//        for(int i=0; i<6; i++){
+//            code += alphabet.charAt(rand.nextInt(N));
+//        }
+//        parent.runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                new CountDownTimer(valTime*60*1000, 12000) {
+//                    @Override
+//                    public void onTick(long l) {
+//
+//                    }
+//
+//                    public void onFinish() {
+//                        code="";
+//                        Toast.makeText(parent,"The Confirmation Code has expired",Toast.LENGTH_LONG).show();
+//                    }
+//                }.start();
+//            }
+//        });
+//
+//        return code;
+//    }
+//
+//    class SendMailTask extends AsyncTask {
+//
+//        private ProgressDialog statusDialog;
+//        private Activity sendMailActivity;
+//
+//        protected void onPreExecute() {
+//            statusDialog = new ProgressDialog(parent);
+//            statusDialog.setMessage("Getting ready...");
+//            statusDialog.setIndeterminate(false);
+//            statusDialog.setCancelable(false);
+//            statusDialog.show();
+//        }
+//
+//        @Override
+//        protected Object doInBackground(Object... args) {
+//            try {
+//                Log.i("SendMailTask", "About to instantiate GMail...");
+//
+//                publishProgress("Processing input....");
+//                CitiMail androidEmail = new CitiMail(args[0].toString(), getConfCode());
+//                publishProgress("Preparing mail message....");
+//                androidEmail.createEmailMessage();
+//                publishProgress("Sending email....");
+//                androidEmail.sendEmail();
+//                publishProgress("Email Sent.");
+//
+//                Log.i("SendMailTask", "Mail Sent.");
+//            } catch (Exception e) {
+//                publishProgress(e.getMessage());
+//                Log.e("SendMailTask", e.getMessage(), e);
+//                parent.startActivity(new Intent(parent, HomeActivity.class));
+//            }
+//            return "done";
+//        }
+//
+//        @Override
+//        public void onProgressUpdate(Object... values) {
+//            statusDialog.setMessage(values[0].toString());
+//        }
+//
+//        @Override
+//        public void onPostExecute(Object result) {
+//            statusDialog.dismiss();
+//            if(parent instanceof RegistrationActivity) {
+//                RegistrationActivity regAct = (RegistrationActivity) parent;
+//                regAct.startCodeConfirmation();
+//            }
+//        }
+//
+//    }
 }

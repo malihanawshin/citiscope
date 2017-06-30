@@ -118,12 +118,12 @@ l
                         />
 
                     <TextView
+                        android:id="@+id/edt_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="abc@gmail.com"
-                        android:textSize="14sp"
                         android:textColor="@color/colorAccent"
-                        />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 

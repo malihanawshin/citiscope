@@ -1,8 +1,8 @@
 package com.example.imm.citi.activities;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -10,14 +10,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.imm.citi.R;
+import com.example.imm.citi.technicalClasses.ConfirmationCodeGenerator;
 import com.example.imm.citi.technicalClasses.Registration;
 
 public class CodeConfirmationActivity extends AppCompatActivity {
     Button submit, resend, cancel;
     EditText eCode;
-    CodeConfirmationActivity confAct = this;
+    Activity confAct = this;
     Registration reg;
     String code, email, password;
+    long secPassed;
+    ConfirmationCodeGenerator confGen;
 
 
     @Override
@@ -36,7 +39,10 @@ public class CodeConfirmationActivity extends AppCompatActivity {
         code = getIntent().getStringExtra("code");
         email = getIntent().getStringExtra("email");
         password = getIntent().getStringExtra("password");
-        reg = new Registration(email, password, code, confAct);
+        secPassed = getIntent().getLongExtra("secPassed", 0);
+
+        reg = new Registration(email, password, confAct);
+        confGen = new ConfirmationCodeGenerator((CodeConfirmationActivity)confAct, code, secPassed);
 
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setListeners();
@@ -46,14 +52,14 @@ public class CodeConfirmationActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                confAct.cancelConfCode();
+                cancelConfCode();
             }
         });
 
         resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                confAct.resendConfCode();
+                resendConfCode();
             }
         });
 
@@ -66,7 +72,7 @@ public class CodeConfirmationActivity extends AppCompatActivity {
                     Toast.makeText(confAct,"Please fill in the required field",Toast.LENGTH_LONG).show();
                 }
                 else{
-                    confAct.validateConfCode(strCode.toUpperCase());
+                    validateConfCode(strCode.toUpperCase());
                 }
             }
         });
@@ -74,24 +80,29 @@ public class CodeConfirmationActivity extends AppCompatActivity {
 
 
     public void cancelConfCode() {
-        Intent intent = new Intent(this, RegistrationActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, RegistrationActivity.class);
+//        startActivity(intent);
+
+        onBackPressed();
     }
 
     public void resendConfCode() {
-        reg.sendConfCode();
+        confGen.sendConfCode(email);
     }
 
     public void validateConfCode(String str) {
-        if(reg.verifyConfirmationCode(str)) {
-            Toast.makeText(confAct, "You have successfully registered to CITISCOPE", Toast.LENGTH_LONG).show();
-            reg.register();
-            cancelConfCode();
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
+        if(verifyConfirmationCode(str)) {
+            reg.register(confAct);
         }
         else
-            Toast.makeText(confAct,"Invalid Confirmation Code",Toast.LENGTH_LONG).show();
+            Toast.makeText(confAct,"Invalid Confirmation Code " + confGen.code,Toast.LENGTH_LONG).show();
+    }
+
+
+    public Boolean verifyConfirmationCode(String str){
+        if(str.equals(confGen.code))
+            return true;
+        return false;
     }
 
     @Override

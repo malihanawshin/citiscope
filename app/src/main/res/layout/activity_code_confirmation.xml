@@ -10,17 +10,6 @@
     tools:context="com.example.imm.citi.activities.CodeConfirmationActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:text="Confirmation code is sent to abc@gmail.com"
-        android:textSize="16sp"
-        />
-
     <android.support.design.widget.TextInputLayout
         android:id="@+id/text_input_layout_code"
         android:layout_width="match_parent"
@@ -32,19 +21,21 @@
         >
 
         <EditText
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
             android:id="@+id/etxtCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="30dp"
             android:ems="10"
+            android:gravity="center"
             android:hint="Enter the code"
-            android:textColorHint="@android:color/white"
-            android:inputType="textPassword"
-            />
+            android:inputType="none"
+            android:maxLength="6"
+            android:singleLine="true"
+            android:textColorHint="@android:color/white" />
 
     </android.support.design.widget.TextInputLayout>
 

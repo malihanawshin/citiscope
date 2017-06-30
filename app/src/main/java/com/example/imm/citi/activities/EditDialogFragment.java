@@ -105,8 +105,6 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
                 User user = new User();
                 user.editProfile(name, phone, bio, this.getActivity());
             }
-            //TODO saving info
-            //((ProfileActivity)getActivity()).proceedToCheckOut();
             dismiss();
         }
 
