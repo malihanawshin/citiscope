@@ -57,12 +57,12 @@ l
                         />
 
                     <TextView
+                        android:id="@+id/edt_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="username"
-                        android:textSize="14sp"
                         android:textColor="@color/colorAccent"
-                        />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -169,12 +169,12 @@ l
                         />
 
                     <TextView
+                        android:id="@+id/edt_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="set phone no"
-                        android:textSize="14sp"
                         android:textColor="@color/colorAccent"
-                        />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -231,12 +231,12 @@ l
                         />
 
                     <TextView
+                        android:id="@+id/edt_bio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="write details about you"
-                        android:textSize="14sp"
                         android:textColor="@color/colorAccent"
-                        />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 

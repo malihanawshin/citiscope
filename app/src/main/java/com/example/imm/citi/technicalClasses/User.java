@@ -51,10 +51,10 @@ public class User {
 //        poll.addNomination(name, desc, parent, sources);
 //    }
 //
-//    public void editProfile(String name, String phone, String bio, Activity act){
-//        Profile prof = new Profile();
-//        prof.updateDatabase(name, phone, bio, act);
-//    }
+    public void editProfile(String name, String phone, String bio, Activity act){
+        Profile prof = new Profile();
+        prof.updateDatabase(name, phone, bio, act);
+    }
 //
 //    public void resetPassword(String name, String pwd, Authentication auth){
 //        auth.resetPassword(name, pwd);

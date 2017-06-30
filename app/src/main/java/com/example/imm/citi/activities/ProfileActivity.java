@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.imm.citi.R;
+import com.example.imm.citi.technicalClasses.User;
 
 import butterknife.ButterKnife;
 
@@ -28,6 +29,8 @@ public class ProfileActivity extends BottomBarActivity {
 
     private TextView title;
 
+    private TextView edtName, edtPhone, edtBio;
+
     @Override
     public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onPostCreate(savedInstanceState, persistentState);
@@ -41,6 +44,13 @@ public class ProfileActivity extends BottomBarActivity {
 
         setTitle("Account");
         ButterKnife.bind(this);
+
+        edtName = (TextView) findViewById(R.id.edt_name);
+        edtName.setText(User.Name);
+        edtPhone = (TextView) findViewById(R.id.edt_phone);
+        edtPhone.setText(User.Phone);
+        edtBio = (TextView) findViewById(R.id.edt_bio);
+        edtBio.setText(User.Bio);
 
 
         editname = (ImageView) findViewById(R.id.icon_edit_name);
@@ -58,21 +68,21 @@ public class ProfileActivity extends BottomBarActivity {
         bookmarks.setOnClickListener(clickListener);
     }
 
-    private void showEditDialog() {
+    private void showNameEditDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        DialogFragment e = EditDialogFragment.newInstance("name");
+        DialogFragment e = EditDialogFragment.newInstance("name", edtName.getText().toString());
         e.show(fm,"fragment_edit_name");
     }
 
     private void showPhoneEditDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        DialogFragment e = EditDialogFragment.newInstance("phone");
+        DialogFragment e = EditDialogFragment.newInstance("phone", edtPhone.getText().toString());
         e.show(fm,"fragment_edit_name");
     }
 
     private void showBioEditDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        DialogFragment e = EditDialogFragment.newInstance("bio");
+        DialogFragment e = EditDialogFragment.newInstance("bio", edtBio.getText().toString());
         e.show(fm,"fragment_edit_name");
     }
 
@@ -94,7 +104,7 @@ public class ProfileActivity extends BottomBarActivity {
 
             switch(v.getId()){
                 case R.id.icon_edit_name:
-                    showEditDialog();
+                    showNameEditDialog();
                     break;
 
                 case R.id.icon_edit_phone:

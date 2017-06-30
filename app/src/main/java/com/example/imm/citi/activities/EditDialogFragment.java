@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.imm.citi.R;
+import com.example.imm.citi.technicalClasses.User;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -27,17 +29,19 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
     String edittype;
     private TextView title;
     private Button ok;
+    private String text;
 
-    public EditDialogFragment(String edittype){
+    public EditDialogFragment(String edittype, String s){
         this.edittype=edittype;
+        text = s;
     }
 
     public String getType(){
         return edittype;
     }
 
-    public static EditDialogFragment newInstance(String type){
-        EditDialogFragment frag = new EditDialogFragment(type);
+    public static EditDialogFragment newInstance(String type, String s){
+        EditDialogFragment frag = new EditDialogFragment(type, s);
         return frag;
     }
 
@@ -53,6 +57,7 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
         super.onViewCreated(view, savedInstanceState);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         mEditText = (EditText) view.findViewById(R.id.text_new_name);
+        mEditText.setText(text);
         ok = (Button) view.findViewById(R.id.btn_dialog_ok);
         ok.setOnClickListener(this);
 
@@ -83,6 +88,23 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
     public void onClick(View v) {
 
         if(v.getId()==R.id.btn_dialog_ok){
+            if(!mEditText.getText().toString().equals(text)){
+                String name = User.Name;
+                String phone = User.Phone;
+                String bio = User.Bio;
+
+                String newTxt = mEditText.getText().toString();
+
+                if(edittype.equals("name"))
+                    name = newTxt;
+                else if(edittype.equals("phone"))
+                    phone = newTxt;
+                if(edittype.equals("bio"))
+                    bio = newTxt;
+
+                User user = new User();
+                user.editProfile(name, phone, bio, this.getActivity());
+            }
             //TODO saving info
             //((ProfileActivity)getActivity()).proceedToCheckOut();
             dismiss();
