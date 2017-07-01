@@ -56,14 +56,14 @@ public class Registration {
                 if(result.equals("false"))
                     Toast.makeText(parent,"Email Already Exists",Toast.LENGTH_LONG).show();
                 else{
-                    ConfirmationCodeGenerator confGen = new ConfirmationCodeGenerator((SuperRegRes)parent, reg);
+                    ConfirmationCodeGenerator confGen = new ConfirmationCodeGenerator((SuperRegRes)parent);
                     confGen.sendConfCode(email);
                 }
             }
         });
     }
 
-    public void register(Activity confAct){
+    public void register(){
         ArrayList<String> vals = new ArrayList<>();
         vals.add(email);
         vals.add(password);

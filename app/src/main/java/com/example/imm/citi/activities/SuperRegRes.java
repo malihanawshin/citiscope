@@ -2,10 +2,9 @@ package com.example.imm.citi.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.example.imm.citi.technicalClasses.Registration;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,17 +14,25 @@ import java.util.regex.Pattern;
  */
 
 public class SuperRegRes extends AppCompatActivity {
+    protected Button btnSignup, btnClear;
     EditText edtEmail, edtPwd1, edtPwd2;
     SuperRegRes regRes = this;
-    Registration reg;
     
     public void startCodeConfirmation(String code, long secPassed){
         Intent intent = new Intent(this,CodeConfirmationActivity.class);
         intent.putExtra("code", code);
         intent.putExtra("secPassed", secPassed);
-        intent.putExtra("email", reg.email);
-        intent.putExtra("password", reg.password);
+        intent.putExtra("email", edtEmail.getText().toString());
+        intent.putExtra("password", edtPwd1.getText().toString());
+        intent.putExtra("isReg", isReg());
+
         startActivity(intent);
+    }
+
+    private boolean isReg() {
+        if(regRes instanceof RegistrationActivity)
+            return true;
+        return false;
     }
 
 

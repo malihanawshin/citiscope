@@ -55,10 +55,10 @@ public class User {
         Profile prof = new Profile();
         prof.updateDatabase(name, phone, bio, act);
     }
-//
-//    public void resetPassword(String name, String pwd, Authentication auth){
-//        auth.resetPassword(name, pwd);
-//    }
+
+    public void resetPassword(String name, String pwd, Authentication auth){
+        auth.resetPassword(name, pwd);
+    }
 
 
 

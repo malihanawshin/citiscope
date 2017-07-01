@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.imm.citi.R;
+import com.example.imm.citi.technicalClasses.Authentication;
 import com.example.imm.citi.technicalClasses.ConfirmationCodeGenerator;
 import com.example.imm.citi.technicalClasses.Registration;
 
@@ -17,9 +18,11 @@ public class CodeConfirmationActivity extends AppCompatActivity {
     Button submit, resend, cancel;
     EditText eCode;
     Activity confAct = this;
-    Registration reg;
+
     String code, email, password;
     long secPassed;
+    Boolean isReg;
+
     ConfirmationCodeGenerator confGen;
 
 
@@ -40,8 +43,8 @@ public class CodeConfirmationActivity extends AppCompatActivity {
         email = getIntent().getStringExtra("email");
         password = getIntent().getStringExtra("password");
         secPassed = getIntent().getLongExtra("secPassed", 0);
+        isReg = getIntent().getBooleanExtra("isReg", true);
 
-        reg = new Registration(email, password, confAct);
         confGen = new ConfirmationCodeGenerator((CodeConfirmationActivity)confAct, code, secPassed);
 
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -92,7 +95,14 @@ public class CodeConfirmationActivity extends AppCompatActivity {
 
     public void validateConfCode(String str) {
         if(verifyConfirmationCode(str)) {
-            reg.register(confAct);
+            if(isReg){
+                Registration reg = new Registration(email, password, confAct);
+                reg.register();
+            }
+            else{
+                Authentication auth = new Authentication(confAct);
+                auth.resetPassword(email, password);
+            }
         }
         else
             Toast.makeText(confAct,"Invalid Confirmation Code " + confGen.code,Toast.LENGTH_LONG).show();

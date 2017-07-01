@@ -38,7 +38,7 @@ public class BottomBarActivity extends AppCompatActivity {
                 showLoginPage();
                 return true;
             case R.id.action_sign_out:
-                Authentication auth = new Authentication();
+                Authentication auth = new Authentication(parent);
                 auth.logout(parent);
                 return true;
             case R.id.action_sign_up:

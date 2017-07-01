@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.example.imm.citi.activities.HomeActivity;
+import com.example.imm.citi.activities.LoginActivity;
+import com.example.imm.citi.activities.SuperRegRes;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,11 +27,12 @@ public class Authentication {
     private static final String RESPWDFILE = "resPwd.php";
     String email="", name="", phone="", bio = "";
     Activity parent;
-    
-    String code;
-    //ResetPwdActivity resAct;
 
-    public Authentication(){
+    SuperRegRes resAct;
+
+
+    public Authentication(Activity act){
+        parent = act;
         initKeys();
     }
 
@@ -42,15 +45,14 @@ public class Authentication {
 
 
 
-    public void verifyLoginCredentials(String email, String password, Activity act){
+    public void verifyLoginCredentials(String email, String password){
         ArrayList<String> vals = new ArrayList<>();
         vals.add(email);
         vals.add(password);
         this.email = email;
-        parent = act;
 
         Database db = new Database();
-        db.retrieve(new RetrievalData(keys, vals, file, act), true, new VolleyCallback() {
+        db.retrieve(new RetrievalData(keys, vals, file, parent), true, new VolleyCallback() {
             @Override
             public void onSuccessResponse(String response) {
                 try {
@@ -79,23 +81,31 @@ public class Authentication {
         });
     }
 
-//    public void resetPassword(String email, String pwd){
-//        ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();
-//
-//        keys.add("email");
-//        keys.add("password");
-//
-//        vals.add(email);
-//        vals.add(pwd);
-//
-//        Database db = new Database();
-//        db.update(new RetrievalData(keys, vals, RESPWDFILE, resAct), true, new VolleyCallback() {
-//            @Override
-//            public void onSuccessResponse(String result) {
-//
-//            }
-//        });
-//    }
+    public void resetPassword(String email, String pwd){
+        ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();
+
+        keys.add("email");
+        keys.add("password");
+
+        vals.add(email);
+        vals.add(pwd);
+
+        Database db = new Database();
+        db.update(new RetrievalData(keys, vals, RESPWDFILE, parent), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String result) {
+                if(result.equals("true")){
+                    Toast.makeText(parent,"Your password has been successfully changed",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(parent, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    parent.startActivity(intent);
+                    parent.finish();
+                }
+                else
+                    Toast.makeText(resAct,"Sorry something went wrong",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     private void login(){
         User.setAttributes(email, name, phone, bio, parent);
@@ -131,28 +141,26 @@ public class Authentication {
 
 
 
-//    public void verifyInput(String email, String pwd, ResetPwdActivity act){
-//        resAct = act;
-//        ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();
-//        keys.add("email");
-//        vals.add(email);
-//        this.email = email;
-//
-//        Database db = new Database();
-//        db.retrieve(new RetrievalData(keys, vals, confFile, act), true, new VolleyCallback() {
-//            @Override
-//            public void onSuccessResponse(String result) {
-//                if(result.equals("true"))
-//                    Toast.makeText(resAct,"Email does not exist",Toast.LENGTH_LONG).show();
-//                else{
-//                    resAct.showConfFragment();
-//                    sendConfCode();
-//                    Toast.makeText(resAct,"A Confirmation Code was sent to the email address you specified",Toast.LENGTH_LONG).show();
-//                    Toast.makeText(resAct,"The Confirmation Code is valid for " + valTime + " minutes",Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
-//    }
+    public void verifyInput(String email1, String pwd, SuperRegRes act){
+        resAct = act;
+        ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();
+        keys.add("email");
+        vals.add(email1);
+        this.email = email1;
+
+        Database db = new Database();
+        db.retrieve(new RetrievalData(keys, vals, confFile, act), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String result) {
+                if(result.equals("true"))
+                    Toast.makeText(resAct,"Email does not exist",Toast.LENGTH_LONG).show();
+                else{
+                    ConfirmationCodeGenerator confGen = new ConfirmationCodeGenerator((SuperRegRes)parent);
+                    confGen.sendConfCode(email);
+                }
+            }
+        });
+    }
 
 
 

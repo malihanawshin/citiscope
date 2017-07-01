@@ -59,8 +59,8 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                Authentication auth = new Authentication();
-                auth.verifyLoginCredentials(txtEmail, txtPwd, parent);
+                Authentication auth = new Authentication(parent);
+                auth.verifyLoginCredentials(txtEmail, txtPwd);
             }
         });
     }

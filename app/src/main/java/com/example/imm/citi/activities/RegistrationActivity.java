@@ -12,7 +12,7 @@ import com.example.imm.citi.technicalClasses.Registration;
 public class RegistrationActivity extends SuperRegRes {
 
     Toolbar t;
-    private Button signup;
+    Registration reg;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +22,11 @@ public class RegistrationActivity extends SuperRegRes {
         t = (Toolbar) findViewById(R.id.app_toolbar);
         setSupportActionBar(t);
 
-        signup = (Button) findViewById(R.id.btnRegSubmit);
-        signup.setOnClickListener(clickListener);
+        btnSignup = (Button) findViewById(R.id.btnRegSubmit);
+        btnSignup.setOnClickListener(clickListener);
+
+        btnClear = (Button) findViewById(R.id.btnRegClear);
+        btnClear.setOnClickListener(clickListener);
 
         edtEmail = (EditText) findViewById(R.id.textEmailAddress);
         edtPwd1 = (EditText) findViewById(R.id.eTxtPwd1);
@@ -43,7 +46,11 @@ public class RegistrationActivity extends SuperRegRes {
                         reg = new Registration(edtEmail.getText().toString(), edtPwd1.getText().toString(),regRes);
                         reg.verifyRegistrationInput();
                     }
-
+                    break;
+                case R.id.btnRegClear:
+                    edtEmail.setText("");
+                    edtPwd1.setText("");
+                    edtPwd2.setText("");
             }
         }
     };

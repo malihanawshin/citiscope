@@ -150,17 +150,16 @@
                 />
 
             <Button
-                android:id="@+id/btnReset"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:id="@+id/btnRegClear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/colorAccent"
-                android:text="Reset"
-                android:textColor="@android:color/white"
-                />
+                android:text="Clear"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 

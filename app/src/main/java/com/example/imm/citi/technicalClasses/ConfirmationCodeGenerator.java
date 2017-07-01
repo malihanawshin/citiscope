@@ -22,11 +22,9 @@ public class ConfirmationCodeGenerator {
     public String code;
     Activity parent;
     final long valTime = 15;
-    Registration reg;
     public long secondsPassed=0;
 
-    public ConfirmationCodeGenerator(SuperRegRes regRes1, Registration reg1){
-        reg = reg1;
+    public ConfirmationCodeGenerator(SuperRegRes regRes1){
         parent = regRes1;
     }
 
