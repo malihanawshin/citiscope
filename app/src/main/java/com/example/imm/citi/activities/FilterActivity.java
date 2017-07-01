@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imm.citi.R;
-import com.example.imm.citi.technicalClasses.Agent;
+import com.example.imm.citi.agents.Agent;
 import com.example.imm.citi.technicalClasses.Service;
 import com.example.imm.citi.technicalClasses.User;
 

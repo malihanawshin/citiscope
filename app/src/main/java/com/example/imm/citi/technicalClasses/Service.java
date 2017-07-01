@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.activities.FilterActivity;
+import com.example.imm.citi.agents.Agent;
 import com.example.imm.citi.sources.*;
 
 import org.json.JSONArray;

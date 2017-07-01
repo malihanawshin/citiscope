@@ -5,7 +5,7 @@ import android.app.ProgressDialog;
 import android.support.v4.util.Pair;
 
 import com.example.imm.citi.activities.FilterActivity;
-import com.example.imm.citi.technicalClasses.Agent;
+import com.example.imm.citi.agents.Agent;
 import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.RetrievalData;
 import com.example.imm.citi.technicalClasses.Service;

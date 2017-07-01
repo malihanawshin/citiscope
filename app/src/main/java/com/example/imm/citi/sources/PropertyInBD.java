@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.support.v4.util.Pair;
 
 
-import com.example.imm.citi.technicalClasses.Agent;
+import com.example.imm.citi.agents.Agent;
 import com.example.imm.citi.technicalClasses.Service;
 
 import java.io.BufferedReader;

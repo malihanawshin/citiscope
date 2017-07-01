@@ -1,10 +1,15 @@
-package com.example.imm.citi.technicalClasses;
+package com.example.imm.citi.agents;
 
 import android.app.Activity;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.Toast;
 
+
+import com.example.imm.citi.technicalClasses.Database;
+import com.example.imm.citi.technicalClasses.RetrievalData;
+import com.example.imm.citi.technicalClasses.User;
+import com.example.imm.citi.technicalClasses.VolleyCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
