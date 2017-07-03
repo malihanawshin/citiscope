@@ -36,9 +36,6 @@ public class Agent implements Parcelable{
     public Agent() {}
 
 
-
-
-
     public void addBookmarker(Activity act){
         parent = act;
         initiateArrays();

@@ -107,8 +107,5 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
             }
             dismiss();
         }
-
-
     }
-
 }

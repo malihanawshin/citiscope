@@ -10,18 +10,17 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".technicalClasses.CitiScope"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="SujisScope"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="com.example.imm.citi.technicalClasses.CitiScope"
-        >
+        android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.imm.citi.activities.HomeActivity"
+            android:name=".activities.HomeActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,29 +29,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.imm.citi.activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="Sign In"
             android:theme="@style/newTheme" />
         <activity
-            android:name="com.example.imm.citi.activities.RegistrationActivity"
+            android:name=".activities.RegistrationActivity"
             android:label="Sign Up"
             android:theme="@style/newTheme" />
-
-
-        <activity android:name="com.example.imm.citi.activities.BottomBarActivity" />
-        <activity android:name="com.example.imm.citi.activities.ProfileActivity" />
-        <activity android:name="com.example.imm.citi.activities.NotificationActivity" />
-        <activity android:name="com.example.imm.citi.activities.PollActivity" />
-        <activity android:name="com.example.imm.citi.activities.CodeConfirmationActivity" />
-        <activity android:name="com.example.imm.citi.activities.ResetPasswordActivity"/>
-
+        <activity android:name=".activities.BottomBarActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.NotificationActivity" />
+        <activity android:name=".activities.PollActivity" />
+        <activity android:name=".activities.CodeConfirmationActivity" />
+        <activity android:name=".activities.ResetPasswordActivity" />
         <activity
-            android:name="com.example.imm.citi.activities.FilterActivity"
-            android:label="Filters"
-
-            />
-
-
+            android:name=".activities.FilterActivity"
+            android:label="Filters" />
+        <activity android:name=".activities.AgentListActivity"></activity>
     </application>
 
 </manifest>

@@ -58,6 +58,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
 
         GridLayoutManager manager = new GridLayoutManager(this,2);
         serviceview.setLayoutManager(manager);
+
         ViewTreeObserver vto = serviceview.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -104,9 +105,6 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         intent.putExtra("district", district);
         startActivity(intent);
     }
-
-
-
 
 
     private void fillSpinner() {

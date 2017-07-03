@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
                 >
-l
+
                 <ImageView
                     android:id="@+id/icon_account"
                     android:layout_width="56dp"
@@ -43,12 +43,13 @@ l
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/icon_account"
+                    android:layout_toLeftOf="@+id/icon_edit_name"
                     android:orientation="vertical"
                     android:gravity="center_vertical"
                     >
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Username"
                         android:textSize="16sp"
@@ -58,7 +59,7 @@ l
 
                     <TextView
                         android:id="@+id/edt_name"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="username"
                         android:textColor="@color/colorAccent"
@@ -109,7 +110,7 @@ l
                     >
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Email"
                         android:textSize="16sp"
@@ -155,6 +156,7 @@ l
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/icon_phone"
+                    android:layout_toLeftOf="@+id/icon_edit_phone"
                     android:orientation="vertical"
                     android:gravity="center_vertical"
                     >
@@ -170,7 +172,7 @@ l
 
                     <TextView
                         android:id="@+id/edt_phone"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="set phone no"
                         android:textColor="@color/colorAccent"
@@ -179,7 +181,7 @@ l
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/icon_edit_phone"
+                    android:id="@id/icon_edit_phone"
                     android:layout_width="56dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_create_black_24dp"
@@ -213,9 +215,10 @@ l
                     />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/icon_bio"
+                    android:layout_toLeftOf="@+id/icon_edit_bio"
                     android:orientation="vertical"
                     android:gravity="center_vertical"
                     >
@@ -232,7 +235,7 @@ l
 
                     <TextView
                         android:id="@+id/edt_bio"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="write details about you"
                         android:textColor="@color/colorAccent"
@@ -241,7 +244,7 @@ l
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/icon_edit_bio"
+                    android:id="@id/icon_edit_bio"
                     android:layout_width="56dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_create_black_24dp"

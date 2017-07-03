@@ -7,6 +7,7 @@ package com.example.imm.citi.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,8 @@ public class FilterActivity extends AppCompatActivity {
     LinearLayout ll;
     TextView txtCaption;
     private String district;
+    Button search;
+    private RecyclerView agentlistview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +45,9 @@ public class FilterActivity extends AppCompatActivity {
 
         district = intent.getStringExtra("district");
 
-        //txtCaption = (TextView) findViewById(R.id.txtFilterCaption);
-        //txtCaption.setText(txtCaption.getText().toString()+ " (" + service + ")");
         ll = (LinearLayout) findViewById(R.id.ll_filters);
+
+
         Toast.makeText(this, service, Toast.LENGTH_SHORT).show();
 
         setFilters();
@@ -75,16 +78,14 @@ public class FilterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    public String getService(){
+        return service;
+    }
 
     private void setFilters() {
         srv = new Service(service, this, district);
         srv.fetchFilters();
     }
-
-
-
-
 
 
     private void setListeners() {
@@ -96,6 +97,10 @@ public class FilterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 User user = new User();
                 user.search(srv);
+
+                Intent intent = new Intent(FilterActivity.this,AgentListActivity.class);
+                intent.putExtra("servicename",service);
+                startActivity(intent);
             }
         });
     }
