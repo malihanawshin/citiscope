@@ -90,13 +90,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="16dp"
-            android:textSize="16sp"
+            android:text="Speciality"
             android:textColor="@android:color/white"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:visibility="gone"
-            android:text="Speciality"
-            tools:visibility="visible"
-            />
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/info_agent_attribute_1"

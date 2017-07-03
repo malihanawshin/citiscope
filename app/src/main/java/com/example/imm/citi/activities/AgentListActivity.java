@@ -1,5 +1,6 @@
 package com.example.imm.citi.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +18,7 @@ public class AgentListActivity extends AppCompatActivity implements AgentListAda
     String service;
     FilterActivity f;
     private RecyclerView agentlistview;
-    ArrayList<Agent> agents = new ArrayList<>();
+    ArrayList<Agent> agents;
 
     //agents.add();
 
@@ -26,9 +27,10 @@ public class AgentListActivity extends AppCompatActivity implements AgentListAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agent_list);
 
-        //Intent intent = new Intent(AgentListActivity.this, FilterActivity.class);
-        service = getIntent().getStringExtra("servicename");
+        Intent intent = getIntent();
+        service = intent.getStringExtra("servicename");
         setTitle(service);
+        agents = intent.getBundleExtra("agent").getParcelableArrayList("agents");
 
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
