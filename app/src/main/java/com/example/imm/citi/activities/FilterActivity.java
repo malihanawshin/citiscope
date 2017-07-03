@@ -97,16 +97,20 @@ public class FilterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 User user = new User();
                 user.search(srv);
-
-                Intent intent = new Intent(FilterActivity.this,AgentListActivity.class);
-                intent.putExtra("servicename",service);
-                startActivity(intent);
             }
         });
     }
 
     public void showResult(ArrayList<Agent> agents){
         System.out.println("AAAAARRRREEEHHHH\n" + agents);
+
+        Intent intent = new Intent(FilterActivity.this,AgentListActivity.class);
+        intent.putExtra("servicename",service);
+        Bundle b = new Bundle();
+        b.putParcelableArrayList("agents", agents);
+        intent.putExtra("agent", b);
+        startActivity(intent);
+
 //        Intent intent = new Intent(this, AgentListActivity.class);
 //        Bundle b = new Bundle();
 //        b.putParcelableArrayList("agents", agents);
