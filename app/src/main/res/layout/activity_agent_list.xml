@@ -9,6 +9,16 @@
     tools:context="com.example.imm.citi.activities.AgentListActivity"
     >
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,9 +26,9 @@
         android:textColor="@color/colorAccent"
         android:text="Agent's List"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         />
 
     <android.support.v7.widget.RecyclerView
@@ -28,5 +38,9 @@
         android:layout_weight="1"
         android:scrollbars="horizontal"
         />
+
+        </LinearLayout>
+
+</ScrollView>
 
 </LinearLayout>

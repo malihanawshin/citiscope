@@ -30,11 +30,6 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         this.aContext=aContext;
         this.items= items;
         this.aCallback = aCallback;
-
-        items.add(new Agent());
-        items.add(new Agent());
-        items.add(new Agent());
-
     }
     public class AgentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
