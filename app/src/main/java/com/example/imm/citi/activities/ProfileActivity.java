@@ -126,7 +126,8 @@ public class ProfileActivity extends BottomBarActivity {
 
                     break;
                 case R.id.bookmark_from_profile:
-
+                    Intent intentB = new Intent(ProfileActivity.this,BookmarkActivity.class);
+                    startActivity(intentB);
                     break;
 
             }

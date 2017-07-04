@@ -16,6 +16,14 @@
     </string-array>
 
 
+    <string-array name="service_arr">
+        <item>Apartment Renting </item>
+        <item>Blood Donation </item>
+        <item>Doctor </item>
+        <item>Tuition </item>
+    </string-array>
+
+
     <string name="title_activity_nom_map">Map</string>
     <string name="title_activity_login">Sign in</string>
 

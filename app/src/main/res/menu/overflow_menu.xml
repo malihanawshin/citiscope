@@ -29,7 +29,7 @@
         android:id="@+id/action_sign_out"
         android:title="Sign Out"
         app:showAsAction="never"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:visibility="gone"
         />
 

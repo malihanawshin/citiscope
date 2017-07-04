@@ -22,12 +22,31 @@ public class BottomBarActivity extends AppCompatActivity {
     Activity parent = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.overflow_menu, menu);
+
+        if(User.loggedIn){
+            MenuItem item = menu.findItem(R.id.action_sign_in);
+            item.setVisible(false);
+            MenuItem item2 = menu.findItem(R.id.action_sign_up);
+            item2.setVisible(false);
+            MenuItem item3 = menu.findItem(R.id.action_sign_out);
+            item3.setVisible(true);
+        }
+
+        else {
+            MenuItem item4 = menu.findItem(R.id.action_sign_out);
+            item4.setVisible(false);
+        }
+
         return true;
     }
 

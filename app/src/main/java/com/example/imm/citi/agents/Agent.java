@@ -33,6 +33,7 @@ public class Agent implements Parcelable{
 
 
     ArrayList<Agent> bookmarks;
+
     public Agent() {}
 
 

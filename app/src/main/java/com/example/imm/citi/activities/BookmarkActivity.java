@@ -1,49 +1,60 @@
 package com.example.imm.citi.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.agents.Agent;
 
 import java.util.ArrayList;
 
-public class AgentListActivity extends AppCompatActivity implements AgentListAdapter.AgentClickCallback{
+public class BookmarkActivity extends AppCompatActivity implements AgentListAdapter.AgentClickCallback{
 
     AgentListAdapter adapter;
     String service;
     FilterActivity f;
     private RecyclerView agentlistview;
+    private TextView label;
+    private Spinner spin_service;
     ArrayList<Agent> agents;
-    int flag = 0;
+    int flag = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agent_list);
 
-        Intent intent = getIntent();
-        service = intent.getStringExtra("servicename");
-        setTitle(service);
-        agents = intent.getBundleExtra("agent").getParcelableArrayList("agents");
+        //Intent intent = getIntent();
+        //agents = intent.getBundleExtra("agent").getParcelableArrayList("agents");
+        setTitle("Bookmarks");
 
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         agentlistview = (RecyclerView) findViewById(R.id.agent_recycler);
 
+        spin_service = (Spinner) findViewById(R.id.spinner_service);
+        spin_service.setVisibility(View.VISIBLE);
+
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         agentlistview.setLayoutManager(manager);
 
         setRecycler();
+
     }
 
     private void setRecycler() {
-       adapter = new AgentListAdapter(this,agents, this, flag);
-       agentlistview.setAdapter(adapter);
+        agents = new ArrayList<>();
+        agents.add(new Agent());
+        agents.add(new Agent());
+        agents.add(new Agent());
+        adapter = new AgentListAdapter(this,agents,this, flag);
+        agentlistview.setAdapter(adapter);
     }
 
     @Override
