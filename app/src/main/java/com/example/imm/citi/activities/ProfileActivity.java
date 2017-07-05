@@ -123,8 +123,10 @@ public class ProfileActivity extends BottomBarActivity {
                     break;
 
                 case R.id.agent_from_profile:
-
+                    Intent intentA = new Intent(ProfileActivity.this,AgentProfileActivity.class);
+                    startActivity(intentA);
                     break;
+
                 case R.id.bookmark_from_profile:
                     Intent intentB = new Intent(ProfileActivity.this,BookmarkActivity.class);
                     startActivity(intentB);

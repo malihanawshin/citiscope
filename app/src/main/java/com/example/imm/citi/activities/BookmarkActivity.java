@@ -73,4 +73,9 @@ public class BookmarkActivity extends AppCompatActivity implements AgentListAdap
     public void onBookmarkClick(Agent a) {
 
     }
+
+    @Override
+    public void onEditClick(Agent a) {
+
+    }
 }

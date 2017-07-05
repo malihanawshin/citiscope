@@ -52,6 +52,21 @@
         android:scrollbars="horizontal"
         />
 
+            <Button
+                android:id="@+id/btnToAddAgent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="100dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@android:color/white"
+                android:text="Add new agent"
+                android:visibility="gone"
+                tools:visibility="visible"
+                />
+
         </LinearLayout>
 
 </ScrollView>

@@ -1,49 +1,60 @@
 package com.example.imm.citi.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.agents.Agent;
 
 import java.util.ArrayList;
 
-public class AgentListActivity extends AppCompatActivity implements AgentListAdapter.AgentClickCallback{
+public class AgentProfileActivity extends AppCompatActivity implements AgentListAdapter.AgentClickCallback{
 
     AgentListAdapter adapter;
-    String service;
-    FilterActivity f;
+    //String service;
+    //FilterActivity f;
     private RecyclerView agentlistview;
+    private TextView label;
+    Button addAgent;
     ArrayList<Agent> agents;
-    int flag = 0;
+    int flag = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agent_list);
 
-        Intent intent = getIntent();
-        service = intent.getStringExtra("servicename");
-        setTitle(service);
-        agents = intent.getBundleExtra("agent").getParcelableArrayList("agents");
+        setTitle("Agent Profile");
 
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         agentlistview = (RecyclerView) findViewById(R.id.agent_recycler);
 
+        addAgent = (Button) findViewById(R.id.btnToAddAgent);
+        addAgent.setVisibility(View.VISIBLE);
+        addAgent.setOnClickListener(clickListener);
+
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         agentlistview.setLayoutManager(manager);
 
         setRecycler();
+
     }
 
     private void setRecycler() {
-       adapter = new AgentListAdapter(this,agents, this, flag);
-       agentlistview.setAdapter(adapter);
+        agents = new ArrayList<>();
+        agents.add(new Agent());
+        agents.add(new Agent());
+        agents.add(new Agent());
+        adapter = new AgentListAdapter(this,agents,this, flag);
+        agentlistview.setAdapter(adapter);
     }
 
     @Override
@@ -52,8 +63,20 @@ public class AgentListActivity extends AppCompatActivity implements AgentListAda
         return super.onOptionsItemSelected(item);
     }
 
+    private View.OnClickListener clickListener = new View.OnClickListener() {
 
-    @Override
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()) {
+                case R.id.btnToAddAgent:
+                    //showEditPage();
+                    break;
+            }
+        }
+    };
+
+                @Override
     public void onCompareClick(Agent a) {
 
     }

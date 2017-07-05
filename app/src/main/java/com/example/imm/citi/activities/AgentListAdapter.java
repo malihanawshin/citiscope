@@ -23,12 +23,14 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
     private AgentClickCallback aCallback;
     private Button bookmark;
     private Button compare;
+    private Button editOwnInfo;
     private int flag;
     //private LinearLayout service;
 
     public interface AgentClickCallback{
         void onCompareClick(Agent a);
         void onBookmarkClick(Agent a);
+        void onEditClick(Agent a);
     }
 
     public AgentListAdapter(Context aContext,ArrayList<Agent> items,AgentClickCallback aCallback,int flag){
@@ -36,21 +38,20 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         this.items= items;
         this.aCallback = aCallback;
         this.flag=flag;
-
-        /*items.add(new Agent());
-        items.add(new Agent());
-        items.add(new Agent());
-*/    }
+    }
 
     public class AgentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView agentname;
+        TextView serviceOfAgent;
         ImageView call;
         ImageView mail;
         ImageView location;
 
         public AgentViewHolder(View itemView) {
             super(itemView);
+
+            serviceOfAgent = (TextView) itemView.findViewById(R.id.text_agent_service);
 
             agentname = (TextView) itemView.findViewById(R.id.agentname);
             agentname.setOnClickListener(this);
@@ -67,8 +68,17 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
             compare = (Button) itemView.findViewById(R.id.btnToCompare);
             compare.setOnClickListener(this);
 
+            editOwnInfo = (Button) itemView.findViewById(R.id.btnToEdit);
+            editOwnInfo.setOnClickListener(this);
+
             if(flag==0) bookmark.setVisibility(itemView.VISIBLE);
             else if(flag==1) bookmark.setVisibility(itemView.GONE);
+            else if(flag==2) {
+                bookmark.setVisibility(itemView.GONE);
+                compare.setVisibility(itemView.GONE);
+                editOwnInfo.setVisibility(itemView.VISIBLE);
+                serviceOfAgent.setText("Service Name"); // TODO set actual service name later
+            }
 
         }
 
@@ -91,6 +101,8 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                 case R.id.btnToCompare:
                     break;
 
+                case R.id.btnToEdit:
+                    break;
             }
 
         }
