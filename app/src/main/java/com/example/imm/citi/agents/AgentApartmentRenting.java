@@ -5,4 +5,9 @@ package com.example.imm.citi.agents;
  */
 
 public class AgentApartmentRenting extends LocalAgent {
+    String district, area,	propertyType;
+    long price;
+
+    long size;
+    int floor, roomNo;
 }

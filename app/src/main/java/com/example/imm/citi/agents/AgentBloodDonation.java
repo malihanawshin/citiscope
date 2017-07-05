@@ -5,4 +5,8 @@ package com.example.imm.citi.agents;
  */
 
 public class AgentBloodDonation extends Agent {
+    String District, bloodType;
+
+    Boolean smokingHabit;
+    int donationsDone, daysSinceLastDonated;
 }
