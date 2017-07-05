@@ -9,5 +9,4 @@ public class AgentBloodDonation extends Agent {
 
     Boolean smokingHabit;
     int donationsDone, daysSinceLastDonated;
-
 }
