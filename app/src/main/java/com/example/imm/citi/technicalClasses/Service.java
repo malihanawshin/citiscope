@@ -12,7 +12,18 @@ import android.widget.TextView;
 import com.example.imm.citi.R;
 import com.example.imm.citi.activities.FilterActivity;
 import com.example.imm.citi.agents.Agent;
-import com.example.imm.citi.sources.*;
+import com.example.imm.citi.agents.FactoryAgent;
+import com.example.imm.citi.agents.FactoryApartmentRenting;
+import com.example.imm.citi.agents.FactoryBloodDonation;
+import com.example.imm.citi.agents.FactoryDoctor;
+import com.example.imm.citi.agents.FactoryTuition;
+import com.example.imm.citi.sources.BloodDonorsBd;
+import com.example.imm.citi.sources.DoctorsBD;
+import com.example.imm.citi.sources.DonateBloodBd;
+import com.example.imm.citi.sources.PrivateTutorBD;
+import com.example.imm.citi.sources.PropertyInBD;
+import com.example.imm.citi.sources.RentalHomeBD;
+import com.example.imm.citi.sources.Source;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -206,9 +217,33 @@ public class Service {
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
                 sortResult(tempAgents);
+
+                getLocalAgents();
+
+
                 showResult(agents);
             }
         }.execute();
+    }
+
+    private void getLocalAgents() {
+        tempAgents = new ArrayList<ArrayList<Agent>>();
+
+        FactoryAgent agentFac;
+        if(service.equals("Tuition"))
+            agentFac = new FactoryTuition(this, parent);
+        else if(service.equals("Apartment Renting"))
+            agentFac = new FactoryApartmentRenting(this, parent);
+        else if(service.equals("Blood Donation"))
+            agentFac = new FactoryBloodDonation(this, parent);
+        else if(service.equals("Doctor"))
+            agentFac = new FactoryDoctor(this, parent);
+        else
+            agentFac = null;
+
+        if(agentFac!=null) agentFac.fetchAgents();
+
+        tempAgents.add(agents);
     }
 
     public void sortResult(ArrayList<ArrayList<Agent>> tempAgents){
@@ -240,7 +275,7 @@ public class Service {
     public void showResult(ArrayList<Agent> agents1){
         for(Agent ag: agents1){
             System.out.println("-----------------Start\n");
-            System.out.println(ag.name +"\n" + ag.address +"\n" + ag.email +"\n" + ag.phone1 +"\n" + ag.url +"\n");
+            System.out.println(ag.name +"\n" + ag.address +"\n" + ag.email +"\n" + ag.phone +"\n" + ag.url +"\n");
             System.out.println("-----------------End\n");
         }
 

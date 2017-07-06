@@ -23,7 +23,11 @@ import java.util.Arrays;
  */
 
 public class Agent implements Parcelable{
-    public String name, phone1, phone2, url, address, email;
+    public String name;
+    public String phone;
+    public String url;
+    public String address;
+    public String email;
 
 
     public String id;
@@ -161,19 +165,15 @@ public class Agent implements Parcelable{
 
     public void setAttr(String name, String phone1, String phone2, String url, String address, String email){
         this.name = name;
-        this.phone1 = phone1;
-        this.phone2 = phone2;
+        this.phone = phone1;
         this.url = url;
         this.address = address;
         this.email = email;
 
         ArrayList<String> phones = multiplePhones(phone1);
-        this.phone1 = phones.get(0);
-        if(phones.size()>1)
-            this.phone2 = phones.get(1);
+        this.phone = phones.get(0);
 
-        if(!this.phone1.startsWith("+88") && !this.phone1.equals("")) this.phone1 = "+88" + this.phone1;
-        if(!this.phone2.startsWith("+88") && !this.phone2.equals("")) this.phone2 = "+88" + this.phone2;
+        if(!this.phone.startsWith("+88") && !this.phone.equals("")) this.phone = "+88" + this.phone;
     }
 
 
@@ -182,7 +182,7 @@ public class Agent implements Parcelable{
         vals = new ArrayList<>();
 
         keys.add("name");
-        keys.add("phone1");
+        keys.add("phone");
         keys.add("phone2");
         keys.add("email");
         keys.add("url");
@@ -218,8 +218,7 @@ public class Agent implements Parcelable{
 
     public void getAttributes() {
         vals.add(name);
-        vals.add(phone1);
-        vals.add(phone2);
+        vals.add(phone);
         vals.add(email);
         vals.add(url);
         vals.add(address);
@@ -236,8 +235,7 @@ public class Agent implements Parcelable{
     public Agent(Parcel in) {
         id = in.readString();
         name = in.readString();
-        phone1 = in.readString();
-        phone2 = in.readString();
+        phone = in.readString();
         url = in.readString();
         address = in.readString();
         email = in.readString();
@@ -264,8 +262,7 @@ public class Agent implements Parcelable{
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(id);
         parcel.writeString(name);
-        parcel.writeString(phone1);
-        parcel.writeString(phone2);
+        parcel.writeString(phone);
         parcel.writeString(url);
         parcel.writeString(address);
         parcel.writeString(email);
