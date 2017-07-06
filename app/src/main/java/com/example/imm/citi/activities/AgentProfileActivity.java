@@ -1,5 +1,6 @@
 package com.example.imm.citi.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class AgentProfileActivity extends AppCompatActivity implements AgentListAdapter.AgentClickCallback{
 
     AgentListAdapter adapter;
-    //String service;
+    String service;
     //FilterActivity f;
     private RecyclerView agentlistview;
     private TextView label;
@@ -40,6 +41,9 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
         addAgent = (Button) findViewById(R.id.btnToAddAgent);
         addAgent.setVisibility(View.VISIBLE);
         addAgent.setOnClickListener(clickListener);
+
+        Intent intent = getIntent();
+        service = intent.getStringExtra("servicename");
 
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         agentlistview.setLayoutManager(manager);
@@ -88,6 +92,11 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
 
     @Override
     public void onEditClick(Agent a) {
+        Intent intent = new Intent(this, EditAgentInfoActivity.class);
+        //intent.putExtra("servicename",service);
+        intent.putExtra("servicename","Tuition");
 
+
+        startActivity(intent);
     }
 }

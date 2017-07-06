@@ -1,6 +1,7 @@
 package com.example.imm.citi.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,9 +103,18 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                     break;
 
                 case R.id.btnToEdit:
+                    showEditInfoPage();
                     break;
             }
 
+        }
+
+        public void showEditInfoPage(){
+            if (aCallback != null) {
+                int position = getAdapterPosition();
+                Agent a = (Agent) items.get(position);
+                aCallback.onEditClick(a);
+            }
         }
     }
 

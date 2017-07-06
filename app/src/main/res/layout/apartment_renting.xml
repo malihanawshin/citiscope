@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/text_apartment_area"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Area"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/edit_apartment_area"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:inputType="textMultiLine"
+            android:maxLines="4"
+            android:layout_toRightOf="@id/text_apartment_area" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/text_property_type"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Property Type"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/edit_property_type"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+
+            android:textColor="@color/colorAccent"
+            android:layout_toRightOf="@id/text_property_type" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/text_price"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Price"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/edit_price"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@color/colorAccent"
+            android:layout_toRightOf="@id/text_price" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/text_area_km2"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Area(km2)"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/edit_area_km2"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:textColor="@color/colorAccent"
+            android:layout_toRightOf="@id/text_area_km2" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/text_floor"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Floor"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/edit_floor"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@color/colorAccent"
+            android:layout_toRightOf="@id/text_floor" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/text_room"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Room"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/edit_room"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@color/colorAccent"
+            android:layout_toRightOf="@id/text_room" />
+
+    </RelativeLayout>
+
+</LinearLayout>
