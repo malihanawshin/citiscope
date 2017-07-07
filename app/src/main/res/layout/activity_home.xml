@@ -9,71 +9,7 @@
     tools:context="com.example.imm.citi.activities.HomeActivity"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Select City"
-            android:textColor="@color/colorAccent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="0dp"
-            android:padding="5dp"
-            android:textSize="16sp"
-            />
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Sort By"
-            android:textSize="16sp"
-            android:textColor="@color/colorAccent"
-            android:padding="5dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="0dp"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp"
-        >
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/spn_city"
-            android:spinnerMode="dropdown"
-            android:entries="@array/cities_arr"
-            android:layout_marginLeft="22dp"
-            android:layout_marginBottom="20dp"
-            android:padding="5dp"
-            android:backgroundTint="@color/colorAccent" />
-
-
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sort"
-            android:spinnerMode="dropdown"
-            android:entries="@array/sort_arr"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="20dp"
-            android:padding="5dp"
-            android:backgroundTint="@color/colorAccent" />
-
-    </LinearLayout>
-
-
+    <include layout="@layout/spinners"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/services"
