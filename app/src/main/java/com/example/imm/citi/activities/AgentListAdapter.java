@@ -149,7 +149,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                     sendMail();
                     break;
                 case R.id.img_location:
-                    //startAddress();
+                    showMap();
                     break;
 
                 case R.id.btnToBookmark:
@@ -177,6 +177,12 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 
 
 
+
+        private void showMap() {
+            Intent intent = new Intent(parent, AgMapActivity.class);
+            intent.putExtra("address", location);
+            parent.startActivity(intent);
+        }
 
         private void sendMail() {
             if(emailAddress==null || emailAddress.equals(""))
