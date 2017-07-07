@@ -185,7 +185,7 @@ public class Agent implements Parcelable{
         keys.add("phone");
         keys.add("phone2");
         keys.add("email");
-        keys.add("url");
+        keys.add("profileLink");
         keys.add("location");
         keys.add("bkEmail");
 
@@ -227,6 +227,17 @@ public class Agent implements Parcelable{
     public void setID(String ID) {
         this.id = ID;
     }
+
+
+    public String convertArrayStrToStr(ArrayList<String> strArr) {
+        String finalStr="";
+        for(String tempStr: strArr){
+            finalStr+=tempStr+" | ";
+        }
+        finalStr = finalStr.substring(0,finalStr.length()-3);
+        return finalStr;
+    }
+
 
 
 

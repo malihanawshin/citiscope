@@ -1,5 +1,7 @@
 package com.example.imm.citi.agents;
 
+import android.os.Parcel;
+
 /**
  * Created by Sujoy on 7/2/2017.
  */
@@ -25,5 +27,51 @@ public class AgentApartmentRenting extends LocalAgent {
         size  = size1;
         floor = floor1;
         roomNo = roomNo1;
+    }
+
+
+
+
+
+    public AgentApartmentRenting(Parcel in) {
+        super(in);
+        district = in.readString();
+        area = in.readString();
+        propertyType  = in.readString();
+        price = in.readLong();
+
+        size = in.readLong();
+        floor = in.readInt();
+        roomNo = in.readInt();
+    }
+
+    public static final Creator<AgentApartmentRenting> CREATOR = new Creator<AgentApartmentRenting>() {
+        @Override
+        public AgentApartmentRenting createFromParcel(Parcel in) {
+            return new AgentApartmentRenting(in);
+        }
+
+        @Override
+        public AgentApartmentRenting[] newArray(int size) {
+            return new AgentApartmentRenting[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        super.writeToParcel(parcel, i);
+        parcel.writeString(district);
+        parcel.writeString(area);
+        parcel.writeString(propertyType);
+        parcel.writeLong(price);
+
+        parcel.writeLong(size);
+        parcel.writeInt(floor);
+        parcel.writeInt(roomNo);
     }
 }

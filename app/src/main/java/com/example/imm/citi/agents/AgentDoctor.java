@@ -1,5 +1,7 @@
 package com.example.imm.citi.agents;
 
+import android.os.Parcel;
+
 import java.util.ArrayList;
 
 /**
@@ -35,5 +37,51 @@ public class AgentDoctor extends Agent {
 
     public void addDegree(String degree) {
         degrees.add(degree);
+    }
+
+
+
+
+
+
+
+    public AgentDoctor(Parcel in) {
+        super(in);
+        district = in.readString();
+        addresses = in.readArrayList(String.class.getClassLoader());
+        degrees = in.readArrayList(String.class.getClassLoader());
+
+        specialty = in.readString();
+        hospitalName = in.readString();
+        yearsInPractice = in.readInt();
+    }
+
+    public static final Creator<AgentDoctor> CREATOR = new Creator<AgentDoctor>() {
+        @Override
+        public AgentDoctor createFromParcel(Parcel in) {
+            return new AgentDoctor(in);
+        }
+
+        @Override
+        public AgentDoctor[] newArray(int size) {
+            return new AgentDoctor[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        super.writeToParcel(parcel, i);
+        parcel.writeString(district);
+        parcel.writeList(addresses);
+        parcel.writeList(degrees);
+
+        parcel.writeString(specialty);
+        parcel.writeString(hospitalName);
+        parcel.writeInt(yearsInPractice);
     }
 }

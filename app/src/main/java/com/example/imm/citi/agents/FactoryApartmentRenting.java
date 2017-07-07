@@ -21,8 +21,8 @@ public class FactoryApartmentRenting extends FactoryAgent {
     final String APTFILE = "agentApartmentRentingFetcher.php";
     ArrayList<String> areas, mediums, classes, subjects;
 
-    public FactoryApartmentRenting(Service serv, Activity act){
-        super(serv,act);
+    public FactoryApartmentRenting(Service serv, Activity act, ArrayList<Agent> agents){
+        super(serv,act, agents);
     }
 
     public void fetchAgents(){
@@ -47,6 +47,8 @@ public class FactoryApartmentRenting extends FactoryAgent {
                                         Long.parseLong(obj.getString("Size")), Integer.parseInt(obj.getString("Floor")), Integer.parseInt(obj.getString("RoomNo")));
                                 tempAg.setID(obj.getString("ID"));
 
+                                System.out.println("LOOOOOONG" + obj.getString("Size"));
+
                                 agents.add(tempAg);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -69,5 +71,6 @@ public class FactoryApartmentRenting extends FactoryAgent {
             AgentApartmentRenting agApt = (AgentApartmentRenting) ag;
             System.out.println("TUTOR: " + agApt.name + " " + agApt.address + " " + agApt.propertyType + " " + agApt.roomNo);
         }
+        super.finishFetch();
     }
 }

@@ -21,8 +21,8 @@ public class FactoryBloodDonation extends FactoryAgent {
     final String BLDFILE = "agentBloodDonationFetcher.php";
     ArrayList<String> areas, mediums, classes, subjects;
 
-    public FactoryBloodDonation(Service serv, Activity act){
-        super(serv,act);
+    public FactoryBloodDonation(Service serv, Activity act, ArrayList<Agent> agents){
+        super(serv,act, agents);
     }
 
     public void fetchAgents(){
@@ -69,5 +69,6 @@ public class FactoryBloodDonation extends FactoryAgent {
             AgentBloodDonation agBld = (AgentBloodDonation) ag;
             System.out.println("DONOR: " + agBld.name + " " + agBld.address + " " + agBld.bloodType + " " + agBld.daysSinceLastDonated);
         }
+        super.finishFetch();
     }
 }

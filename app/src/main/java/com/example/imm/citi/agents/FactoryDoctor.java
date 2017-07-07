@@ -22,8 +22,8 @@ public class FactoryDoctor extends FactoryAgent {
 
     ArrayList<String> areas, mediums, classes, subjects;
 
-    public FactoryDoctor(Service serv, Activity act){
-        super(serv,act);
+    public FactoryDoctor(Service serv, Activity act, ArrayList<Agent> agents){
+        super(serv,act, agents);
     }
 
     public void fetchAgents(){
@@ -149,5 +149,6 @@ public class FactoryDoctor extends FactoryAgent {
             AgentDoctor agDoc = (AgentDoctor) ag;
             System.out.println("TUTOR: " + agDoc.name + " " + agDoc.address + " " + agDoc.specialty + " " + agDoc.hospitalName);
         }
+        super.finishFetch();
     }
 }

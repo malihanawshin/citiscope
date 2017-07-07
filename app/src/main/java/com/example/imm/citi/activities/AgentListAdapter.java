@@ -1,7 +1,12 @@
 package com.example.imm.citi.activities;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +14,31 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.imm.citi.R;
 import com.example.imm.citi.agents.Agent;
+import com.example.imm.citi.agents.AgentApartmentRenting;
+import com.example.imm.citi.agents.AgentBloodDonation;
+import com.example.imm.citi.agents.AgentDoctor;
+import com.example.imm.citi.agents.AgentTuition;
+import com.example.imm.citi.agents.CardAgent;
+import com.example.imm.citi.agents.CardApartmentRenting;
+import com.example.imm.citi.agents.CardBloodDonation;
+import com.example.imm.citi.agents.CardDoctor;
+import com.example.imm.citi.agents.CardRemoteAgent;
+import com.example.imm.citi.agents.CardTuition;
+
 import java.util.ArrayList;
 
 /**
  * Created by imm on 7/2/2017.
  */
 
-public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.AgentViewHolder>{
+public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.AgentViewHolder> {
 
     private Context aContext;
+    private Activity parent;
     private ArrayList<Agent> items;
     private AgentClickCallback aCallback;
     private Button bookmark;
@@ -28,26 +47,31 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
     private int flag;
     //private LinearLayout service;
 
-    public interface AgentClickCallback{
+    public interface AgentClickCallback {
         void onCompareClick(Agent a);
+
         void onBookmarkClick(Agent a);
+
         void onEditClick(Agent a);
     }
 
-    public AgentListAdapter(Context aContext,ArrayList<Agent> items,AgentClickCallback aCallback,int flag){
-        this.aContext=aContext;
-        this.items= items;
+    public AgentListAdapter(Context aContext, ArrayList<Agent> items, AgentClickCallback aCallback, int flag) {
+        this.aContext = aContext;
+        parent = (Activity) aContext;
+        this.items = items;
         this.aCallback = aCallback;
-        this.flag=flag;
+        this.flag = flag;
     }
 
-    public class AgentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class AgentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView agentname;
         TextView serviceOfAgent;
         ImageView call;
         ImageView mail;
-        ImageView location;
+        ImageView locate;
+        public ArrayList<TextView> attributeInfos, attributeTexts;
+        String phoneNo, emailAddress, location;
 
         public AgentViewHolder(View itemView) {
             super(itemView);
@@ -60,8 +84,10 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
             call.setOnClickListener(this);
             mail = (ImageView) itemView.findViewById(R.id.img_email);
             mail.setOnClickListener(this);
-            location = (ImageView) itemView.findViewById(R.id.img_location);
-            location.setOnClickListener(this);
+            locate = (ImageView) itemView.findViewById(R.id.img_location);
+            locate.setOnClickListener(this);
+
+            identifyAttributes(itemView);
 
             bookmark = (Button) itemView.findViewById(R.id.btnToBookmark);
             bookmark.setOnClickListener(this);
@@ -72,9 +98,9 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
             editOwnInfo = (Button) itemView.findViewById(R.id.btnToEdit);
             editOwnInfo.setOnClickListener(this);
 
-            if(flag==0) bookmark.setVisibility(itemView.VISIBLE);
-            else if(flag==1) bookmark.setVisibility(itemView.GONE);
-            else if(flag==2) {
+            if (flag == 0) bookmark.setVisibility(itemView.VISIBLE);
+            else if (flag == 1) bookmark.setVisibility(itemView.GONE);
+            else if (flag == 2) {
                 bookmark.setVisibility(itemView.GONE);
                 compare.setVisibility(itemView.GONE);
                 editOwnInfo.setVisibility(itemView.VISIBLE);
@@ -83,14 +109,44 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 
         }
 
+        private void identifyAttributes(View itemView) {
+            attributeInfos = new ArrayList<>(5);
+            attributeTexts = new ArrayList<>(5);
+
+            TextView attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_1);
+            TextView attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_1);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+
+            attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_2);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_2);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+
+            attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_3);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_3);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+
+            attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_4);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_4);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+
+            attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_5);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_5);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+        }
+
         @Override
         public void onClick(View v) {
-            switch(v.getId()) {
+            switch (v.getId()) {
                 case R.id.img_call:
-                    //startCall();
+                    startCall();
                     break;
                 case R.id.img_email:
-                    //sendMail();
+                    sendMail();
                     break;
                 case R.id.img_location:
                     //startAddress();
@@ -109,14 +165,47 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 
         }
 
-        public void showEditInfoPage(){
+
+        public void showEditInfoPage() {
             if (aCallback != null) {
                 int position = getAdapterPosition();
                 Agent a = (Agent) items.get(position);
                 aCallback.onEditClick(a);
             }
         }
+
+
+
+
+
+        private void sendMail() {
+            if(emailAddress==null || emailAddress.equals(""))
+                return;
+
+            Toast.makeText(parent, emailAddress, Toast.LENGTH_SHORT).show();
+            Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+            emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[]{emailAddress});
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Client Request from CITISCOPE");
+
+            emailIntent.setType("message/rfc822");
+            parent.startActivity(emailIntent);
+        }
+
+        private void startCall() {
+            if(phoneNo==null || phoneNo.equals(""))
+                return;
+
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + phoneNo));
+            Toast.makeText(parent, phoneNo, Toast.LENGTH_SHORT).show();
+
+            if (ActivityCompat.checkSelfPermission(aContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            parent.startActivity(callIntent);
+        }
     }
+
 
     @Override
     public AgentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -128,6 +217,43 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
     public void onBindViewHolder(AgentViewHolder holder, int position) {
         Agent agent = (Agent) items.get(position);
         holder.agentname.setText(agent.getName());
+        CardAgent card = getCard(agent);
+        if(card!=null)
+            card.setAttributes(holder, agent);
+
+        holder.phoneNo = agent.phone;
+        holder.emailAddress = agent.email;
+        holder.location = agent.address;
+    }
+
+    private CardAgent getCard(Agent agent) {
+        CardAgent card = null;
+
+        if(agent instanceof AgentTuition){
+            card = new CardTuition();
+            AgentTuition agTui = (AgentTuition) agent;
+            System.out.println("TUITION AGENT " + agTui.name + " " + agTui.occupation);
+        }
+        else if(agent instanceof AgentApartmentRenting){
+            card = new CardApartmentRenting();
+            AgentApartmentRenting agApt = (AgentApartmentRenting) agent;
+            System.out.println("TUITION AGENT " + agApt.price + " " + agApt.size);
+        }
+        else if(agent instanceof AgentBloodDonation){
+            card = new CardBloodDonation();
+//            AgentApartmentRenting agApt = (AgentApartmentRenting) agent;
+//            System.out.println("TUITION AGENT " + agApt.price + " " + agApt.size);
+        }
+        else if(agent instanceof AgentDoctor){
+            card = new CardDoctor();
+//            AgentApartmentRenting agApt = (AgentApartmentRenting) agent;
+//            System.out.println("TUITION AGENT " + agApt.price + " " + agApt.size);
+        }
+        else{
+            card = new CardRemoteAgent();
+        }
+        System.out.println("REMOTE AGENT " + agent.name);
+        return card;
     }
 
 

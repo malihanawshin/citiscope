@@ -9,17 +9,25 @@ import java.util.ArrayList;
 public abstract class FactoryAgent {
 	Service service;
 	Activity parent;
-    ArrayList<Agent> agents = new ArrayList<>();
+    ArrayList<Agent> agents = new ArrayList<>(), remoteAgents;
 
 
-    public FactoryAgent(Service serv, Activity act){
+    public FactoryAgent(Service serv, Activity act, ArrayList<Agent> agents){
         service = serv;
         parent = act;
+		remoteAgents = agents;
     }
 
     public abstract void fetchAgents();
 
-    public abstract void finishFetch();
+    public void finishFetch(){
+        ArrayList<ArrayList<Agent>> unsortedAgents = new ArrayList<>();
+        unsortedAgents.add(agents);
+        unsortedAgents.add(remoteAgents);
+
+        agents = service.sortResult(unsortedAgents);
+        service.showResult(agents);
+    }
 
 	ArrayList<LocalAgent> search(ArrayList<android.support.v4.util.Pair<String, String>> chosenOptions){
 		

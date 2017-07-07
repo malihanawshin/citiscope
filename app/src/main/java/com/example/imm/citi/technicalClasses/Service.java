@@ -216,12 +216,9 @@ public class Service {
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
-                sortResult(tempAgents);
+                agents = sortResult(tempAgents);
 
                 getLocalAgents();
-
-
-                showResult(agents);
             }
         }.execute();
     }
@@ -231,22 +228,21 @@ public class Service {
 
         FactoryAgent agentFac;
         if(service.equals("Tuition"))
-            agentFac = new FactoryTuition(this, parent);
+            agentFac = new FactoryTuition(this, parent, agents);
         else if(service.equals("Apartment Renting"))
-            agentFac = new FactoryApartmentRenting(this, parent);
+            agentFac = new FactoryApartmentRenting(this, parent, agents);
         else if(service.equals("Blood Donation"))
-            agentFac = new FactoryBloodDonation(this, parent);
+            agentFac = new FactoryBloodDonation(this, parent, agents);
         else if(service.equals("Doctor"))
-            agentFac = new FactoryDoctor(this, parent);
+            agentFac = new FactoryDoctor(this, parent, agents);
         else
             agentFac = null;
 
         if(agentFac!=null) agentFac.fetchAgents();
-
-        tempAgents.add(agents);
     }
 
-    public void sortResult(ArrayList<ArrayList<Agent>> tempAgents){
+    public ArrayList<Agent> sortResult(ArrayList<ArrayList<Agent>> tempAgents){
+        ArrayList<Agent> sortedAgents = new ArrayList<>();
         int i=0;
         int max = -1;
         //System.out.println("LENGTH: " + tempAgents.size());
@@ -265,11 +261,12 @@ public class Service {
                         seq++;
                     }
 
-                    agents.add(tempAg);
+                    sortedAgents.add(tempAg);
                 }
             }
             i++;
         }
+        return sortedAgents;
     }
 
     public void showResult(ArrayList<Agent> agents1){

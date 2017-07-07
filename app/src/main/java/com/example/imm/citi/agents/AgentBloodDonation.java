@@ -1,5 +1,7 @@
 package com.example.imm.citi.agents;
 
+import android.os.Parcel;
+
 /**
  * Created by Sujoy on 7/2/2017.
  */
@@ -22,5 +24,47 @@ public class AgentBloodDonation extends Agent {
         smokingHabit = smokingHabit1;
         donationsDone = donationsDone1;
         daysSinceLastDonated = lastDonated1;
+    }
+
+
+
+
+
+    public AgentBloodDonation(Parcel in) {
+        super(in);
+        district = in.readString();
+        bloodType = in.readString();
+
+        smokingHabit  = in.readString();
+        donationsDone = in.readInt();
+        daysSinceLastDonated = in.readInt();
+    }
+
+    public static final Creator<AgentBloodDonation> CREATOR = new Creator<AgentBloodDonation>() {
+        @Override
+        public AgentBloodDonation createFromParcel(Parcel in) {
+            return new AgentBloodDonation(in);
+        }
+
+        @Override
+        public AgentBloodDonation[] newArray(int size) {
+            return new AgentBloodDonation[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        super.writeToParcel(parcel, i);
+        parcel.writeString(district);
+        parcel.writeString(bloodType);
+
+        parcel.writeString(smokingHabit);
+        parcel.writeInt(donationsDone);
+        parcel.writeInt(daysSinceLastDonated);
     }
 }

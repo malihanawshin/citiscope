@@ -22,8 +22,8 @@ public class FactoryTuition extends FactoryAgent {
 
     ArrayList<String> areas, mediums, classes, subjects;
 
-    public FactoryTuition(Service serv, Activity act){
-        super(serv,act);
+    public FactoryTuition(Service serv, Activity act, ArrayList<Agent> agents){
+        super(serv,act, agents);
     }
 
     public void fetchAgents(){
@@ -215,5 +215,6 @@ public class FactoryTuition extends FactoryAgent {
             AgentTuition agTui = (AgentTuition)ag;
             System.out.println("TUTOR: " + agTui.name + " " + agTui.address + " " + agTui.school + " " + agTui.tuitionsDone);
         }
+        super.finishFetch();
     }
 }
