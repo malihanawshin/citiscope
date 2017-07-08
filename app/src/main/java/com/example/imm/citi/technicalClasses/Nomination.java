@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Nomination implements Parcelable{
     public String name, description, nominator;
-    ArrayList<String> sources;
+    ArrayList<String> sources, filters, cities;
     public int voteCount;
     PollActivity parent;
 
@@ -22,12 +22,14 @@ public class Nomination implements Parcelable{
 
     }
 
-    public void setAttributes(String nm, String desc, ArrayList<String> srcs, String nom, int votes){
+    public void setAttributes(String nm, String desc, ArrayList<String> srcs, String nom, int votes, ArrayList filters1, ArrayList cities1){
         name = nm;
         description = desc; 
         sources = srcs;
         nominator = nom;
         voteCount = votes;
+        filters = filters1;
+        cities = cities1;
     }
 
 
@@ -68,6 +70,8 @@ public class Nomination implements Parcelable{
         nominator = in.readString();
         sources = in.createStringArrayList();
         voteCount = in.readInt();
+        filters = in.createStringArrayList();
+        cities = in.createStringArrayList();
     }
 
     public static final Creator<Nomination> CREATOR = new Creator<Nomination>() {
@@ -94,5 +98,7 @@ public class Nomination implements Parcelable{
         parcel.writeString(nominator);
         parcel.writeStringList(sources);
         parcel.writeInt(voteCount);
+        parcel.writeStringList(filters);
+        parcel.writeStringList(cities);
     }
 }
