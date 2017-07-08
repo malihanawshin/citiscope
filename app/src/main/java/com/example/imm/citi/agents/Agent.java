@@ -5,15 +5,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.Toast;
 
-
 import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.RetrievalData;
-import com.example.imm.citi.technicalClasses.User;
 import com.example.imm.citi.technicalClasses.VolleyCallback;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,15 +19,14 @@ import java.util.Arrays;
 public class Agent implements Parcelable{
     public String name;
     public String phone;
-    public String url;
     public String address;
     public String email;
 
 
     public String id;
     ArrayList<String> keys, vals;
-    final String BKFILE = "bookmark.php", BKLISTFILE = "bookmarkList.php", BKREMOVEFILE = "removeBookmark.php";
-    private Activity parent;
+    final String BKLISTFILE = "bookmarkList.php", BKREMOVEFILE = "removeBookmark.php";
+    protected Activity parent;
 
 
     ArrayList<Agent> bookmarks;
@@ -41,23 +34,23 @@ public class Agent implements Parcelable{
     public Agent() {}
 
 
-    public void addBookmarker(Activity act){
-        parent = act;
-        initiateArrays();
-
-        Database db = new Database();
-
-        db.update(new RetrievalData(keys, vals, BKFILE, act), true, new VolleyCallback() {
-            @Override
-            public void onSuccessResponse(String result) {
-                if(result.equals("false"))
-                    Toast.makeText(parent,"Bookmark cannot be added",Toast.LENGTH_LONG).show();
-                else{
-                    Toast.makeText(parent,"Bookmark successfully added",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
+//    public void addBookmarker(Activity act){
+//        parent = act;
+//        initiateArrays();
+//
+//        Database db = new Database();
+//
+//        db.update(new RetrievalData(keys, vals, BKFILE, act), true, new VolleyCallback() {
+//            @Override
+//            public void onSuccessResponse(String result) {
+//                if(result.equals("false"))
+//                    Toast.makeText(parent,"Bookmark cannot be added",Toast.LENGTH_LONG).show();
+//                else{
+//                    Toast.makeText(parent,"Bookmark successfully added",Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
+//    }
 
     public void removeBookmarker(Activity act) {
         parent = act;
@@ -81,54 +74,54 @@ public class Agent implements Parcelable{
         });
     }
 
-    public void createList(Activity act){
-        parent = act;
-        keys = new ArrayList<>();
-        keys.add("bkEmail");
-        vals = new ArrayList<>();
-        vals.add(User.Email);
-
-        bookmarks = new ArrayList<Agent>();
-
-        Database db = new Database();
-        db.retrieve(new RetrievalData(keys, vals, BKLISTFILE, parent), true, new VolleyCallback() {
-            @Override
-            public void onSuccessResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray result = jsonObject.getJSONArray("result");
-
-                    if(result.length()==0){
-                        Toast.makeText(parent,"You have no bookmarks",Toast.LENGTH_LONG).show();
-                    }
-                    else{
-                        try {
-                            for(int i=0; i<result.length(); i++){
-                                JSONObject agentData = result.getJSONObject(i);
-                                String id = agentData.getString("AgentID");
-                                String name = agentData.getString("Name");
-                                String phn1 = agentData.getString("Phone1");
-                                String phn2 = agentData.getString("Phone2");
-                                String email = agentData.getString("Email");
-                                String url = agentData.getString("Link");
-                                String address = agentData.getString("Location");
-
-                                Agent temp = new Agent();
-                                temp.setAttr(name, phn1, phn2, url, address, email);
-                                temp.setID(id);
-                                bookmarks.add(temp);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                //showList();
-            }
-        });
-    }
+//    public void createList(Activity act){
+//        parent = act;
+//        keys = new ArrayList<>();
+//        keys.add("bkEmail");
+//        vals = new ArrayList<>();
+//        vals.add(User.Email);
+//
+//        bookmarks = new ArrayList<Agent>();
+//
+//        Database db = new Database();
+//        db.retrieve(new RetrievalData(keys, vals, BKLISTFILE, parent), true, new VolleyCallback() {
+//            @Override
+//            public void onSuccessResponse(String response) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(response);
+//                    JSONArray result = jsonObject.getJSONArray("result");
+//
+//                    if(result.length()==0){
+//                        Toast.makeText(parent,"You have no bookmarks",Toast.LENGTH_LONG).show();
+//                    }
+//                    else{
+//                        try {
+//                            for(int i=0; i<result.length(); i++){
+//                                JSONObject agentData = result.getJSONObject(i);
+//                                String id = agentData.getString("AgentID");
+//                                String name = agentData.getString("Name");
+//                                String phn1 = agentData.getString("Phone1");
+//                                String phn2 = agentData.getString("Phone2");
+//                                String email = agentData.getString("Email");
+//                                String url = agentData.getString("Link");
+//                                String address = agentData.getString("Location");
+//
+//                                Agent temp = new Agent();
+//                                temp.setAttr(name, phn1, phn2, url, address, email);
+//                                temp.setID(id);
+//                                bookmarks.add(temp);
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                //showList();
+//            }
+//        });
+//    }
 
 //    public void showList(){
 //        Intent intent = new Intent(parent, BookmarkActivity.class);
@@ -143,7 +136,7 @@ public class Agent implements Parcelable{
 
 
 
-    private ArrayList<String> multiplePhones(String phone)
+    protected ArrayList<String> multiplePhones(String phone)
     {
         String phones[] = new String[]{};
         boolean onePhone = true;
@@ -163,35 +156,20 @@ public class Agent implements Parcelable{
         return phoneNo;
     }
 
-    public void setAttr(String name, String phone1, String phone2, String url, String address, String email){
-        this.name = name;
-        this.phone = phone1;
-        this.url = url;
-        this.address = address;
-        this.email = email;
+//    public void setAttr(String name, String phone1, String phone2, String url, String address, String email){
+//        this.name = name;
+//        this.phone = phone1;
+//        this.url = url;
+//        this.address = address;
+//        this.email = email;
+//
+//        ArrayList<String> phones = multiplePhones(phone1);
+//        this.phone = phones.get(0);
+//
+//        if(!this.phone.startsWith("+88") && !this.phone.equals("")) this.phone = "+88" + this.phone;
+//    }
 
-        ArrayList<String> phones = multiplePhones(phone1);
-        this.phone = phones.get(0);
 
-        if(!this.phone.startsWith("+88") && !this.phone.equals("")) this.phone = "+88" + this.phone;
-    }
-
-
-    private void initiateArrays() {
-        keys = new ArrayList<>();
-        vals = new ArrayList<>();
-
-        keys.add("name");
-        keys.add("phone");
-        keys.add("phone2");
-        keys.add("email");
-        keys.add("profileLink");
-        keys.add("location");
-        keys.add("bkEmail");
-
-        getAttributes();
-        vals.add(User.Email);
-    }
 
     public String toString(){
         return "Name: " + name + " ";
@@ -211,18 +189,7 @@ public class Agent implements Parcelable{
         return name;
     }
 
-    public String getLink() {
-        return url;
-    }
 
-
-    public void getAttributes() {
-        vals.add(name);
-        vals.add(phone);
-        vals.add(email);
-        vals.add(url);
-        vals.add(address);
-    }
 
     public void setID(String ID) {
         this.id = ID;
@@ -247,7 +214,6 @@ public class Agent implements Parcelable{
         id = in.readString();
         name = in.readString();
         phone = in.readString();
-        url = in.readString();
         address = in.readString();
         email = in.readString();
     }
@@ -274,7 +240,6 @@ public class Agent implements Parcelable{
         parcel.writeString(id);
         parcel.writeString(name);
         parcel.writeString(phone);
-        parcel.writeString(url);
         parcel.writeString(address);
         parcel.writeString(email);
     }

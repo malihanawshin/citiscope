@@ -3,8 +3,8 @@ package com.example.imm.citi.sources;
 import android.app.Activity;
 import android.support.v4.util.Pair;
 
-
 import com.example.imm.citi.agents.Agent;
+import com.example.imm.citi.agents.RemoteAgent;
 import com.example.imm.citi.technicalClasses.Service;
 
 import java.io.BufferedReader;
@@ -112,8 +112,8 @@ public class PrivateTutorBD extends Source {
             String address = matcher2.group(7);
             String url = "http://www.privatetutorbd.com/teacher-detail"+matcher3.group(7);
 
-            Agent temp = new Agent();
-            temp.setAttr(name, "", "", url, address, "");
+            RemoteAgent temp = new RemoteAgent("Tuition");
+            temp.setAttr(name, "", url, address, "");
             teachers.add(temp);
         }
     }

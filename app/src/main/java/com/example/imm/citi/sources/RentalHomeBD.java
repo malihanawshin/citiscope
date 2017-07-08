@@ -5,6 +5,7 @@ import android.support.v4.util.Pair;
 
 
 import com.example.imm.citi.agents.Agent;
+import com.example.imm.citi.agents.RemoteAgent;
 import com.example.imm.citi.technicalClasses.Service;
 
 import java.io.BufferedReader;
@@ -115,7 +116,8 @@ public class RentalHomeBD extends Source{
         Matcher matcher2 = pattern2.matcher(result);
         Matcher matcher1 = pattern1.matcher(result);
         while (matcher1.find() && matcher2.find() && matcher3.find() && matcher4.find() && matcher5.find()) {
-            Agent temp = new Agent();
+            RemoteAgent temp = new RemoteAgent("Apartment Renting");
+
             String address = matcher1.group(1);
             String url="http://www.rentalhomebd.com"+matcher4.group(6);
             System.out.println(url);
@@ -128,7 +130,7 @@ public class RentalHomeBD extends Source{
 			System.out.println(name+" \n "+ url + " \n " + address);
 			System.out.println("-------");
 
-            temp.setAttr(name, phone, "", url, address, email);
+            temp.setAttr(name, phone, url, address, email);
             houses.add(temp);
         }
     }

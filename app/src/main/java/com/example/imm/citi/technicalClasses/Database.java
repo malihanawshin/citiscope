@@ -51,21 +51,24 @@ public class Database {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        if (volleyError instanceof NetworkError) {
-                            showToast("Cannot connect to Internet...Please check your connection!");
-                        } else if (volleyError instanceof ServerError) {
-                            showToast("The server could not be found. Please try again after some time!!");
-                        } else if (volleyError instanceof AuthFailureError) {
-                            showToast("Cannot connect to Internet...Please check your connection!");
-                        } else if (volleyError instanceof ParseError) {
-                            showToast("Parsing error! Please try again after some time!!");
-                        } else if (volleyError instanceof NoConnectionError) {
-                            showToast("Cannot connect to Internet...Please check your connection!");
-                        } else if (volleyError instanceof TimeoutError) {
-                            showToast("Connection TimeOut! Please check your internet connection.");
+                        if(volleyError!=null){
+                            if (volleyError instanceof NetworkError) {
+                                showToast("Cannot connect to Internet...Please check your connection!");
+                            } else if (volleyError instanceof ServerError) {
+                                showToast("The server could not be found. Please try again after some time!!");
+                            } else if (volleyError instanceof AuthFailureError) {
+                                showToast("Cannot connect to Internet...Please check your connection!");
+                            } else if (volleyError instanceof ParseError) {
+                                showToast("Parsing error! Please try again after some time!!");
+                            } else if (volleyError instanceof NoConnectionError) {
+                                showToast("Cannot connect to Internet...Please check your connection!");
+                            } else if (volleyError instanceof TimeoutError) {
+                                showToast("Connection TimeOut! Please check your internet connection.");
+                            }
+                            if(loading!=null) loading.dismiss();
+                            //rd.parent.startActivity(new Intent(rd.parent, HomeActivity.class));
                         }
-                        if(loading!=null) loading.dismiss();
-                        //rd.parent.startActivity(new Intent(rd.parent, HomeActivity.class));
+
                     }
                 }){
             @Override

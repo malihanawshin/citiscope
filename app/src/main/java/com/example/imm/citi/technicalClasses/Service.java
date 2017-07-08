@@ -272,7 +272,7 @@ public class Service {
     public void showResult(ArrayList<Agent> agents1){
         for(Agent ag: agents1){
             System.out.println("-----------------Start\n");
-            System.out.println(ag.name +"\n" + ag.address +"\n" + ag.email +"\n" + ag.phone +"\n" + ag.url +"\n");
+            System.out.println(ag.name +"\n" + ag.address +"\n" + ag.email +"\n" + ag.phone +"\n" +"\n");
             System.out.println("-----------------End\n");
         }
 

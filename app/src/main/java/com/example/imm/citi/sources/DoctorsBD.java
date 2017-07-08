@@ -5,6 +5,7 @@ import android.support.v4.util.Pair;
 
 
 import com.example.imm.citi.agents.Agent;
+import com.example.imm.citi.agents.RemoteAgent;
 import com.example.imm.citi.technicalClasses.Service;
 
 import java.io.BufferedReader;
@@ -102,14 +103,16 @@ public class DoctorsBD extends Source {
             String name4 = matcher4.group(1);
             String name5 = matcher5.group(3);
             System.out.println("-------");
-            Agent temp = new Agent();
+
+            RemoteAgent temp = new RemoteAgent("Doctor");
+
             temp.address=name4;
             String name=name1;
             String url=name5;
 
             String address="";
 
-            temp.setAttr(name, "", "", url, address, "");
+            temp.setAttr(name, "", url, address, "");
             teachers.add(temp);
             //System.out.println(temp.name + " " + temp.address+ "\n" + temp.detailsLink + " " + temp.photoLink);
             //System.out.println(name+" \n "+name1 + " \n " + name2 + " \n " + name6 + " \n " + name3 + " \n " + name4 + " \n " + name5 + " \n ");// + name6 + " \n " + name7 + " \n " + name8 + " \n " + name9);

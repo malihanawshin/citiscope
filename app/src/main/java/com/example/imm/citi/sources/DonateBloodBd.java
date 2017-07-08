@@ -5,6 +5,7 @@ import android.support.v4.util.Pair;
 
 
 import com.example.imm.citi.agents.Agent;
+import com.example.imm.citi.agents.RemoteAgent;
 import com.example.imm.citi.technicalClasses.Service;
 
 import java.io.BufferedReader;
@@ -90,7 +91,8 @@ public class DonateBloodBd extends Source {
 			String phone = matcher2.group(4);
 			if(!phone.startsWith("+88")) phone = "+88" + phone;
 			String address = matcher2.group(12)+","+matcher2.group(15);
-			Agent temp = new Agent();
+
+			RemoteAgent temp = new RemoteAgent("Blood Donation");
 
 			String url= "http://www.donatebloodbd.com"+detailsLink;
 			String phone1 = phone;
@@ -98,7 +100,7 @@ public class DonateBloodBd extends Source {
 			String name = "Blood Donor #";
 			String email="";
 
-			temp.setAttr(name, phone, "", url, address, email);
+			temp.setAttr(name, phone, url, address, email);
 			agents.add(temp);
 		}
 		return agents;

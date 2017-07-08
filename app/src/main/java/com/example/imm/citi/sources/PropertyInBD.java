@@ -5,6 +5,7 @@ import android.support.v4.util.Pair;
 
 
 import com.example.imm.citi.agents.Agent;
+import com.example.imm.citi.agents.RemoteAgent;
 import com.example.imm.citi.technicalClasses.Service;
 
 import java.io.BufferedReader;
@@ -68,7 +69,8 @@ public class PropertyInBD extends Source {
         Pattern pattern1 = Pattern.compile("<!--property listing details starts here-->(.*?)<h3>(.*?)<a(.)href=(.)(.*?)(.)>(.*?)<(.)a>(.*?)<(.)h3>(.*?)<p(.)class=(.*?)price(.)>(.*?)<(.)p>(.*?)<a(.*?)>more(.*?)<(.)a>(.*?)<img(.)src=(.)(.*?)(..)alt(.*?)>(.*?)<b>Contact(.)Name:<(.)b>(.*?)<br(..)>(.*?)<b>Contact(.)Number:(.)<(.)b>(.*?)<(.)p>(.*?)<!--property listing details ends here-->");
         Matcher matcher1 = pattern1.matcher(response);
         while (matcher1.find()) {
-            Agent temp = new Agent();
+            RemoteAgent temp = new RemoteAgent("Apartment Renting");
+
             String url=matcher1.group(5);
             String address=matcher1.group(7);
             String name=matcher1.group(30).trim();
@@ -77,7 +79,7 @@ public class PropertyInBD extends Source {
 
             if(address.startsWith("Apartment for Rent / Lease in")) address = address.substring(30);
 
-            temp.setAttr(name, phone, "", url, address, email);
+            temp.setAttr(name, phone, url, address, email);
             agents.add(temp);
         }
     }

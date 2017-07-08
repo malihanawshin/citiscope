@@ -29,6 +29,7 @@ import com.example.imm.citi.agents.CardDoctor;
 import com.example.imm.citi.agents.CardRemoteAgent;
 import com.example.imm.citi.agents.CardTuition;
 import com.example.imm.citi.agents.LocalAgent;
+import com.example.imm.citi.agents.RemoteAgent;
 import com.example.imm.citi.technicalClasses.User;
 
 import java.util.ArrayList;
@@ -63,6 +64,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         this.items = items;
         this.aCallback = aCallback;
         this.flag = flag;
+        setHasStableIds(true);
     }
 
     public class AgentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -73,7 +75,10 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         ImageView mail;
         ImageView locate;
         public ArrayList<TextView> attributeInfos, attributeTexts;
+
         String phoneNo, emailAddress, location;
+        Agent agent;
+
 
         public AgentViewHolder(View itemView) {
             super(itemView);
@@ -155,6 +160,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                     break;
 
                 case R.id.btnToBookmark:
+                    bookmark();
                     break;
 
                 case R.id.btnToCompare:
@@ -179,6 +185,19 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 
 
 
+        private void bookmark() {
+            if(!User.loggedIn){
+                Toast.makeText(parent, "Sign in First", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(agent instanceof RemoteAgent){
+                RemoteAgent remAg = (RemoteAgent) agent;
+
+                System.out.println("srvname: " + remAg.serviceName);
+                remAg.addRemoteBookmark(parent, bookmark);
+            }
+        }
 
         private void showMap() {
             Intent intent = new Intent(parent, AgMapActivity.class);
@@ -190,7 +209,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
             if(emailAddress==null || emailAddress.equals(""))
                 return;
 
-            Toast.makeText(parent, emailAddress, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(parent, emailAddress, Toast.LENGTH_SHORT).show();
             Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
             emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[]{emailAddress});
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Client Request from CITISCOPE");
@@ -205,7 +224,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
             callIntent.setData(Uri.parse("tel:" + phoneNo));
-            Toast.makeText(parent, phoneNo, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(parent, phoneNo, Toast.LENGTH_SHORT).show();
 
             if (ActivityCompat.checkSelfPermission(aContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 return;
@@ -215,15 +234,23 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
     }
 
 
+
     @Override
     public AgentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(aContext).inflate(R.layout.agent_item, parent, false);
         return new AgentViewHolder(view);
     }
 
+
+
+
+
+
     @Override
     public void onBindViewHolder(AgentViewHolder holder, int position) {
         Agent agent = (Agent) items.get(position);
+        holder.agent = agent;
+
         holder.agentname.setText(agent.getName());
         CardAgent card = getCard(agent);
         if(card!=null)
@@ -286,4 +313,8 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         return items.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 }

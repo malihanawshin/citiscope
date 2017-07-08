@@ -14,10 +14,11 @@ public class CardRemoteAgent extends CardAgent {
     @Override
     public void setAttributes(AgentListAdapter.AgentViewHolder holder, Agent agent) {
         ArrayList<TextView> attInfos = holder.attributeInfos, attTexts = holder.attributeTexts;
-        Agent agRem = agent;
+        final RemoteAgent agRem = (RemoteAgent) agent;
 
         attTexts.get(0).setText("Visit");
         attInfos.get(0).setText(agRem.url);
+        attInfos.get(0).setClickable(true);
 
         attTexts.get(1).setText("");
         attInfos.get(1).setText("");

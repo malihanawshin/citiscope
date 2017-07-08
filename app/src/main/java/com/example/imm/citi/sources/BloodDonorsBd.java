@@ -5,6 +5,7 @@ import android.support.v4.util.Pair;
 
 
 import com.example.imm.citi.agents.Agent;
+import com.example.imm.citi.agents.RemoteAgent;
 import com.example.imm.citi.technicalClasses.Service;
 
 import java.io.BufferedReader;
@@ -100,8 +101,8 @@ public class BloodDonorsBd extends Source{
             if(name.equals("")) name = "Blood Donor #";
 
 
-            Agent temp = new Agent();
-            temp.setAttr(name, phone, "", detailsLink, address, "");
+            RemoteAgent temp = new RemoteAgent("Blood Donation");
+            temp.setAttr(name, phone, detailsLink, address, "");
             agents.add(temp);
 //			System.out.println("-------");
 //			System.out.println(name+" \n "+group + " \n " + address + " \n " + phone + " \n " + detailsLink);
