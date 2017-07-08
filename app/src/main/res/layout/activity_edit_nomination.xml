@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.imm.citi.activities.EditNominationActivity">
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:padding="16dp"
+        >
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/view_nomination_name"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="Nomination Name"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <EditText
+                        android:id="@+id/edit_nomination_name"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        android:inputType="text"
+                        android:layout_toRightOf="@id/view_nomination_name" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/view_nomination_type"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="Select Type"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_toRightOf="@id/view_nomination_type"
+                        android:gravity="bottom"
+                        android:layout_marginTop="10dp"
+                        >
+
+                        <RadioButton android:id="@+id/radio_nomination"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nomination"
+                            android:onClick="onRadioButtonClicked"/>
+
+                        <RadioButton android:id="@+id/radio_startup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Start Up"
+                            android:onClick="onRadioButtonClicked"/>
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/view_nominations_details"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="Description"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <EditText
+                        android:id="@+id/edit_nominations_details"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:maxLines="5"
+                        android:textColor="@color/colorAccent"
+                        android:layout_toRightOf="@id/view_nominations_details" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/view_source_list"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="Source"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <EditText
+                        android:id="@+id/edit_source_list"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:maxLines="5"
+                        android:textColor="@color/colorAccent"
+                        android:layout_toRightOf="@id/view_source_list" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/view_filter_list"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="Potential Filter List"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <EditText
+                        android:id="@+id/edit_filter_list"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:maxLines="5"
+                        android:textColor="@color/colorAccent"
+                        android:layout_toRightOf="@id/view_filter_list" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="10dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/view_privacy"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="Select Privacy"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_toRightOf="@id/view_privacy"
+                        android:gravity="bottom"
+                        android:layout_marginTop="10dp"
+                        >
+
+                        <RadioButton android:id="@+id/radio_public"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Public"
+                            android:onClick="onRadioButtonClicked"/>
+
+                        <RadioButton android:id="@+id/radio_private"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Private"
+                            android:onClick="onRadioButtonClicked"/>
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+
+
+                <Button
+                    android:id="@+id/btnToSaveNomination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@android:color/white"
+                    android:text="Save Changes"
+                    />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

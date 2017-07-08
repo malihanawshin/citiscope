@@ -8,6 +8,49 @@
     android:layout_height="match_parent"
     tools:context="com.example.imm.citi.activities.PollActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="Nominations "
+            />
+
+    <include layout="@layout/spinners"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/nominations"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical"
+            />
+
+
+        <Button
+        android:id="@+id/btnToAddNewAgent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:text="Add new agent"
+        />
+
+    </LinearLayout>
 
     <include layout="@layout/bottombar"/>
+
 </RelativeLayout>
