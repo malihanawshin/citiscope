@@ -7,19 +7,31 @@ import android.os.Parcel;
  */
 
 public class LocalAgent extends Agent {
-    public LocalAgent(Parcel in) {
-        super(in);
+    Boolean bookmarked=false;
+
+    public void setBookmarked(){
+        bookmarked=true;
+        System.out.println("bookmarked " + name);
     }
 
-    public static final Creator<Agent> CREATOR = new Creator<Agent>() {
+    public Boolean isBookmarked(){
+        return bookmarked;
+    }
+
+    public LocalAgent(Parcel in) {
+        super(in);
+        bookmarked = (Boolean)in.readValue(null);
+    }
+
+    public static final Creator<LocalAgent> CREATOR = new Creator<LocalAgent>() {
         @Override
-        public Agent createFromParcel(Parcel in) {
-            return new Agent(in);
+        public LocalAgent createFromParcel(Parcel in) {
+            return new LocalAgent(in);
         }
 
         @Override
-        public Agent[] newArray(int size) {
-            return new Agent[size];
+        public LocalAgent[] newArray(int size) {
+            return new LocalAgent[size];
         }
     };
 
@@ -33,11 +45,7 @@ public class LocalAgent extends Agent {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(id);
-        parcel.writeString(name);
-        parcel.writeString(phone);
-        parcel.writeString(url);
-        parcel.writeString(address);
-        parcel.writeString(email);
+        super.writeToParcel(parcel,i);
+        parcel.writeValue(bookmarked);
     }
 }

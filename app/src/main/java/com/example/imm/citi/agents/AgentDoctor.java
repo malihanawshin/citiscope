@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Sujoy on 7/2/2017.
  */
 
-public class AgentDoctor extends Agent {
+public class AgentDoctor extends LocalAgent {
     public String district, specialty;
 
     public ArrayList<String> addresses, degrees;

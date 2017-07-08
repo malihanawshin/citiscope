@@ -28,6 +28,8 @@ import com.example.imm.citi.agents.CardBloodDonation;
 import com.example.imm.citi.agents.CardDoctor;
 import com.example.imm.citi.agents.CardRemoteAgent;
 import com.example.imm.citi.agents.CardTuition;
+import com.example.imm.citi.agents.LocalAgent;
+import com.example.imm.citi.technicalClasses.User;
 
 import java.util.ArrayList;
 
@@ -230,6 +232,23 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         holder.phoneNo = agent.phone;
         holder.emailAddress = agent.email;
         holder.location = agent.address;
+
+        if(User.loggedIn)
+            setBookmark(holder, agent);
+        else
+            bookmark.setEnabled(false);
+    }
+
+    private void setBookmark(AgentViewHolder holder, Agent agent) {
+        if(agent instanceof LocalAgent){
+            LocalAgent locAg = (LocalAgent) agent;
+
+            System.out.println(locAg.name + locAg.isBookmarked());
+            if(locAg.isBookmarked()){
+                System.out.println("eta bookmarked " + locAg.name);
+                bookmark.setText("Unbookmark");
+            }
+        }
     }
 
     private CardAgent getCard(Agent agent) {
@@ -237,13 +256,13 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 
         if(agent instanceof AgentTuition){
             card = new CardTuition();
-            AgentTuition agTui = (AgentTuition) agent;
-            System.out.println("TUITION AGENT " + agTui.name + " " + agTui.occupation);
+//            AgentTuition agTui = (AgentTuition) agent;
+//            System.out.println("TUITION AGENT " + agTui.name + " " + agTui.occupation);
         }
         else if(agent instanceof AgentApartmentRenting){
             card = new CardApartmentRenting();
-            AgentApartmentRenting agApt = (AgentApartmentRenting) agent;
-            System.out.println("TUITION AGENT " + agApt.price + " " + agApt.size);
+//            AgentApartmentRenting agApt = (AgentApartmentRenting) agent;
+//            System.out.println("TUITION AGENT " + agApt.price + " " + agApt.size);
         }
         else if(agent instanceof AgentBloodDonation){
             card = new CardBloodDonation();
@@ -258,7 +277,6 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         else{
             card = new CardRemoteAgent();
         }
-        System.out.println("REMOTE AGENT " + agent.name);
         return card;
     }
 

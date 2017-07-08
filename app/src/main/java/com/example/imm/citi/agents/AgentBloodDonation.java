@@ -6,7 +6,7 @@ import android.os.Parcel;
  * Created by Sujoy on 7/2/2017.
  */
 
-public class AgentBloodDonation extends Agent {
+public class AgentBloodDonation extends LocalAgent {
     String district, bloodType;
 
     String smokingHabit;
