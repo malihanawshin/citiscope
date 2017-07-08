@@ -7,14 +7,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="4dp"
     app:cardBackgroundColor= "@color/colorAccent"
-    android:layout_margin="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="2dp"
 
     >
 
     <LinearLayout
         android:id="@+id/xml_agent_info"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="250dp"
         android:background="@color/colorAccent"
         android:orientation="vertical"
         android:layout_marginLeft="5dp"
@@ -24,7 +26,7 @@
 
         <TextView
             android:id="@+id/text_vote_count"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_gravity="right"
             android:gravity="center"
@@ -42,7 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:layout_margin="5dp"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@android:color/white"
@@ -74,7 +75,6 @@
             <Button
                 android:id="@+id/btnToVote"
                 android:layout_width="120dp"
-                android:layout_gravity="bottom"
                 android:layout_height="30dp"
                 android:background="@color/colorPrimary"
                 android:text="Vote"
@@ -87,7 +87,6 @@
                 android:id="@+id/btnToSeeDetails"
                 android:layout_width="120dp"
                 android:layout_height="30dp"
-                android:layout_gravity="bottom"
                 android:layout_marginLeft="30dp"
                 android:background="@color/colorPrimary"
                 android:text="More Details"

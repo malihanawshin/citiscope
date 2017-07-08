@@ -1,12 +1,13 @@
 package com.example.imm.citi.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.imm.citi.R;
 
-public class EditNominationActivity extends AppCompatActivity {
+public class EditNominationActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,4 +25,6 @@ public class EditNominationActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) onBackPressed();
         return super.onOptionsItemSelected(item);
     }
+
+
 }

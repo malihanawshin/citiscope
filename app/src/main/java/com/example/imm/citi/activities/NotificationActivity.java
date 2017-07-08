@@ -2,14 +2,21 @@ package com.example.imm.citi.activities;
 
 import android.os.PersistableBundle;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.example.imm.citi.R;
+import com.example.imm.citi.technicalClasses.Nomination;
+
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 
 public class NotificationActivity extends BottomBarActivity {
+
 
     @Override
     public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -23,7 +30,10 @@ public class NotificationActivity extends BottomBarActivity {
         setContentView(R.layout.activity_notification);
         setTitle("Notification");
         ButterKnife.bind(this);
+
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
