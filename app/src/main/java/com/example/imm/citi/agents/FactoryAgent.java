@@ -3,6 +3,7 @@ package com.example.imm.citi.agents;
 import android.app.Activity;
 import android.app.ProgressDialog;
 
+import com.example.imm.citi.activities.BookmarkActivity;
 import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.RetrievalData;
 import com.example.imm.citi.technicalClasses.Service;
@@ -24,24 +25,34 @@ public abstract class FactoryAgent {
     final String CHKBOOKMARKFILE = "checkBookmarks.php";
     ArrayList<String> bookmarkedIDs;
 
+    protected String actionType;
 
-    public FactoryAgent(Service serv, Activity act, ArrayList<Agent> agents){
+
+    public FactoryAgent(Service serv, Activity act, ArrayList<Agent> agents, String type){
         service = serv;
         parent = act;
 		remoteAgents = agents;
+        actionType = type;
     }
 
     public abstract void fetchAgents();
 
     public void finishFetch(){
-        ArrayList<ArrayList<Agent>> unsortedAgents = new ArrayList<>();
-        unsortedAgents.add(agents);
-        unsortedAgents.add(remoteAgents);
+        if(actionType.equals("bookmark")){
+            BookmarkActivity bkParent = (BookmarkActivity) parent;
+            loading.dismiss();
+            bkParent.showAgents(agents);
+        }
+        else if(actionType.equals("search")){
+            ArrayList<ArrayList<Agent>> unsortedAgents = new ArrayList<>();
+            unsortedAgents.add(agents);
+            unsortedAgents.add(remoteAgents);
 
-        agents = service.sortResult(unsortedAgents);
+            agents = service.sortResult(unsortedAgents);
 
-        loading.dismiss();
-        service.showResult(agents);
+            loading.dismiss();
+            service.showResult(agents);
+        }
     }
 
     protected void checkBookmarks(ArrayList<Agent> agents) {
@@ -83,16 +94,23 @@ public abstract class FactoryAgent {
     }
 
     private void setBookmarks() {
+        ArrayList<Agent> bookmarkedAgents = new ArrayList<>();
+
         for(Agent ag: agents){
             if(ag instanceof LocalAgent){
                 LocalAgent locAg = (LocalAgent)ag;
 
                 if(bookmarkedIDs.contains(locAg.id)){
                     locAg.setBookmarked();
+                    bookmarkedAgents.add(locAg);
                 }
 
                 System.out.println("eta local " + locAg.name);
             }
+        }
+
+        if(actionType.equals("bookmark")){
+            agents = bookmarkedAgents;
         }
     }
 
@@ -114,7 +132,11 @@ public abstract class FactoryAgent {
         parent.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                loading = ProgressDialog.show(parent,"Please wait...","Fetching Local Agents",false,false);
+                String agentType="Local";
+                if(actionType.equals("bookmark")){
+                    agentType="Bookmarked";
+                }
+                loading = ProgressDialog.show(parent,"Please wait...","Fetching " + agentType + " Agents",false,false);
             }
         });
     }

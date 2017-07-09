@@ -22,8 +22,8 @@ public class FactoryApartmentRenting extends FactoryAgent {
     final String APTFILE = "agentApartmentRentingFetcher.php";
     ArrayList<String> areas, mediums, classes, subjects;
 
-    public FactoryApartmentRenting(Service serv, Activity act, ArrayList<Agent> agents){
-        super(serv,act, agents);
+    public FactoryApartmentRenting(Service serv, Activity act, ArrayList<Agent> agents, String type){
+        super(serv,act, agents, type);
     }
 
     public void fetchAgents(){

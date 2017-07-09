@@ -54,6 +54,8 @@ public class Service {
 
     ArrayList<FilterOption> filOps;
 
+    final String type = "search";
+
     public Service(String str, Activity act, String dist){
         parent = act;
         service = str;
@@ -228,13 +230,13 @@ public class Service {
 
         FactoryAgent agentFac;
         if(service.equals("Tuition"))
-            agentFac = new FactoryTuition(this, parent, agents);
+            agentFac = new FactoryTuition(this, parent, agents, type);
         else if(service.equals("Apartment Renting"))
-            agentFac = new FactoryApartmentRenting(this, parent, agents);
+            agentFac = new FactoryApartmentRenting(this, parent, agents, type);
         else if(service.equals("Blood Donation"))
-            agentFac = new FactoryBloodDonation(this, parent, agents);
+            agentFac = new FactoryBloodDonation(this, parent, agents, type);
         else if(service.equals("Doctor"))
-            agentFac = new FactoryDoctor(this, parent, agents);
+            agentFac = new FactoryDoctor(this, parent, agents, type);
         else
             agentFac = null;
 

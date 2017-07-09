@@ -22,8 +22,8 @@ public class FactoryBloodDonation extends FactoryAgent {
     final String BLDFILE = "agentBloodDonationFetcher.php";
     ArrayList<String> areas, mediums, classes, subjects;
 
-    public FactoryBloodDonation(Service serv, Activity act, ArrayList<Agent> agents){
-        super(serv,act, agents);
+    public FactoryBloodDonation(Service serv, Activity act, ArrayList<Agent> agents, String type){
+        super(serv,act, agents, type);
     }
 
     public void fetchAgents(){

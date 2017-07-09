@@ -23,8 +23,8 @@ public class FactoryTuition extends FactoryAgent {
 
     ArrayList<String> areas, mediums, classes, subjects;
 
-    public FactoryTuition(Service serv, Activity act, ArrayList<Agent> agents){
-        super(serv,act, agents);
+    public FactoryTuition(Service serv, Activity act, ArrayList<Agent> agents, String type){
+        super(serv,act, agents, type);
     }
 
     public void fetchAgents(){
