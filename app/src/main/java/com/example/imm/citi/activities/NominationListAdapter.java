@@ -26,8 +26,8 @@ public class NominationListAdapter extends RecyclerView.Adapter{
 
     public interface NominationClickCallback{
 
-        public void onEditClick(Nomination nomination);
-
+        public void onSeeDetailsClick(Nomination nomination);
+        public void onVoteClick(Nomination nomination);
     }
 
     public NominationListAdapter(Context nContext,List <Nomination> items, NominationClickCallback clickCallback){
@@ -87,21 +87,33 @@ public class NominationListAdapter extends RecyclerView.Adapter{
 
             switch(v.getId()){
                 case R.id.btnToVote:
-                    //updateVote();
-                    //voteCount.setText();
+                    countVote();
                     break;
                 case R.id.btnToSeeDetails:
-                    showEditPage();
+                    showDetailsPage();
                     break;
             }
         }
 
-        public void showEditPage(){
+        public void showDetailsPage(){
             if ( nCallback!= null) {
                 int position = getAdapterPosition();
                 Nomination n = (Nomination) items.get(position);
-                nCallback.onEditClick(n);
+                nCallback.onSeeDetailsClick(n);
             }
+        }
+
+        public void countVote(){
+            if(toVote.getText().equals("Vote")) {
+                toVote.setText("Unvote");
+            }
+            else toVote.setText("Vote");
+
+            /*if ( nCallback!= null) {
+                int position = getAdapterPosition();
+                Nomination n = (Nomination) items.get(position);
+                nCallback.onVoteClick(n);
+            }*/
         }
     }
 }

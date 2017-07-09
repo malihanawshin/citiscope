@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.example.imm.citi.activities.EditNominationActivity">
 
     <LinearLayout
@@ -83,13 +84,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nomination"
-                            android:onClick="onRadioButtonClicked"/>
+                            />
 
                         <RadioButton android:id="@+id/radio_startup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Start Up"
-                            android:onClick="onRadioButtonClicked"/>
+                            />
+
                     </RadioGroup>
 
                 </RelativeLayout>
@@ -205,13 +207,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Public"
-                            android:onClick="onRadioButtonClicked"/>
+                            />
 
                         <RadioButton android:id="@+id/radio_private"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Private"
-                            android:onClick="onRadioButtonClicked"/>
+                            />
                     </RadioGroup>
 
                 </RelativeLayout>

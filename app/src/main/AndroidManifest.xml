@@ -58,7 +58,8 @@
         <activity
             android:name=".activities.AgMapActivity"
             android:label="@string/title_activity_nom_map" />
-        <activity android:name=".activities.EditNominationActivity"></activity>
+        <activity android:name=".activities.EditNominationActivity" />
+        <activity android:name=".activities.NominationDetailsActivity"></activity>
     </application>
 
 </manifest>
