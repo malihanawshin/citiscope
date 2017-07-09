@@ -3,16 +3,21 @@ package com.example.imm.citi.activities;
 import android.content.Intent;
 import android.os.PersistableBundle;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Nomination;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PollActivity extends BottomBarActivity implements NominationListAdapter.NominationClickCallback{
@@ -20,6 +25,7 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
     private RecyclerView nominationCardView;
     ArrayList<Nomination> nominations;
     NominationListAdapter adapter;
+    Button toVote;
 
 
     @Override
@@ -37,10 +43,21 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
 
         nominationCardView=(RecyclerView) findViewById(R.id.nominations_recycler);
 
+        toVote = (Button) findViewById(R.id.btnToVote);
+
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         nominationCardView.setLayoutManager(manager);
 
         setRecycler();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnToAddNewNomination);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PollActivity.this,EditNominationActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -67,9 +84,15 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
     }
 
     @Override
-    public void onEditClick(Nomination nomination) {
-        Intent intent = new Intent(this,EditNominationActivity.class);
+    public void onSeeDetailsClick(Nomination nomination) {
+        Intent intent = new Intent(this,NominationDetailsActivity.class);
         startActivity(intent);
+
+    }
+
+    @Override
+    public void onVoteClick(Nomination nomination) {
+        //Todo vote count
 
     }
 }
