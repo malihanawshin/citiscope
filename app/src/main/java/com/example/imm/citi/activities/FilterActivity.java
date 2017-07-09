@@ -43,7 +43,7 @@ public class FilterActivity extends AppCompatActivity {
         service = intent.getStringExtra("servicename");
         setTitle(service);
 
-        district = intent.getStringExtra("district");
+        district = intent.getStringExtra("chosenService");
 
         ll = (LinearLayout) findViewById(R.id.ll_filters);
 
@@ -60,7 +60,7 @@ public class FilterActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         service = intent.getStringExtra("service");
-        district = intent.getStringExtra("district");
+        chosenService = intent.getStringExtra("chosenService");
 
         txtCaption = (TextView) findViewById(R.id.txtFilterCaption);
         txtCaption.setText(txtCaption.getText().toString()+ " (" + service + ")");
@@ -132,7 +132,7 @@ public class FilterActivity extends AppCompatActivity {
     }
 
 /*    private void setFilters() {
-        srv = new Service(service, this, district);
+        srv = new Service(service, this, chosenService);
         srv.fetchFilters();
     }
 
@@ -154,7 +154,7 @@ public class FilterActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         ll.removeAllViews();
-        srv = new Service(service, this, district);
+        srv = new Service(service, this, chosenService);
         srv.fetchFilters();
     }*/
 }

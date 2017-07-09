@@ -102,7 +102,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
     public void onItemClick(ServiceFeature s) {
         Intent intent = new Intent(this, FilterActivity.class);
         intent.putExtra("servicename",s.getServiceName());
-        intent.putExtra("district", district);
+        intent.putExtra("chosenService", district);
         startActivity(intent);
     }
 
