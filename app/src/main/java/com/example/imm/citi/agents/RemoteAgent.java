@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class RemoteAgent extends Agent{
     public String url, serviceName;
-    final String BKFILE = "bookmarkRemote.php";
+    final String BKFILE = "bookmarkRemote.php", UNBKFILE = "unbookmarkRemote.php";
     private Button bookmarkBtn;
 
     public RemoteAgent(String srvName){
@@ -42,9 +42,8 @@ public class RemoteAgent extends Agent{
 
 
 
-    public void addRemoteBookmark(Activity act, Button bookmark) {
+    public void addRemoteBookmark(Activity act) {
         parent = act;
-        bookmarkBtn = bookmark;
         initiateArrays();
 
         if(parent!=null)System.out.println(keys + " <-> " + vals);
@@ -58,7 +57,34 @@ public class RemoteAgent extends Agent{
                     Toast.makeText(parent,"Bookmark cannot be added",Toast.LENGTH_LONG).show();
                 else{
                     Toast.makeText(parent,"Bookmark successfully added",Toast.LENGTH_LONG).show();
-//                    bookmarkBtn.setText("Unbookmark");
+                }
+            }
+        });
+    }
+
+
+
+    public void removeRemoteBookmark(Activity act) {
+        parent = act;
+
+        ArrayList<String> keys = new ArrayList<>();
+        ArrayList<String> vals = new ArrayList<>();
+
+        keys.add("email");
+        keys.add("id");
+
+        vals.add(User.Email);
+        vals.add(id);
+
+        Database db = new Database();
+
+        db.update(new RetrievalData(keys, vals, UNBKFILE, parent), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String result) {
+                if(result.equals("false"))
+                    Toast.makeText(parent,"Bookmark cannot be removed",Toast.LENGTH_LONG).show();
+                else{
+                    Toast.makeText(parent,"Bookmark successfully removed",Toast.LENGTH_LONG).show();
                 }
             }
         });

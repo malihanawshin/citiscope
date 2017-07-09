@@ -44,7 +44,7 @@ public class AgentListActivity extends AppCompatActivity implements AgentListAda
     private void setRecycler() {
         adapter = new AgentListAdapter(this,agents, this, flag);
         agentlistview.setAdapter(adapter);
-        agentlistview.setItemViewCacheSize(99);
+        agentlistview.setItemViewCacheSize(999);
     }
 
     @Override

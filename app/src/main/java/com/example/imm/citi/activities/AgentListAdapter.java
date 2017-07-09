@@ -44,8 +44,6 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
     private Activity parent;
     private ArrayList<Agent> items;
     private AgentClickCallback aCallback;
-    private Button bookmark;
-    private Button compare;
     private Button editOwnInfo;
     private int flag;
     //private LinearLayout service;
@@ -69,12 +67,11 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 
     public class AgentViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView agentname;
-        TextView serviceOfAgent;
-        ImageView call;
-        ImageView mail;
-        ImageView locate;
+        TextView agentname, serviceOfAgent;
+        ImageView call, mail, locate;
         public ArrayList<TextView> attributeInfos, attributeTexts;
+
+        private Button bookmark, compare;
 
         String phoneNo, emailAddress, location;
         Agent agent;
@@ -160,7 +157,10 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                     break;
 
                 case R.id.btnToBookmark:
-                    bookmark();
+                    if(bookmark.getText().toString().equals("Bookmark"))
+                        bookmark();
+                    else
+                        removeBookmark();
                     break;
 
                 case R.id.btnToCompare:
@@ -174,6 +174,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         }
 
 
+
         public void showEditInfoPage() {
             if (aCallback != null) {
                 int position = getAdapterPosition();
@@ -184,6 +185,24 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 
 
 
+        private void removeBookmark() {
+            System.out.println("here to REMOVE BOOKMARK");
+            if(!User.loggedIn){
+                Toast.makeText(parent, "Sign in First", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(agent instanceof RemoteAgent){
+                RemoteAgent remAg = (RemoteAgent) agent;
+
+                System.out.println("srvname: " + remAg.serviceName);
+                remAg.removeRemoteBookmark(parent);
+            }
+            else if(agent instanceof LocalAgent){
+                LocalAgent locAg = (LocalAgent) agent;
+                locAg.removeLocalBookmark(parent, bookmark);
+            }
+        }
 
         private void bookmark() {
             if(!User.loggedIn){
@@ -195,7 +214,11 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                 RemoteAgent remAg = (RemoteAgent) agent;
 
                 System.out.println("srvname: " + remAg.serviceName);
-                remAg.addRemoteBookmark(parent, bookmark);
+                remAg.addRemoteBookmark(parent);
+            }
+            else if(agent instanceof LocalAgent){
+                LocalAgent locAg = (LocalAgent) agent;
+                locAg.addLocalBookmark(parent, bookmark);
             }
         }
 
@@ -263,7 +286,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         if(User.loggedIn)
             setBookmark(holder, agent);
         else
-            bookmark.setEnabled(false);
+            holder.bookmark.setEnabled(false);
     }
 
     private void setBookmark(AgentViewHolder holder, Agent agent) {
@@ -273,7 +296,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
             System.out.println(locAg.name + locAg.isBookmarked());
             if(locAg.isBookmarked()){
                 System.out.println("eta bookmarked " + locAg.name);
-                bookmark.setText("Unbookmark");
+                holder.bookmark.setText("Unbookmark");
             }
         }
     }
@@ -301,7 +324,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 //            AgentApartmentRenting agApt = (AgentApartmentRenting) agent;
 //            System.out.println("TUITION AGENT " + agApt.price + " " + agApt.size);
         }
-        else{
+        else if(agent instanceof RemoteAgent){
             card = new CardRemoteAgent();
         }
         return card;
