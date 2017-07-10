@@ -153,7 +153,7 @@ public class BookmarkActivity extends AppCompatActivity implements AgentListAdap
                 String selected = spinner.getItemAtPosition(pos).toString();
                 district = selected;
 //                Toast.makeText(parent, selected, Toast.LENGTH_SHORT).show();
-                getLocalAgents(selected);
+                getBookmarkedAgents(selected);
             }
 
             @Override
@@ -163,7 +163,7 @@ public class BookmarkActivity extends AppCompatActivity implements AgentListAdap
         });
     }
 
-    private void getLocalAgents(String selectedService) {
+    private void getBookmarkedAgents(String selectedService) {
         FactoryAgent agentFac;
         if(selectedService.equals("Tuition"))
             agentFac = new FactoryTuition(null, parent, agents, type);

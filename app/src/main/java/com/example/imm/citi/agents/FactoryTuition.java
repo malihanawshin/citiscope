@@ -51,7 +51,7 @@ public class FactoryTuition extends FactoryAgent {
                                         obj.getString("University"), obj.getString("Occupation"), obj.getString("ProfileLink"), Integer.parseInt(obj.getString("TuitionsDone")));
                                 tempAg.setID(obj.getString("ID"));
 
-                                System.out.println(tempAg.id);
+//                                System.out.println(tempAg.id);
 
                                 agents.add(tempAg);
                             } catch (JSONException e) {
@@ -192,8 +192,14 @@ public class FactoryTuition extends FactoryAgent {
                         }
                     }
 
-                    if(User.loggedIn)
-                        checkBookmarks(agents);
+                    if(User.loggedIn) {
+                        if(actionType.equals("profile")){
+                            checkAgents();
+                        }
+                        else {
+                            checkBookmarks(agents);
+                        }
+                    }
                     else
                         finishFetch();
 

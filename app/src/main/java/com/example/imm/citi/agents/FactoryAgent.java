@@ -3,6 +3,7 @@ package com.example.imm.citi.agents;
 import android.app.Activity;
 import android.app.ProgressDialog;
 
+import com.example.imm.citi.activities.AgentProfileActivity;
 import com.example.imm.citi.activities.BookmarkActivity;
 import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.RetrievalData;
@@ -22,10 +23,11 @@ public abstract class FactoryAgent {
     ArrayList<Agent> agents = new ArrayList<>(), remoteAgents;
     ProgressDialog loading;
 
-    final String CHKBOOKMARKFILE = "checkBookmarks.php", REMOTEAGFILE = "agentRemoteFactory.php";
+    final String CHKBOOKMARKFILE = "checkBookmarks.php", REMOTEAGFILE = "agentRemoteFactory.php", CHKAGPROFFILE = "checkAgentProfile.php";
     ArrayList<String> bookmarkedIDs;
 
     protected String actionType;
+    private ArrayList<Agent> createdAgents;
 
 
     public FactoryAgent(Service serv, Activity act, ArrayList<Agent> agents, String type){
@@ -52,6 +54,11 @@ public abstract class FactoryAgent {
 
             loading.dismiss();
             service.showResult(agents);
+        }
+        else if(actionType.equals("profile")){
+            AgentProfileActivity agProf = (AgentProfileActivity) parent;
+            loading.dismiss();
+            agProf.showAgents(agents);
         }
     }
 
@@ -161,9 +168,56 @@ public abstract class FactoryAgent {
 
 
 
+    protected void checkAgents() {
+        createdAgents = new ArrayList<>();
 
+        ArrayList<String> keys = new ArrayList<>();
+        keys.add("email");
+        ArrayList<String> vals = new ArrayList<>();
+        vals.add(User.Email);
 
+        Database db = new Database();
+        db.retrieve(new RetrievalData(keys, vals, CHKAGPROFFILE, parent), false, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("result");
 
+                    if (result.length() != 0) {
+                        //System.out.println(result + " X " + result.length());
+                        for (int i = 0; i < result.length(); i++) {
+                            try {
+                                JSONObject obj = result.getJSONObject(i);
+                                String id = obj.getString("ID");
+                                Agent tempAg = findAgentById(id);
+                                if(tempAg!=null)
+                                    createdAgents.add(tempAg);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    agents = createdAgents;
+                    finishFetch();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private Agent findAgentById(String id) {
+        for(Agent ag: agents){
+            System.out.println(ag.id + "<<>>" + id);
+            if(ag.id.equals(id))
+                return ag;
+        }
+
+        return null;
+    }
 
 
     protected abstract String getServiceName();

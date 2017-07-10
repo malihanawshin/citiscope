@@ -126,8 +126,14 @@ public class FactoryDoctor extends FactoryAgent {
                         }
                     }
 
-                    if(User.loggedIn)
-                        checkBookmarks(agents);
+                    if(User.loggedIn) {
+                        if(actionType.equals("profile")){
+                            checkAgents();
+                        }
+                        else {
+                            checkBookmarks(agents);
+                        }
+                    }
                     else
                         finishFetch();
 

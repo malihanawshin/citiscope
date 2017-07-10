@@ -17,6 +17,11 @@ import android.widget.Toast;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.agents.Agent;
+import com.example.imm.citi.agents.FactoryAgent;
+import com.example.imm.citi.agents.FactoryApartmentRenting;
+import com.example.imm.citi.agents.FactoryBloodDonation;
+import com.example.imm.citi.agents.FactoryDoctor;
+import com.example.imm.citi.agents.FactoryTuition;
 import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.RetrievalData;
 import com.example.imm.citi.technicalClasses.VolleyCallback;
@@ -40,6 +45,7 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
     private final String SERVICEFILE = "allServiceNames.php";
     private Spinner spnCity;
     String chosenService = "Apartment Renting";
+    private final String type = "profile";
 
 
     @Override
@@ -69,9 +75,6 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
 
     private void setRecycler() {
         agents = new ArrayList<>();
-        agents.add(new Agent());
-        agents.add(new Agent());
-        agents.add(new Agent());
         adapter = new AgentListAdapter(this,agents,this, flag);
         agentlistview.setAdapter(adapter);
     }
@@ -171,8 +174,8 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
             public void onItemSelected(AdapterView<?> spinner, View view, int pos, long l) {
                 String selected = spinner.getItemAtPosition(pos).toString();
                 chosenService = selected;
-                Toast.makeText(parent, selected, Toast.LENGTH_SHORT).show();
-                //getAgents(selected);
+//                Toast.makeText(parent, selected, Toast.LENGTH_SHORT).show();
+                getCreatedAgents(selected);
             }
 
             @Override
@@ -180,5 +183,32 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
 
             }
         });
+    }
+
+    private void getCreatedAgents(String selectedService) {
+        System.out.println(selectedService + " agent khujtese");
+        FactoryAgent agentFac;
+        if(selectedService.equals("Tuition"))
+            agentFac = new FactoryTuition(null, parent, agents, type);
+        else if(selectedService.equals("Apartment Renting"))
+            agentFac = new FactoryApartmentRenting(null, parent, agents, type);
+        else if(selectedService.equals("Blood Donation"))
+            agentFac = new FactoryBloodDonation(null, parent, agents, type);
+        else if(selectedService.equals("Doctor"))
+            agentFac = new FactoryDoctor(null, parent, agents, type);
+        else
+            agentFac = null;
+
+        if(agentFac!=null) agentFac.fetchAgents();
+    }
+
+    public void showAgents(ArrayList<Agent> newAgents){
+        agents.clear();
+        agents.addAll(newAgents);
+        adapter.notifyDataSetChanged();
+
+        if(agents.size()==0){
+            Toast.makeText(parent, "No Agent Account Opened", Toast.LENGTH_SHORT).show();
+        }
     }
 }
