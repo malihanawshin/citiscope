@@ -39,7 +39,7 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
     Activity parent = this;
     private final String SERVICEFILE = "allServiceNames.php";
     private Spinner spnCity;
-    String chosenService;
+    String chosenService = "Apartment Renting";
 
 
     @Override

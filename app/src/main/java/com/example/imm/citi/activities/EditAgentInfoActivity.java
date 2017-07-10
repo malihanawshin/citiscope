@@ -1,6 +1,7 @@
 package com.example.imm.citi.activities;
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -30,6 +31,8 @@ public class EditAgentInfoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         service = intent.getStringExtra("servicename");
+
+        System.out.println("SERVICE: " + service);
 
         serviceLabel = (TextView) findViewById(R.id.text_service_label);
         renting = (LinearLayout) findViewById(R.id.layout_renting);
