@@ -25,14 +25,14 @@ public class RemoteAgent extends Agent{
         serviceName = srvName;
     }
 
-    public void setAttr(String name, String phone1, String url, String address, String email){
+    public void setAttr(String name, String phone, String url, String address, String email){
         this.name = name;
-        this.phone = phone1;
+        this.phone = phone;
         this.url = url;
         this.address = address;
         this.email = email;
 
-        ArrayList<String> phones = multiplePhones(phone1);
+        ArrayList<String> phones = multiplePhones(phone);
         this.phone = phones.get(0);
 
         if(!this.phone.startsWith("+88") && !this.phone.equals("")) this.phone = "+88" + this.phone;

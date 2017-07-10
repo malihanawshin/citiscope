@@ -74,9 +74,16 @@ public class FactoryApartmentRenting extends FactoryAgent {
     @Override
     public void finishFetch() {
         for(Agent ag: agents){
-            AgentApartmentRenting agApt = (AgentApartmentRenting) ag;
-            System.out.println("TUTOR: " + agApt.name + " " + agApt.address + " " + agApt.propertyType + " " + agApt.roomNo);
+            if(ag instanceof LocalAgent) {
+                AgentApartmentRenting agApt = (AgentApartmentRenting) ag;
+                System.out.println("TUTOR: " + agApt.name + " " + agApt.address + " " + agApt.propertyType + " " + agApt.roomNo);
+            }
         }
         super.finishFetch();
+    }
+
+    @Override
+    protected String getServiceName() {
+        return "Apartment Renting";
     }
 }

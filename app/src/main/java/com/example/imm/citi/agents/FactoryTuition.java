@@ -217,10 +217,17 @@ public class FactoryTuition extends FactoryAgent {
 
     @Override
     public void finishFetch() {
-        for(Agent ag: agents){
-            AgentTuition agTui = (AgentTuition)ag;
-            System.out.println("TUTOR: " + agTui.name + " " + agTui.address + " " + agTui.school + " " + agTui.tuitionsDone);
+        for(Agent ag: agents) {
+            if (ag instanceof LocalAgent) {
+                AgentTuition agTui = (AgentTuition) ag;
+                System.out.println("TUTOR: " + agTui.name + " " + agTui.address + " " + agTui.school + " " + agTui.tuitionsDone);
+            }
         }
         super.finishFetch();
+    }
+
+    @Override
+    protected String getServiceName() {
+        return "Tuition";
     }
 }

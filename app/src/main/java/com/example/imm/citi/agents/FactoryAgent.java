@@ -22,7 +22,7 @@ public abstract class FactoryAgent {
     ArrayList<Agent> agents = new ArrayList<>(), remoteAgents;
     ProgressDialog loading;
 
-    final String CHKBOOKMARKFILE = "checkBookmarks.php";
+    final String CHKBOOKMARKFILE = "checkBookmarks.php", REMOTEAGFILE = "agentRemoteFactory.php";
     ArrayList<String> bookmarkedIDs;
 
     protected String actionType;
@@ -84,7 +84,10 @@ public abstract class FactoryAgent {
                     }
 
                     setBookmarks();
-                    finishFetch();
+                    if(actionType.equals("bookmark"))
+                        getRemoteBookmarks();
+                    else
+                        finishFetch();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -92,6 +95,7 @@ public abstract class FactoryAgent {
             }
         });
     }
+
 
     private void setBookmarks() {
         ArrayList<Agent> bookmarkedAgents = new ArrayList<>();
@@ -113,6 +117,57 @@ public abstract class FactoryAgent {
             agents = bookmarkedAgents;
         }
     }
+
+
+    private void getRemoteBookmarks() {
+        ArrayList<String> keys = new ArrayList<>();
+        keys.add("service");
+        ArrayList<String> vals = new ArrayList<>();
+        vals.add(getServiceName());
+
+        Database db = new Database();
+        db.retrieve(new RetrievalData(keys, vals, REMOTEAGFILE, parent), false, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("result");
+
+                    if (result.length() != 0) {
+                        //System.out.println(result + " X " + result.length());
+                        for (int i = 0; i < result.length(); i++) {
+                            try {
+                                JSONObject obj = result.getJSONObject(i);
+                                String id = obj.getString("ID");
+                                if(bookmarkedIDs.contains(id)){
+                                    RemoteAgent remAg = new RemoteAgent(getServiceName());
+                                    remAg.setAttr(obj.getString("Name"), obj.getString("Phone"), obj.getString("Link"), obj.getString("Location"), obj.getString("Email"));
+                                    agents.add(remAg);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    finishFetch();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+    protected abstract String getServiceName();
+
 
     ArrayList<LocalAgent> search(ArrayList<android.support.v4.util.Pair<String, String>> chosenOptions){
 		

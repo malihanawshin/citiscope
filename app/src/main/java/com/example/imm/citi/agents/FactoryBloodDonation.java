@@ -72,9 +72,16 @@ public class FactoryBloodDonation extends FactoryAgent {
     @Override
     public void finishFetch() {
         for(Agent ag: agents){
-            AgentBloodDonation agBld = (AgentBloodDonation) ag;
-            System.out.println("DONOR: " + agBld.name + " " + agBld.address + " " + agBld.bloodType + " " + agBld.daysSinceLastDonated);
+            if(ag instanceof LocalAgent) {
+                AgentBloodDonation agBld = (AgentBloodDonation) ag;
+                System.out.println("DONOR: " + agBld.name + " " + agBld.address + " " + agBld.bloodType + " " + agBld.daysSinceLastDonated);
+            }
         }
         super.finishFetch();
+    }
+
+    @Override
+    protected String getServiceName() {
+        return "Blood Donation";
     }
 }

@@ -152,9 +152,16 @@ public class FactoryDoctor extends FactoryAgent {
     @Override
     public void finishFetch() {
         for(Agent ag: agents){
-            AgentDoctor agDoc = (AgentDoctor) ag;
-            System.out.println("TUTOR: " + agDoc.name + " " + agDoc.address + " " + agDoc.specialty + " " + agDoc.hospitalName);
+            if(ag instanceof LocalAgent) {
+                AgentDoctor agDoc = (AgentDoctor) ag;
+                System.out.println("TUTOR: " + agDoc.name + " " + agDoc.address + " " + agDoc.specialty + " " + agDoc.hospitalName);
+            }
         }
         super.finishFetch();
+    }
+
+    @Override
+    protected String getServiceName() {
+        return "Doctor";
     }
 }
