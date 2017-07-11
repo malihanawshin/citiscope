@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 
 public class Nomination implements Parcelable{
-    public String name, description, nominator;
-    ArrayList<String> sources, filters, cities;
+    public String name, description, nominator, dateAdded;
+    public ArrayList<String> sources, filters, cities;
     public int voteCount;
     PollActivity parent;
 
@@ -22,7 +22,7 @@ public class Nomination implements Parcelable{
 
     }
 
-    public void setAttributes(String nm, String desc, ArrayList<String> srcs, String nom, int votes, ArrayList filters1, ArrayList cities1){
+    public void setAttributes(String nm, String desc, ArrayList<String> srcs, String nom, int votes, ArrayList filters1, ArrayList cities1, String date){
         name = nm;
         description = desc; 
         sources = srcs;
@@ -30,9 +30,21 @@ public class Nomination implements Parcelable{
         voteCount = votes;
         filters = filters1;
         cities = cities1;
+        dateAdded = date;
     }
 
 
+    public void addSource(String url) {
+        sources.add(url);
+    }
+
+    public void addFilter(String filter) {
+        filters.add(filter);
+    }
+
+    public void addCity(String city) {
+        cities.add(city);
+    }
 
 
 
@@ -72,6 +84,7 @@ public class Nomination implements Parcelable{
         voteCount = in.readInt();
         filters = in.createStringArrayList();
         cities = in.createStringArrayList();
+        dateAdded = in.readString();
     }
 
     public static final Creator<Nomination> CREATOR = new Creator<Nomination>() {
@@ -100,5 +113,6 @@ public class Nomination implements Parcelable{
         parcel.writeInt(voteCount);
         parcel.writeStringList(filters);
         parcel.writeStringList(cities);
+        parcel.writeString(dateAdded);
     }
 }

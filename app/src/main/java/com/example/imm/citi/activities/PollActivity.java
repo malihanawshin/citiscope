@@ -1,10 +1,9 @@
 package com.example.imm.citi.activities;
 
 import android.content.Intent;
-import android.os.PersistableBundle;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -14,10 +13,10 @@ import android.widget.Button;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Nomination;
+import com.example.imm.citi.technicalClasses.Poll;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PollActivity extends BottomBarActivity implements NominationListAdapter.NominationClickCallback{
@@ -26,6 +25,7 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
     ArrayList<Nomination> nominations;
     NominationListAdapter adapter;
     Button toVote;
+    private Poll poll;
 
 
     @Override
@@ -50,6 +50,13 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
 
         setRecycler();
 
+        setListener();
+
+        poll = new Poll(this);
+        poll.createPoll();
+    }
+
+    private void setListener() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnToAddNewNomination);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,14 +65,13 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
                 startActivity(intent);
             }
         });
-
     }
 
     private void setRecycler(){
         nominations = new ArrayList<>();
-        nominations.add(new Nomination());
-        nominations.add(new Nomination());
-        nominations.add(new Nomination());
+//        nominations.add(new Nomination());
+//        nominations.add(new Nomination());
+//        nominations.add(new Nomination());
 
         adapter = new NominationListAdapter(this,nominations,this);
         nominationCardView.setAdapter(adapter);
@@ -94,5 +100,11 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
     public void onVoteClick(Nomination nomination) {
         //Todo vote count
 
+    }
+
+    public void showData(ArrayList<Nomination> noms) {
+        nominations.clear();
+        nominations.addAll(noms);
+        adapter.notifyDataSetChanged();
     }
 }
