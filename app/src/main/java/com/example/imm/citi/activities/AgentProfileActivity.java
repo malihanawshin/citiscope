@@ -3,6 +3,7 @@ package com.example.imm.citi.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -61,9 +62,14 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
 
         spnCity = (Spinner) findViewById(R.id.spinner_service);
 
-        addAgent = (Button) findViewById(R.id.btnToAddAgent);
-        addAgent.setVisibility(View.VISIBLE);
-        addAgent.setOnClickListener(clickListener);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnToAddAgent);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showEditPage();
+            }
+        });
 
 
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
@@ -91,9 +97,9 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
         public void onClick(View v) {
 
             switch (v.getId()) {
-                case R.id.btnToAddAgent:
+               /* case R.id.btnToAddAgent:
                     showEditPage();
-                    break;
+                    break;*/
             }
         }
     };
