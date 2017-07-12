@@ -11,8 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.imm.citi.R;
+import com.example.imm.citi.agents.AgentApartmentRenting;
 import com.example.imm.citi.agents.AgentBloodDonation;
 import com.example.imm.citi.agents.CreatorAgent;
+import com.example.imm.citi.agents.CreatorApartmentRenting;
 import com.example.imm.citi.agents.CreatorBloodDonation;
 import com.example.imm.citi.agents.LocalAgent;
 import com.example.imm.citi.technicalClasses.UserAgentInput;
@@ -31,6 +33,7 @@ public class EditAgentInfoActivity extends AppCompatActivity {
     private EditText edtName, edtEmail, edtPhone, edtAddress, edtDistrict;
 
     private EditText bldType, bldSmoke, bldDonNo, bldLastDon;
+    private EditText aptArea, aptType, aptPrice, aptSize, aptFloor, aptRoom;
 
     LocalAgent locAg;
     CreatorAgent creaAg;
@@ -79,6 +82,8 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         else if(service.equals("Apartment Renting")) {
             renting.setVisibility(View.VISIBLE);
             serviceLabel.setText("Apartment Renting");
+            setApartmentRentingEditTexts();
+            creaAg = new CreatorApartmentRenting(this);
         }
         else if(service.equals("Blood Donation")) {
             donation.setVisibility(View.VISIBLE);
@@ -88,6 +93,26 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         }
 
         setButtonListener();
+    }
+
+    private void setApartmentRentingEditTexts() {
+        aptArea = (EditText) findViewById(R.id.edit_apartment_area);
+        aptType = (EditText) findViewById(R.id.edit_property_type);
+        aptPrice = (EditText) findViewById(R.id.edit_price);
+        aptSize = (EditText) findViewById(R.id.edit_area_m2);
+        aptFloor = (EditText) findViewById(R.id.edit_floor);
+        aptRoom = (EditText) findViewById(R.id.edit_room);
+
+        if(locAg!=null){
+            AgentApartmentRenting agApt = (AgentApartmentRenting)locAg;
+            edtDistrict.setText(agApt.district);
+            aptArea.setText(agApt.area);
+            aptType.setText(agApt.propertyType);
+            aptPrice.setText(agApt.price+"");
+            aptSize.setText(agApt.size+"");
+            aptFloor.setText(agApt.floor+"");
+            aptRoom.setText(agApt.roomNo+"");
+        }
     }
 
     private void setBloodDonationEditTexts() {
@@ -162,14 +187,19 @@ public class EditAgentInfoActivity extends AppCompatActivity {
             serviceLabel.setText("Doctor");
         }
         else if(service.equals("Apartment Renting")) {
-            renting.setVisibility(View.VISIBLE);
-            serviceLabel.setText("Apartment Renting");
+            return getApartmentRentingInput(userInput);
         }
         else if(service.equals("Blood Donation")) {
             return getBloodDonationInput(userInput);
         }
 
         return null;
+    }
+
+    private UserAgentInput getApartmentRentingInput(UserAgentInput userInput) {
+        userInput.addApartmentRentingAttributes(edtDistrict.getText().toString(), aptArea.getText().toString(), aptType.getText().toString(),
+                aptPrice.getText().toString(), aptSize.getText().toString(), aptFloor.getText().toString(), aptRoom.getText().toString());
+        return userInput;
     }
 
     private UserAgentInput getBloodDonationInput(UserAgentInput userInput) {

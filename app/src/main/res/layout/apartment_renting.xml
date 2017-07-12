@@ -90,7 +90,7 @@
         >
 
         <TextView
-            android:id="@+id/text_area_km2"
+            android:id="@+id/text_area_m2"
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -100,11 +100,11 @@
             />
 
         <EditText
-            android:id="@+id/edit_area_km2"
+            android:id="@+id/edit_area_m2"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_area_km2" />
+            android:layout_toRightOf="@id/text_area_m2"
+            android:textColor="@color/colorAccent" />
 
     </RelativeLayout>
 

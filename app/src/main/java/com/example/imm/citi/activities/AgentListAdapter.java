@@ -14,8 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +34,6 @@ import com.example.imm.citi.agents.RemoteAgent;
 import com.example.imm.citi.technicalClasses.User;
 
 import java.util.ArrayList;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
  * Created by imm on 7/2/2017.
@@ -174,7 +170,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                     break;
 
                 case R.id.btnToCompare:
-                    showDetailsInfoPage();
+                    //showDetailsInfoPage();
                     break;
 
                 case R.id.btnToEdit:
