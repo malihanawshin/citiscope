@@ -7,12 +7,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,8 @@ import com.example.imm.citi.agents.RemoteAgent;
 import com.example.imm.citi.technicalClasses.User;
 
 import java.util.ArrayList;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /**
  * Created by imm on 7/2/2017.
@@ -76,9 +81,12 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         String phoneNo, emailAddress, location;
         Agent agent;
 
+        CardView scroll;
 
         public AgentViewHolder(View itemView) {
             super(itemView);
+
+            //itemView.getLayoutParams().height = itemView.getParent().getHeight();
 
             serviceOfAgent = (TextView) itemView.findViewById(R.id.text_agent_service);
 
@@ -101,6 +109,8 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 
             editOwnInfo = (Button) itemView.findViewById(R.id.btnToEdit);
             editOwnInfo.setOnClickListener(this);
+
+            scroll = (CardView) itemView.findViewById(R.id.scroll_view);
 
             if (flag == 0) bookmark.setVisibility(itemView.VISIBLE);
             else if (flag == 1) bookmark.setVisibility(itemView.GONE);
@@ -164,6 +174,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                     break;
 
                 case R.id.btnToCompare:
+                    showDetailsInfoPage();
                     break;
 
                 case R.id.btnToEdit:
@@ -180,6 +191,10 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                 int position = getAdapterPosition();
                 Agent ag = (Agent) items.get(position);
                 aCallback.onEditClick(ag);
+
+                //scroll.getLayoutParams().height = RecyclerView.LayoutParams.MATCH_PARENT;;
+
+                //scroll.getParent().getH
             }
         }
 
@@ -261,12 +276,11 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
     @Override
     public AgentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(aContext).inflate(R.layout.agent_item, parent, false);
+
+        //view.getLayoutParams().height = parent.getHeight();
+
         return new AgentViewHolder(view);
     }
-
-
-
-
 
 
     @Override
