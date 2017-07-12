@@ -13,11 +13,15 @@ import android.widget.TextView;
 import com.example.imm.citi.R;
 import com.example.imm.citi.agents.AgentApartmentRenting;
 import com.example.imm.citi.agents.AgentBloodDonation;
+import com.example.imm.citi.agents.AgentDoctor;
 import com.example.imm.citi.agents.CreatorAgent;
 import com.example.imm.citi.agents.CreatorApartmentRenting;
 import com.example.imm.citi.agents.CreatorBloodDonation;
+import com.example.imm.citi.agents.CreatorDoctor;
 import com.example.imm.citi.agents.LocalAgent;
 import com.example.imm.citi.technicalClasses.UserAgentInput;
+
+import java.util.ArrayList;
 
 public class EditAgentInfoActivity extends AppCompatActivity {
 
@@ -34,6 +38,7 @@ public class EditAgentInfoActivity extends AppCompatActivity {
 
     private EditText bldType, bldSmoke, bldDonNo, bldLastDon;
     private EditText aptArea, aptType, aptPrice, aptSize, aptFloor, aptRoom;
+    private EditText docSpec, docAddresses, docDegrees, docHospital, docYears;
 
     LocalAgent locAg;
     CreatorAgent creaAg;
@@ -78,6 +83,8 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         else if(service.equals("Doctor")) {
             doctor.setVisibility(View.VISIBLE);
             serviceLabel.setText("Doctor");
+            setDoctorEditTexts();
+            creaAg = new CreatorDoctor(this);
         }
         else if(service.equals("Apartment Renting")) {
             renting.setVisibility(View.VISIBLE);
@@ -93,6 +100,24 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         }
 
         setButtonListener();
+    }
+
+    private void setDoctorEditTexts() {
+        docAddresses = (EditText) findViewById(R.id.edit_doc_addresses);
+        docDegrees = (EditText) findViewById(R.id.edit_degrees);
+        docHospital = (EditText) findViewById(R.id.edit_hospital);
+        docSpec = (EditText) findViewById(R.id.edit_speciality);
+        docYears = (EditText) findViewById(R.id.edit_practice);
+
+        if(locAg!=null){
+            AgentDoctor agDoc = (AgentDoctor) locAg;
+            edtDistrict.setText(agDoc.district);
+            docAddresses.setText(getStringFromArray(agDoc.addresses));
+            docDegrees.setText(getStringFromArray(agDoc.degrees));
+            docSpec.setText(agDoc.specialty);
+            docHospital.setText(agDoc.hospitalName);
+            docYears.setText(agDoc.yearsInPractice+"");
+        }
     }
 
     private void setApartmentRentingEditTexts() {
@@ -183,8 +208,7 @@ public class EditAgentInfoActivity extends AppCompatActivity {
             //return getTuitionInput();
         }
         else if(service.equals("Doctor")) {
-            doctor.setVisibility(View.VISIBLE);
-            serviceLabel.setText("Doctor");
+            return getDoctorInput(userInput);
         }
         else if(service.equals("Apartment Renting")) {
             return getApartmentRentingInput(userInput);
@@ -194,6 +218,13 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         }
 
         return null;
+    }
+
+    private UserAgentInput getDoctorInput(UserAgentInput userInput) {
+        userInput.addDoctorAttributes(edtDistrict.getText().toString(), docSpec.getText().toString(),
+                docHospital.getText().toString(), docYears.getText().toString(), docAddresses.getText().toString(),
+                docDegrees.getText().toString());
+        return userInput;
     }
 
     private UserAgentInput getApartmentRentingInput(UserAgentInput userInput) {
@@ -220,6 +251,17 @@ public class EditAgentInfoActivity extends AppCompatActivity {
 
 
 
+
+    private String getStringFromArray(ArrayList<String> arr) {
+        String str = "";
+
+        for(String s: arr){
+            str += s + "; ";
+        }
+        str = str.substring(0, str.length()-2);
+
+        return str;
+    }
 
 
 

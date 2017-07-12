@@ -66,6 +66,33 @@
         >
 
         <TextView
+            android:id="@+id/text_addresses"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Chamber Addresses"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/edit_doc_addresses"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/text_addresses"
+            android:inputType="textMultiLine"
+            android:maxLines="4"
+            android:textColor="@color/colorAccent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
             android:id="@+id/text_hospital"
             android:layout_width="90dp"
             android:layout_height="match_parent"
