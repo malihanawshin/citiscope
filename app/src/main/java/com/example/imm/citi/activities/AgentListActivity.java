@@ -6,11 +6,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ScrollView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.agents.Agent;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class AgentListActivity extends AppCompatActivity implements AgentListAdapter.AgentClickCallback{
 
@@ -35,8 +45,17 @@ public class AgentListActivity extends AppCompatActivity implements AgentListAda
 
         agentlistview = (RecyclerView) findViewById(R.id.agent_recycler);
 
+        FrameLayout fab = (FrameLayout) findViewById(R.id.fab_layout);
+        fab.setVisibility(View.GONE);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_service);
+        spinner.setVisibility(View.GONE);
+
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         agentlistview.setLayoutManager(manager);
+
+        //ScrollView scroll = (ScrollView) findViewById(R.id.scroll_view);
+        //scroll.getLayoutParams().height = MATCH_PARENT;
 
         setRecycler();
     }
