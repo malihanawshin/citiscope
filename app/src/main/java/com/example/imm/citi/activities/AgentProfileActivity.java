@@ -23,6 +23,7 @@ import com.example.imm.citi.agents.FactoryApartmentRenting;
 import com.example.imm.citi.agents.FactoryBloodDonation;
 import com.example.imm.citi.agents.FactoryDoctor;
 import com.example.imm.citi.agents.FactoryTuition;
+import com.example.imm.citi.agents.LocalAgent;
 import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.RetrievalData;
 import com.example.imm.citi.technicalClasses.VolleyCallback;
@@ -67,7 +68,7 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showEditPage();
+                showEditPage(null);
             }
         });
 
@@ -104,9 +105,11 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
         }
     };
 
-    private void showEditPage() {
+    private void showEditPage(Agent agent) {
         Intent intent = new Intent(this, EditAgentInfoActivity.class);
         intent.putExtra("servicename",chosenService);
+        LocalAgent locAg = (LocalAgent)agent;
+        intent.putExtra("agent", locAg);
         startActivity(intent);
     }
 
@@ -122,7 +125,7 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
 
     @Override
     public void onEditClick(Agent a) {
-        showEditPage();
+        showEditPage(a);
     }
 
 

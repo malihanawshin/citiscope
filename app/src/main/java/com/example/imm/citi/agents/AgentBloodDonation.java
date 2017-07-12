@@ -7,10 +7,10 @@ import android.os.Parcel;
  */
 
 public class AgentBloodDonation extends LocalAgent {
-    String district, bloodType;
+    public String district, bloodType;
 
-    String smokingHabit;
-    int donationsDone, daysSinceLastDonated;
+    public String smokingHabit;
+    public int donationsDone, daysSinceLastDonated;
 
     public AgentBloodDonation(String name1, String email1, String phone1, String address1, String district1, String bloodType1, String smokingHabit1, int donationsDone1, int lastDonated1) {
         name = name1;

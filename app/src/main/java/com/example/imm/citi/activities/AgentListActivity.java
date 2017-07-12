@@ -65,7 +65,6 @@ public class AgentListActivity extends AppCompatActivity implements AgentListAda
     }
 
     @Override
-    public void onEditClick(Agent a) {
-
+    public void onEditClick(Agent agent) {
     }
 }

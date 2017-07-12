@@ -2,7 +2,6 @@ package com.example.imm.citi.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -102,8 +101,7 @@ public class BookmarkActivity extends AppCompatActivity implements AgentListAdap
     }
 
     @Override
-    public void onEditClick(Agent a) {
-
+    public void onEditClick(Agent agent) {
     }
 
     private void fillSpinner() {

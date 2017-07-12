@@ -92,7 +92,10 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
     @Override
     public void onSeeDetailsClick(Nomination nomination) {
         Intent intent = new Intent(this,NominationDetailsActivity.class);
-        startActivity(intent);
+        Bundle b = new Bundle();
+        b.putParcelable("nomination", nomination);
+        intent.putExtra("nom", b);
+        parent.startActivity(intent);
 
     }
 

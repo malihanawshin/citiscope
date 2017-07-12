@@ -178,8 +178,8 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         public void showEditInfoPage() {
             if (aCallback != null) {
                 int position = getAdapterPosition();
-                Agent a = (Agent) items.get(position);
-                aCallback.onEditClick(a);
+                Agent ag = (Agent) items.get(position);
+                aCallback.onEditClick(ag);
             }
         }
 
