@@ -2,6 +2,7 @@ package com.example.imm.citi.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,6 +68,9 @@ public class BookmarkActivity extends AppCompatActivity implements AgentListAdap
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         agentlistview.setLayoutManager(manager);
 
+        FrameLayout fab = (FrameLayout) findViewById(R.id.fab_layout);
+        fab.setVisibility(View.GONE);
+
         setRecycler();
         fillSpinner();
     }
@@ -100,15 +105,6 @@ public class BookmarkActivity extends AppCompatActivity implements AgentListAdap
     public void onEditClick(Agent a) {
 
     }
-
-
-
-
-
-
-
-
-
 
     private void fillSpinner() {
         ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();

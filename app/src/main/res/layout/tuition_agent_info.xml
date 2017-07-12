@@ -30,6 +30,7 @@
             android:textColor="@color/colorAccent"
             android:inputType="textMultiLine"
             android:maxLines="4"
+            android:hint="put ; for multiple inputs"
             android:layout_toRightOf="@id/text_area" />
 
     </RelativeLayout>
@@ -45,7 +46,7 @@
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="Medium"
+            android:text="Mediums"
             android:textColor="@color/colorAccent"
             android:textStyle="bold"
             />
@@ -54,9 +55,12 @@
             android:id="@+id/edit_medium"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-
+            android:inputType="textMultiLine"
+            android:maxLines="4"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_medium" />
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/text_medium"
+            android:layout_toEndOf="@+id/text_medium" />
 
     </RelativeLayout>
 
@@ -108,8 +112,7 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-
-            android:maxLines="3"
+            android:maxLines="4"
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_subjects" />
 
@@ -135,8 +138,6 @@
             android:id="@+id/edit_school_name"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_school_name" />
 
@@ -162,8 +163,7 @@
             android:id="@+id/edit_university_name"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:maxLines="2"
+
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_university_name" />
 
@@ -189,8 +189,7 @@
             android:id="@+id/edit_occupation"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
+
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_occupation" />
 

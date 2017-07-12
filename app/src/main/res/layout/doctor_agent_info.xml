@@ -28,8 +28,6 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorAccent"
-            android:inputType="textMultiLine"
-            android:maxLines="4"
             android:layout_toRightOf="@id/text_speciality" />
 
     </RelativeLayout>
@@ -81,8 +79,6 @@
             android:id="@+id/edit_hospital"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_hospital" />
 

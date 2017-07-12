@@ -28,8 +28,6 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorAccent"
-            android:inputType="textMultiLine"
-            android:maxLines="4"
             android:layout_toRightOf="@id/text_apartment_area" />
 
     </RelativeLayout>
@@ -54,7 +52,6 @@
             android:id="@+id/edit_property_type"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_property_type" />
 
@@ -106,8 +103,6 @@
             android:id="@+id/edit_area_km2"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_area_km2" />
 
