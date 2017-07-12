@@ -44,30 +44,29 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
         android:layout_above="@+id/bottombar"
         android:layout_alignParentRight="true"
-        >
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnToAddNewNomination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            app:backgroundTint="@color/colorPrimary"
-            />
+            app:backgroundTint="@color/colorPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:elevation="16dp"
             android:text="+"
-            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/colorAccent"
             android:textSize="28sp"
-            android:elevation="16dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            />
+            android:textStyle="bold" />
 
     </FrameLayout>
 

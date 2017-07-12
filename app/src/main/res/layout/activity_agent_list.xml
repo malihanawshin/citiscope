@@ -59,39 +59,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="end"
-        >
+        android:gravity="end">
 
-    <FrameLayout android:id="@+id/fab_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_alignParentRight="true"
-        android:visibility="visible"
-        >
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btnToAddAgent"
+        <FrameLayout
+            android:id="@+id/fab_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_gravity="bottom|right"
-            app:backgroundTint="@color/colorPrimary"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="15dp"
+            android:visibility="visible">
 
-            />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnToAddAgent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                app:backgroundTint="@color/colorPrimary"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="+"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"
-            android:textSize="28sp"
-            android:elevation="16dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            />
+                />
 
-    </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="16dp"
+                android:text="+"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorAccent"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
 
     </LinearLayout>
 
