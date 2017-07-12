@@ -1,6 +1,7 @@
 package com.example.imm.citi.technicalClasses;
 
 import android.app.ProgressDialog;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -17,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,11 +75,7 @@ public class Database {
                 }){
             @Override
             protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
-                for(int i=0; i<rd.value.size(); i++){
-                    params.put(rd.key.get(i), rd.value.get(i));
-                }
-                return params;
+                return getSingleParams();
             }
         };
 
@@ -92,6 +90,22 @@ public class Database {
         requestQueue.add(stringRequest);
     }
 
+    @NonNull
+    private Map<String, String> getSingleParams() {
+        Map<String,String> params = new HashMap<String, String>();
+        for(int i=0; i<rd.value.size(); i++){
+            params.put(rd.key.get(i), rd.value.get(i));
+        }
+        return params;
+    }
+
+    @NonNull
+    private Map<ArrayList<String>, ArrayList<String>> getArrayParams() {
+        Map<ArrayList<String>, ArrayList<String>> params = new HashMap<>();
+        params.put(rd.key, rd.value);
+        return params;
+    }
+
 
     public void retrieve(RetrievalData rd1, Boolean showProgress, VolleyCallback callback){
         rd = rd1;
@@ -99,7 +113,7 @@ public class Database {
         accessDatabase(rd, callback);
     }
 
-    public void update(RetrievalData rd1,  Boolean showProgress, VolleyCallback callback){
+    public void update(RetrievalData rd1, Boolean showProgress, VolleyCallback callback){
         rd = rd1;
         if(showProgress) showProgress("Updating");
         accessDatabase(rd, callback);

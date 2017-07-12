@@ -2,6 +2,7 @@ package com.example.imm.citi.technicalClasses;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ public class Poll {
     PollActivity parent;
     Activity act;
 
+    ProgressDialog loading;
+
     ArrayList<Nomination> noms;
 
     ArrayList<String> keys, vals, tempSrcs;
@@ -30,18 +33,24 @@ public class Poll {
     final String NOMURLFILE = "nomUrl.php", NOMFILTERFILE = "nomFilter.php", NOMCITYFILE = "nomCity.php";
     private String tempName;
 
+
+
+
     public Poll(PollActivity pollAct){
         parent = pollAct;
     }
 
     public void createPoll(){
+        showProgress();
+
+
         noms = new ArrayList<>();
 
         keys = new ArrayList<>();
         vals = new ArrayList<>();
 
         Database db = new Database();
-        db.retrieve(new RetrievalData(keys, vals, CRTPOLLFILE, parent), true, new VolleyCallback() {
+        db.retrieve(new RetrievalData(keys, vals, CRTPOLLFILE, parent), false, new VolleyCallback() {
             @Override
             public void onSuccessResponse(String response) {
                 try {
@@ -169,6 +178,7 @@ public class Poll {
                         }
                     }
 
+                    loading.dismiss();
                     sortByVotes(noms);
 
                 } catch (JSONException e) {
@@ -275,5 +285,26 @@ public class Poll {
             });
         }
 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    protected void showProgress(){
+        parent.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String agentType="Local";
+                loading = ProgressDialog.show(parent,"Please wait...","Fetching Nominations",false,false);
+            }
+        });
     }
 }

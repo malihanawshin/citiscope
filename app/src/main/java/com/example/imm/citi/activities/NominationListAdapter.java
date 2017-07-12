@@ -1,5 +1,6 @@
 package com.example.imm.citi.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Nomination;
-import java.util.ArrayList;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -22,25 +25,20 @@ public class NominationListAdapter extends RecyclerView.Adapter{
 
     private List<Nomination> items;
     private Context nContext;
+    private Activity parent;
     private NominationClickCallback nCallback;
 
     public interface NominationClickCallback{
-
         public void onSeeDetailsClick(Nomination nomination);
         public void onVoteClick(Nomination nomination);
     }
 
-    public NominationListAdapter(Context nContext,List <Nomination> items, NominationClickCallback clickCallback){
+    public NominationListAdapter(Context nContext,List <Nomination> items1, NominationClickCallback clickCallback){
 
         this.nContext=nContext;
+        parent = (Activity)nContext;
         this.nCallback=clickCallback;
-        additems(items);
-    }
-
-
-    public void additems(List<Nomination> items){
-        this.items= new ArrayList<>();
-        this.items.addAll(items);
+        items = items1;
     }
 
     @Override
@@ -59,6 +57,11 @@ public class NominationListAdapter extends RecyclerView.Adapter{
         return items.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
     class NominationHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.text_nomination_label) TextView nominationName;
@@ -73,9 +76,9 @@ public class NominationListAdapter extends RecyclerView.Adapter{
         }
 
         void bind(Nomination nomination){
-                // TODO nominationName.setText(nomination.getName());
-                // TODO nominationDetails.setText(nomination.getDetails());
-                // TODO voteCount.setText(nomination.getVote());
+                nominationName.setText(nomination.name);
+                nominationDetails.setText(nomination.description);
+                voteCount.setText(""+nomination.voteCount);
 
                 toVote.setOnClickListener(this);
                 toViewDetails.setOnClickListener(this);

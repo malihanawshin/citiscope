@@ -19,7 +19,7 @@ public class Nomination implements Parcelable{
     PollActivity parent;
 
     public Nomination(){
-
+        name = "Default";
     }
 
     public void setAttributes(String nm, String desc, ArrayList<String> srcs, String nom, int votes, ArrayList filters1, ArrayList cities1, String date){
@@ -73,8 +73,10 @@ public class Nomination implements Parcelable{
         });
     }
 
-
-
+    @Override
+    public String toString() {
+        return name;
+    }
 
     protected Nomination(Parcel in) {
         name = in.readString();

@@ -69,7 +69,7 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
 
     private void setRecycler(){
         nominations = new ArrayList<>();
-//        nominations.add(new Nomination());
+       nominations.add(new Nomination());
 //        nominations.add(new Nomination());
 //        nominations.add(new Nomination());
 
