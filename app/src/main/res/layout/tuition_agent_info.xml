@@ -24,14 +24,14 @@
             />
 
         <EditText
-            android:id="@+id/edit_area"
+            android:id="@+id/edit_tui_area"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
+            android:layout_toRightOf="@id/text_area"
+            android:hint="put ; for multiple inputs"
             android:inputType="textMultiLine"
             android:maxLines="4"
-            android:hint="put ; for multiple inputs"
-            android:layout_toRightOf="@id/text_area" />
+            android:textColor="@color/colorAccent" />
 
     </RelativeLayout>
 

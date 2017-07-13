@@ -2,8 +2,6 @@ package com.example.imm.citi.agents;
 
 import com.example.imm.citi.activities.EditAgentInfoActivity;
 
-import java.util.ArrayList;
-
 /**
  * Created by Sujoy on 7/13/2017.
  */
@@ -33,15 +31,5 @@ public class CreatorDoctor extends CreatorAgent {
 
 
         vals = userInput.getDoctorInput(vals);
-    }
-
-    private ArrayList<String> getKeyForArray(String key, int length){
-        ArrayList<String> arrKeys = new ArrayList<>();
-
-        for(int i=1; i<=length; i++){
-            arrKeys.add(key+i);
-        }
-
-        return arrKeys;
     }
 }

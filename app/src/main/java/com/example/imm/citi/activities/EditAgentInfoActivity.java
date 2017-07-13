@@ -14,10 +14,12 @@ import com.example.imm.citi.R;
 import com.example.imm.citi.agents.AgentApartmentRenting;
 import com.example.imm.citi.agents.AgentBloodDonation;
 import com.example.imm.citi.agents.AgentDoctor;
+import com.example.imm.citi.agents.AgentTuition;
 import com.example.imm.citi.agents.CreatorAgent;
 import com.example.imm.citi.agents.CreatorApartmentRenting;
 import com.example.imm.citi.agents.CreatorBloodDonation;
 import com.example.imm.citi.agents.CreatorDoctor;
+import com.example.imm.citi.agents.CreatorTuition;
 import com.example.imm.citi.agents.LocalAgent;
 import com.example.imm.citi.technicalClasses.UserAgentInput;
 
@@ -39,6 +41,8 @@ public class EditAgentInfoActivity extends AppCompatActivity {
     private EditText bldType, bldSmoke, bldDonNo, bldLastDon;
     private EditText aptArea, aptType, aptPrice, aptSize, aptFloor, aptRoom;
     private EditText docSpec, docAddresses, docDegrees, docHospital, docYears;
+    private EditText tuiAreas, tuiMediums, tuiClasses, tuiSubjects, 
+                        tuiSchool, tuiCollege, tuiUniversity, tuiOccupation, tuiDone, tuiProfile;
 
     LocalAgent locAg;
     CreatorAgent creaAg;
@@ -78,7 +82,8 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         if(service.equals("Tuition")) {
             tuition.setVisibility(View.VISIBLE);
             serviceLabel.setText("Tuition");
-            //creaAg = new CreatorTuition(this);
+            setTuitionEditTexts();
+            creaAg = new CreatorTuition(this);
         }
         else if(service.equals("Doctor")) {
             doctor.setVisibility(View.VISIBLE);
@@ -101,6 +106,34 @@ public class EditAgentInfoActivity extends AppCompatActivity {
 
         setButtonListener();
     }
+
+    private void setTuitionEditTexts() {
+        tuiAreas = (EditText) findViewById(R.id.edit_tui_area);
+        tuiMediums = (EditText) findViewById(R.id.edit_medium);
+        tuiClasses = (EditText) findViewById(R.id.edit_class);
+        tuiSubjects = (EditText) findViewById(R.id.edit_subjects);
+        tuiSchool = (EditText) findViewById(R.id.edit_school_name);
+        tuiCollege = (EditText) findViewById(R.id.edit_college_name);
+        tuiUniversity = (EditText) findViewById(R.id.edit_university_name);
+        tuiOccupation = (EditText) findViewById(R.id.edit_occupation);
+        tuiDone = (EditText) findViewById(R.id.edit_tuitions);
+        tuiProfile = (EditText) findViewById(R.id.edit_link);
+
+        if(locAg!=null){
+            AgentTuition agTui = (AgentTuition) locAg;
+            edtDistrict.setText(agTui.district);
+            tuiMediums.setText(getStringFromArray(agTui.mediums));
+            tuiClasses.setText(getStringFromArray(agTui.classes));
+            tuiAreas.setText(getStringFromArray(agTui.areas));
+            tuiSubjects.setText(getStringFromArray(agTui.subjects));
+            tuiSchool.setText(agTui.school);
+            tuiCollege.setText(agTui.college);
+            tuiUniversity.setText(agTui.university);
+            tuiOccupation.setText(agTui.occupation);
+            tuiDone.setText(agTui.tuitionsDone+"");
+            tuiProfile.setText(agTui.profileLink);
+        }
+}
 
     private void setDoctorEditTexts() {
         docAddresses = (EditText) findViewById(R.id.edit_doc_addresses);
@@ -205,7 +238,7 @@ public class EditAgentInfoActivity extends AppCompatActivity {
                 edtEmail.getText().toString(), edtPhone.getText().toString(), edtAddress.getText().toString());
 
         if(service.equals("Tuition")) {
-            //return getTuitionInput();
+            return getTuitionInput(userInput);
         }
         else if(service.equals("Doctor")) {
             return getDoctorInput(userInput);
@@ -218,6 +251,14 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         }
 
         return null;
+    }
+
+    private UserAgentInput getTuitionInput(UserAgentInput userInput) {
+        userInput.addTuitionAttributes(edtDistrict.getText().toString(), tuiAreas.getText().toString(),
+                tuiMediums.getText().toString(), tuiClasses.getText().toString(), tuiSubjects.getText().toString(),
+                tuiSchool.getText().toString(), tuiCollege.getText().toString(), tuiUniversity.getText().toString(),
+                tuiOccupation.getText().toString(), tuiDone.getText().toString(), tuiProfile.getText().toString());
+        return userInput;
     }
 
     private UserAgentInput getDoctorInput(UserAgentInput userInput) {

@@ -74,4 +74,14 @@ public class CreatorAgent {
         keys.add("phone");
         keys.add("location");
     }
+
+    protected ArrayList<String> getKeyForArray(String key, int length){
+        ArrayList<String> arrKeys = new ArrayList<>();
+
+        for(int i=1; i<=length; i++){
+            arrKeys.add(key+i);
+        }
+
+        return arrKeys;
+    }
 }
