@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -60,9 +61,7 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         agentlistview = (RecyclerView) findViewById(R.id.agent_recycler);
-
         spnCity = (Spinner) findViewById(R.id.spinner_service);
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnToAddAgent);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +70,6 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
                 showEditPage(null);
             }
         });
-
 
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         agentlistview.setLayoutManager(manager);

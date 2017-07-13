@@ -106,7 +106,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
             scroll = (CardView) itemView.findViewById(R.id.scroll_view);
 
             if (flag == 0) bookmark.setVisibility(itemView.VISIBLE);
-            else if (flag == 1) bookmark.setVisibility(itemView.GONE);
+            else if (flag == 1) bookmark.setVisibility(itemView.VISIBLE);
             else if (flag == 2) {
                 bookmark.setVisibility(itemView.GONE);
                 editOwnInfo.setVisibility(itemView.VISIBLE);

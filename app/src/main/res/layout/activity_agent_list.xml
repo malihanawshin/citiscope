@@ -1,70 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_agent_list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    tools:context="com.example.imm.citi.activities.AgentListActivity">
 
 
-    <LinearLayout
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/colorPrimary"
+        tools:context="com.example.imm.citi.activities.AgentListActivity">
+
+        <TextView
+            android:id="@+id/text_card_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Agent's List"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/text_card_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/colorAccent"
-        android:text="Agent's List"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        />
+        <Spinner
+            android:id="@+id/spinner_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:entries="@array/service_arr"
+            android:padding="8dp"
+            android:spinnerMode="dropdown"
+            android:visibility="visible"
+            android:layout_below="@+id/text_card_name"
+            />
 
-     <Spinner
-         android:id="@+id/spinner_service"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_gravity="center_horizontal"
-         android:visibility="visible"
-         android:padding="8dp"
-         android:spinnerMode="dropdown"
-         android:entries="@array/service_arr"
-         android:layout_marginBottom="10dp"
-         />
-
-        </LinearLayout>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/agent_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="horizontal"
-        />
-
-</ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="end">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/agent_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:layout_gravity="center_vertical"
+            android:scrollbars="horizontal"
+            android:layout_below="@+id/spinner_service"
+            />
 
         <FrameLayout
             android:id="@+id/fab_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_gravity="bottom|right"
             android:layout_marginBottom="15dp"
@@ -93,6 +76,6 @@
 
         </FrameLayout>
 
-    </LinearLayout>
 
-</LinearLayout>
+
+    </RelativeLayout>

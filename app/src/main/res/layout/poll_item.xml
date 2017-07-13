@@ -66,8 +66,8 @@
                     android:gravity="center"
                     android:text="Nomination Details"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                     />
             </LinearLayout>
         </ScrollView>
 

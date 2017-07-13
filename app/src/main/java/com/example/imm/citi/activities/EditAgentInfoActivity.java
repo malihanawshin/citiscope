@@ -2,6 +2,7 @@ package com.example.imm.citi.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,6 +57,11 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         setTitle("Edit Agent Info");
 
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        View root = findViewById(R.id.layout_add_agent);
+        Snackbar snackbar = Snackbar.make(root,"Please Use ; For Multiple Answers",Snackbar.LENGTH_LONG);
+        snackbar.show();
+
 
         Intent intent = getIntent();
         service = intent.getStringExtra("servicename");

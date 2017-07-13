@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:background="@color/colorPrimary"
     android:padding="16dp"
+    android:id="@+id/layout_add_agent"
     >
 
     <TextView

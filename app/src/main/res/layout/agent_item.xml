@@ -14,6 +14,10 @@
     app:cardBackgroundColor="@color/colorAccent"
     app:cardCornerRadius="4dp">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/xml_agent_info"
@@ -514,5 +518,6 @@
 
 </LinearLayout>
 
+    </ScrollView>
 
 </android.support.v7.widget.CardView>
