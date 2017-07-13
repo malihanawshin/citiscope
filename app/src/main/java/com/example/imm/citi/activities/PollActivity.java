@@ -49,8 +49,8 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         nominationCardView.setLayoutManager(manager);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner_service);
-        spinner.setVisibility(View.GONE);
+        //Spinner spinner = (Spinner) findViewById(R.id.spinner_service);
+        //spinner.setVisibility(View.GONE);
 
         setRecycler();
 

@@ -29,8 +29,6 @@
             android:text="Nominations "
             />
 
-        <include layout="@layout/spinners"/>
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/nominations_recycler"
             android:layout_width="match_parent"

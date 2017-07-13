@@ -14,7 +14,7 @@ public class EditNominationActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_nomination);
 
-        nomination = getIntent().getBundleExtra("nom").getParcelable("nomination");
+//        nomination = getIntent().getBundleExtra("nom").getParcelable("nomination");
 
         setTitle("Edit Nomination");
 

@@ -100,9 +100,6 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
             bookmark = (Button) itemView.findViewById(R.id.btnToBookmark);
             bookmark.setOnClickListener(this);
 
-            compare = (Button) itemView.findViewById(R.id.btnToCompare);
-            compare.setOnClickListener(this);
-
             editOwnInfo = (Button) itemView.findViewById(R.id.btnToEdit);
             editOwnInfo.setOnClickListener(this);
 
@@ -112,7 +109,6 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
             else if (flag == 1) bookmark.setVisibility(itemView.GONE);
             else if (flag == 2) {
                 bookmark.setVisibility(itemView.GONE);
-                compare.setVisibility(itemView.GONE);
                 editOwnInfo.setVisibility(itemView.VISIBLE);
                 serviceOfAgent.setText("Service Name"); // TODO set actual service name later
             }
@@ -167,10 +163,6 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                         bookmark();
                     else
                         removeBookmark();
-                    break;
-
-                case R.id.btnToCompare:
-                    //showDetailsInfoPage();
                     break;
 
                 case R.id.btnToEdit:
