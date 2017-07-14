@@ -8,19 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.agents.Agent;
 
 import java.util.ArrayList;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class AgentListActivity extends AppCompatActivity implements AgentListAdapter.AgentClickCallback{
 
