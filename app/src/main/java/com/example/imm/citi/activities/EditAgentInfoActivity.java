@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.agents.AgentApartmentRenting;
@@ -22,6 +23,7 @@ import com.example.imm.citi.agents.CreatorBloodDonation;
 import com.example.imm.citi.agents.CreatorDoctor;
 import com.example.imm.citi.agents.CreatorTuition;
 import com.example.imm.citi.agents.LocalAgent;
+import com.example.imm.citi.technicalClasses.User;
 import com.example.imm.citi.technicalClasses.UserAgentInput;
 
 import java.util.ArrayList;
@@ -208,6 +210,10 @@ public class EditAgentInfoActivity extends AppCompatActivity {
             edtPhone.setText(locAg.phone);
             edtAddress.setText(locAg.address);
         }
+        else{
+            edtEmail.setText(User.Email);
+            edtPhone.setText(User.Phone);
+        }
     }
 
 
@@ -229,15 +235,63 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(locAg == null){
-                    creaAg.addAgent(getUserInput());
+                if(fieldsFilled()){
+                    if(locAg == null){
+                        creaAg.addAgent(getUserInput());
+                    }
+                    else{
+                        creaAg.updateAgent(getUserInput());
+                    }
                 }
-                else{
-                    creaAg.updateAgent(getUserInput());
-                }
+
             }
         });
     }
+
+    private boolean fieldsFilled() {
+        if(edtName.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter a Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(edtEmail.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter an Email Address", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(edtPhone.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter a Phone Number", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(edtAddress.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter a Location", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        Boolean flag = true;
+
+        if(service.equals("Tuition")) {
+            flag = tuitionFieldsFilled();
+            if(!flag)
+                return flag;
+        }
+        else if(service.equals("Doctor")) {
+            flag = doctorFieldsFilled();
+            if(!flag)
+                return flag;
+        }
+        else if(service.equals("Apartment Renting")) {
+            flag = apartmentRentingFieldsFilled();
+            if(!flag)
+                return flag;
+        }
+        else if(service.equals("Blood Donation")) {
+            flag = bloodDonationFieldsFilled();
+            if(!flag)
+                return flag;
+        }
+
+        return flag;
+    }
+
 
     private UserAgentInput getUserInput() {
         UserAgentInput userInput = new UserAgentInput(id, service, edtName.getText().toString(),
@@ -267,6 +321,34 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         return userInput;
     }
 
+    private Boolean tuitionFieldsFilled() {
+        if(edtDistrict.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter a District Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(tuiAreas.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter at least 1 Area within the District", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(tuiMediums.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter at least 1 Medium (eg: Bangla;English)", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(tuiClasses.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter at least 1 Class (eg: SSC; A Levels)", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(tuiSubjects.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter at least 1 Subject (eg: Physics; Accounting)", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(tuiDone.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter the number of Tuitions you have done", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
     private UserAgentInput getDoctorInput(UserAgentInput userInput) {
         userInput.addDoctorAttributes(edtDistrict.getText().toString(), docSpec.getText().toString(),
                 docHospital.getText().toString(), docYears.getText().toString(), docAddresses.getText().toString(),
@@ -274,10 +356,48 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         return userInput;
     }
 
+
+    private Boolean doctorFieldsFilled() {
+        if(edtDistrict.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter a District Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(docSpec.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter your Specialty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(docYears.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter your number of Years as a Doctor", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+
     private UserAgentInput getApartmentRentingInput(UserAgentInput userInput) {
         userInput.addApartmentRentingAttributes(edtDistrict.getText().toString(), aptArea.getText().toString(), aptType.getText().toString(),
                 aptPrice.getText().toString(), aptSize.getText().toString(), aptFloor.getText().toString(), aptRoom.getText().toString());
         return userInput;
+    }
+
+    private Boolean apartmentRentingFieldsFilled() {
+        if(edtDistrict.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter a District Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(aptArea.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter an Area", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(aptType.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter the Type (eg: Apartment/Flat)", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(aptPrice.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter the Price", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private UserAgentInput getBloodDonationInput(UserAgentInput userInput) {
@@ -285,6 +405,22 @@ public class EditAgentInfoActivity extends AppCompatActivity {
                 bldSmoke.getText().toString(), bldDonNo.getText().toString(), bldLastDon.getText().toString());
 
         return userInput;
+    }
+
+    private Boolean bloodDonationFieldsFilled() {
+        if(edtDistrict.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter a District Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(bldType.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter your Blood Group", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(bldDonNo.getText().toString().equals("")){
+            Toast.makeText(this, "Please enter the Number of Donations you've made", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
 
