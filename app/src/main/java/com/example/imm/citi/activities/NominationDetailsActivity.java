@@ -1,6 +1,5 @@
 package com.example.imm.citi.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +7,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Nomination;
+import com.example.imm.citi.technicalClasses.User;
 
 import java.util.ArrayList;
 
@@ -84,12 +85,32 @@ public class NominationDetailsActivity extends AppCompatActivity {
     }
 
     public void showEdit(View view){
-        Intent intent = new Intent(NominationDetailsActivity.this,EditNominationActivity.class);
-        intent.putExtra("nomination", nomination);
-        startActivity(intent);
+        if(User.loggedIn){
+            if(User.Email.equals(nomination.nominator)){
+                Intent intent = new Intent(NominationDetailsActivity.this,EditNominationActivity.class);
+                intent.putExtra("nomination", nomination);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "You do not have permission", Toast.LENGTH_LONG).show();
+            }
+        }
+        else{
+            Toast.makeText(this, "Log in First", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void removeNom(View view){
-        nomination.removeNom(this);
+        if(User.loggedIn){
+            if(User.Email.equals(nomination.nominator) || User.admin){
+                nomination.removeNom(this);
+            }
+            else{
+                Toast.makeText(this, "You do not have permission", Toast.LENGTH_LONG).show();
+            }
+        }
+        else{
+            Toast.makeText(this, "Log in First", Toast.LENGTH_LONG).show();
+        }
     }
 }
