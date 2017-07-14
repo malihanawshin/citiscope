@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Nomination;
@@ -44,6 +45,8 @@ public class EditNominationActivity extends AppCompatActivity{
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(fieldUnfilled())
+                    return;
                 Nomination newNom = getUserInput();
                 if(nomination==null){
                     newNom.dateAdded = getCurrentDate();
@@ -55,6 +58,30 @@ public class EditNominationActivity extends AppCompatActivity{
                 }
             }
         });
+    }
+
+    private boolean fieldUnfilled() {
+        if(nomName.getText().toString().equals("")){
+            Toast.makeText(this, "Enter the Name", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if(nomDesc.getText().toString().equals("")){
+            Toast.makeText(this, "Enter a Description", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if(nomSources.getText().toString().equals("")){
+            Toast.makeText(this, "Enter at least 1 Source", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if(nomFilters.getText().toString().equals("")){
+            Toast.makeText(this, "Enter at least 1 Filter", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if(nomCities.getText().toString().equals("")){
+            Toast.makeText(this, "Enter at least 1 City", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
     }
 
     private Nomination getUserInput() {

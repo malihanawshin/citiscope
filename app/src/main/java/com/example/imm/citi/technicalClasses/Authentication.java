@@ -111,6 +111,7 @@ public class Authentication {
         User.setAttributes(email, name, phone, bio, parent);
 
         Intent intent = new Intent(parent, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         parent.finish();
         parent.startActivity(intent);
     }
