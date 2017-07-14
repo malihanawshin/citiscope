@@ -1,6 +1,7 @@
 package com.example.imm.citi.agents;
 
 import android.app.Activity;
+import android.support.v4.util.Pair;
 
 import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.RetrievalData;
@@ -235,5 +236,35 @@ public class FactoryTuition extends FactoryAgent {
     @Override
     protected String getServiceName() {
         return "Tuition";
+    }
+
+    @Override
+    protected Boolean checkUp(Agent temp, ArrayList<Pair<String, String>> chosenOptions) {
+        AgentTuition agTui = (AgentTuition) temp;
+
+        for(Pair pair : chosenOptions)
+        {
+            if(pair.first.equals("District"))
+            {
+                if(agTui.district.equals(pair.second)==false) return false;
+            }
+            else if(pair.first.equals("Area"))
+            {
+                if(agTui.areas.contains(pair.second)==false) return false;
+            }
+            else if(pair.first.equals("Class"))
+            {
+                if(agTui.classes.contains(pair.second)==false) return false;
+            }
+            else if(pair.first.equals("Medium"))
+            {
+                if(agTui.mediums.contains(pair.second)==false) return false;
+            }
+            else if(pair.first.equals("Subject"))
+            {
+                if(agTui.subjects.contains(pair.second)==false) return false;
+            }
+        }
+        return true;
     }
 }

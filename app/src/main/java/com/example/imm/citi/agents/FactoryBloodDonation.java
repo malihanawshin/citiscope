@@ -1,6 +1,7 @@
 package com.example.imm.citi.agents;
 
 import android.app.Activity;
+import android.support.v4.util.Pair;
 
 import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.RetrievalData;
@@ -89,5 +90,23 @@ public class FactoryBloodDonation extends FactoryAgent {
     @Override
     protected String getServiceName() {
         return "Blood Donation";
+    }
+
+    @Override
+    protected Boolean checkUp(Agent temp, ArrayList<Pair<String, String>> chosenOptions) {
+        AgentBloodDonation agBld = (AgentBloodDonation) temp;
+
+        for(Pair pair : chosenOptions)
+        {
+            if(pair.first.equals("District"))
+            {
+                if(agBld.district.equals(pair.second)==false) return false;
+            }
+            else if(pair.first.equals("Blood Group"))
+            {
+                if(agBld.bloodType.equals(pair.second)==false) return false;
+            }
+        }
+        return true;
     }
 }

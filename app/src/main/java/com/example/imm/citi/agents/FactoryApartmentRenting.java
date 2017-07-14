@@ -1,6 +1,7 @@
 package com.example.imm.citi.agents;
 
 import android.app.Activity;
+import android.support.v4.util.Pair;
 
 import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.RetrievalData;
@@ -91,5 +92,45 @@ public class FactoryApartmentRenting extends FactoryAgent {
     @Override
     protected String getServiceName() {
         return "Apartment Renting";
+    }
+
+    @Override
+    protected Boolean checkUp(Agent temp, ArrayList<Pair<String, String>> chosenOptions) {
+        AgentApartmentRenting agApt = (AgentApartmentRenting) temp;
+
+        long min=-1, max=-1;
+        Boolean minH=false,maxH=false;
+
+        for(Pair pair : chosenOptions)
+        {
+            if(pair.first.equals("District"))
+            {
+                if(agApt.district.equals(pair.second)==false) return false;
+            }
+            else if(pair.first.equals("Area"))
+            {
+                if(agApt.area.equals(pair.second)==false) return false;
+            }
+            else if(pair.first.equals("Property Type"))
+            {
+                if(agApt.propertyType.equals(pair.second)==false) return false;
+            }
+            else if(pair.first.equals("Maximum Price"))
+            {
+                max=Long.parseLong((String)pair.second);
+                maxH=true;
+            }
+            else if(pair.first.equals("Minimum Price"))
+            {
+                min=Long.parseLong((String)pair.second);
+                minH=true;
+            }
+            if(minH==true && maxH==true)
+            {
+                if(min >= max) return true;
+                else if(!(min <= agApt.price && max >= agApt.price)) return false;
+            }
+        }
+        return true;
     }
 }

@@ -197,7 +197,7 @@ public class Service {
 
     public void fetchResult(){
         tempAgents = new ArrayList<>();
-        getChosenOptons();
+        getChosenOptions();
 
         new AsyncTask() {
             @Override
@@ -286,11 +286,12 @@ public class Service {
 
 
 
-    private void getChosenOptons() {
+    public ArrayList<Pair<String, String>> getChosenOptions() {
         chosenOptions.clear();
         for(Pair p: spinners){
             Spinner sp = (Spinner) p.second;
             chosenOptions.add(new Pair<String, String>((String)p.first, sp.getSelectedItem().toString()));
         }
+        return chosenOptions;
     }
 }

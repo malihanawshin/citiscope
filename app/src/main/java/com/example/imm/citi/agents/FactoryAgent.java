@@ -2,6 +2,7 @@ package com.example.imm.citi.agents;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.support.v4.util.Pair;
 
 import com.example.imm.citi.activities.AgentProfileActivity;
 import com.example.imm.citi.activities.BookmarkActivity;
@@ -46,11 +47,15 @@ public abstract class FactoryAgent {
             bkParent.showAgents(agents);
         }
         else if(actionType.equals("search")){
-            ArrayList<ArrayList<Agent>> unsortedAgents = new ArrayList<>();
-            unsortedAgents.add(agents);
-            unsortedAgents.add(remoteAgents);
+            ArrayList<Agent> unsortedLocalAgents = search(service.getChosenOptions(), agents);
 
-            agents = service.sortResult(unsortedAgents);
+            //ArrayList<LocalAgent> sortedLocalAgents = factory.sort(unsortedAgents);
+
+            ArrayList<ArrayList<Agent>> unsortedFinalAgents = new ArrayList<>();
+            unsortedFinalAgents.add(unsortedLocalAgents);
+            unsortedFinalAgents.add(remoteAgents);
+
+            agents = service.sortResult(unsortedFinalAgents);
 
             loading.dismiss();
             service.showResult(agents);
@@ -223,12 +228,20 @@ public abstract class FactoryAgent {
     protected abstract String getServiceName();
 
 
-    ArrayList<LocalAgent> search(ArrayList<android.support.v4.util.Pair<String, String>> chosenOptions){
-		
-		return null;
-	}
-	
-	ArrayList<LocalAgent> sort(ArrayList<LocalAgent> unsortedAgents){
+
+    protected ArrayList<Agent> search(ArrayList<Pair<String, String>> chosenOptions, ArrayList<Agent> rawAgents) {
+        ArrayList <Agent> unsorted = new ArrayList<Agent>();
+        for(Agent temp : rawAgents)
+        {
+            Boolean passed = checkUp(temp, chosenOptions);
+            if(passed) unsorted.add(temp);
+        }
+        return unsorted;
+    }
+
+    protected abstract Boolean checkUp(Agent temp, ArrayList<Pair<String, String>> chosenOptions);
+
+    ArrayList<LocalAgent> sort(ArrayList<LocalAgent> unsortedAgents){
 		
 		return null;
 	}

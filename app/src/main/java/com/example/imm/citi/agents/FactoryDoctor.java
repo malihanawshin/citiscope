@@ -1,6 +1,7 @@
 package com.example.imm.citi.agents;
 
 import android.app.Activity;
+import android.support.v4.util.Pair;
 
 import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.RetrievalData;
@@ -169,5 +170,32 @@ public class FactoryDoctor extends FactoryAgent {
     @Override
     protected String getServiceName() {
         return "Doctor";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    protected Boolean checkUp(Agent ag, ArrayList<Pair<String, String>> chosenOptions) {
+        AgentDoctor agDoc = (AgentDoctor) ag;
+        for(Pair pair : chosenOptions)
+        {
+            if(pair.first.equals("District"))
+            {
+                if(agDoc.district.equals(pair.second)==false) return false;
+            }
+            else if(pair.first.equals("Specialization"))
+            {
+                if(agDoc.specialty.equals(pair.second)==false) return false;
+            }
+        }
+        return true;
     }
 }
