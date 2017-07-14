@@ -1,5 +1,6 @@
 package com.example.imm.citi.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -54,6 +55,28 @@ public class NominationDetailsActivity extends AppCompatActivity {
     }
 
 
+    private String getStringFromArray(ArrayList<String> arr) {
+        String str = "";
+
+        for(String s: arr){
+            str += s + "; ";
+        }
+        str = str.substring(0, str.length()-2);
+
+        return str;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) onBackPressed();
@@ -64,17 +87,9 @@ public class NominationDetailsActivity extends AppCompatActivity {
         Intent intent = new Intent(NominationDetailsActivity.this,EditNominationActivity.class);
         intent.putExtra("nomination", nomination);
         startActivity(intent);
-
     }
 
-    private String getStringFromArray(ArrayList<String> arr) {
-        String str = "";
-
-        for(String s: arr){
-            str += s + "; ";
-        }
-        str = str.substring(0, str.length()-2);
-
-        return str;
+    public void removeNom(View view){
+        nomination.removeNom(this);
     }
 }

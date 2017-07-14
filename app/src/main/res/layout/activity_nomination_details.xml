@@ -255,11 +255,11 @@
                 android:id="@+id/btnToRemoveNomination"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
                 android:layout_gravity="bottom"
-                android:textColor="@android:color/white"
+                android:background="@color/colorAccent"
+                android:onClick="removeNom"
                 android:text="Remove"
-                />
+                android:textColor="@android:color/white" />
 
 
         </LinearLayout>

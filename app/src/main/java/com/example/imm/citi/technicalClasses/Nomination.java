@@ -20,7 +20,7 @@ public class Nomination implements Parcelable{
     public ArrayList<String> sources, filters, cities;
     public int voteCount;
     PollActivity pollParent;
-    private final String ADDNOMFILE = "addNomination.php", UPDATENOMFILE = "updateNomination.php";
+    private final String ADDNOMFILE = "addNomination.php", UPDATENOMFILE = "updateNomination.php", REMOVENOMFILE = "removeNom.php";
 
     public Nomination(){
         name = "Default";
@@ -86,6 +86,35 @@ public class Nomination implements Parcelable{
         return name + " " + dateAdded;
     }
 
+
+
+
+
+
+
+
+
+
+
+    public void removeNom(Activity act) {
+        parent = act;
+        ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();
+        keys.add("name");
+        vals.add(name);
+
+        Database db = new Database();
+        db.update(new RetrievalData(keys, vals, REMOVENOMFILE, parent), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String result) {
+                if(result.equals("true")){
+                    goToPoll();
+                }
+                else{
+                    Toast.makeText(parent, "Sorry, something went wrong", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
 
 
     public void addNomination(){
