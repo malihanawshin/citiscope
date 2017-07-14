@@ -62,6 +62,7 @@ public class NominationDetailsActivity extends AppCompatActivity {
 
     public void showEdit(View view){
         Intent intent = new Intent(NominationDetailsActivity.this,EditNominationActivity.class);
+        intent.putExtra("nomination", nomination);
         startActivity(intent);
 
     }

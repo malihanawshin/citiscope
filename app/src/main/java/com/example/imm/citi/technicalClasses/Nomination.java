@@ -1,5 +1,7 @@
 package com.example.imm.citi.technicalClasses;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.Toast;
@@ -13,13 +15,19 @@ import java.util.ArrayList;
  */
 
 public class Nomination implements Parcelable{
+    private Activity parent;
     public String name, description, nominator, dateAdded;
     public ArrayList<String> sources, filters, cities;
     public int voteCount;
-    PollActivity parent;
+    PollActivity pollParent;
+    private final String ADDNOMFILE = "addNomination.php", UPDATENOMFILE = "updateNomination.php";
 
     public Nomination(){
         name = "Default";
+    }
+
+    public Nomination(Activity act){
+        parent = act;
     }
 
     public void setAttributes(String nm, String desc, ArrayList<String> srcs, String nom, int votes, ArrayList filters1, ArrayList cities1, String date){
@@ -57,17 +65,17 @@ public class Nomination implements Parcelable{
         vals.add(User.Email);
         vals.add(name);
 
-        parent = act;
+        pollParent = act;
 
         Database db = new Database();
-        db.update(new RetrievalData(keys, vals, path, parent), false, new VolleyCallback() {
+        db.update(new RetrievalData(keys, vals, path, pollParent), false, new VolleyCallback() {
             @Override
             public void onSuccessResponse(String result) {
                 if(result.equals("true")){
                     //parent.poll.createPoll();
                 }
                 else{
-                    Toast.makeText(parent, "Sorry, something went wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(pollParent, "Sorry, something went wrong", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -77,6 +85,105 @@ public class Nomination implements Parcelable{
     public String toString() {
         return name + " " + dateAdded;
     }
+
+
+
+    public void addNomination(){
+        ArrayList<String> keys = getKeys(), vals = getVals();
+
+        Database db = new Database();
+        db.update(new RetrievalData(keys, vals, ADDNOMFILE, parent), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String result) {
+                if(result.equals("true")){
+                    goToPoll();
+                }
+                else{
+                    Toast.makeText(parent, "Sorry, something went wrong", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+
+    public void updateNomination(String oldName) {
+        ArrayList<String> keys = getKeys(), vals = getVals();
+        keys.add("oldName");
+        vals.add(oldName);
+
+        Database db = new Database();
+        db.update(new RetrievalData(keys, vals, UPDATENOMFILE, parent), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String result) {
+                if(result.equals("true")){
+                    goToPoll();
+                }
+                else{
+                    Toast.makeText(parent, "Sorry, something went wrong", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    private void goToPoll() {
+        Intent intent = new Intent(parent, PollActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        parent.startActivity(intent);
+        parent.finish();
+    }
+
+    private ArrayList<String> getVals() {
+        ArrayList<String> vals = new ArrayList<>();
+
+        vals.add(name);
+        vals.add(description);
+        vals.add(nominator);
+        vals.add(dateAdded);
+
+        vals.add(sources.size()+"");
+        vals.addAll(sources);
+        vals.add(filters.size()+"");
+        vals.addAll(filters);
+        vals.add(cities.size()+"");
+        vals.addAll(cities);
+
+        return vals;
+    }
+
+    private ArrayList<String> getKeys() {
+        ArrayList<String> keys = new ArrayList<>();
+
+        keys.add("name");
+        keys.add("desc");
+        keys.add("email");
+        keys.add("date");
+
+        keys.add("sourceNo");
+        keys.addAll(getKeyForArray("source", sources.size()));
+        keys.add("filterNo");
+        keys.addAll(getKeyForArray("filter", filters.size()));
+        keys.add("cityNo");
+        keys.addAll(getKeyForArray("city", cities.size()));
+
+        return keys;
+    }
+
+
+    private ArrayList<String> getKeyForArray(String key, int length){
+        ArrayList<String> arrKeys = new ArrayList<>();
+
+        for(int i=1; i<=length; i++){
+            arrKeys.add(key+i);
+        }
+
+        return arrKeys;
+    }
+
+
+
+
+
+
 
     protected Nomination(Parcel in) {
         name = in.readString();
