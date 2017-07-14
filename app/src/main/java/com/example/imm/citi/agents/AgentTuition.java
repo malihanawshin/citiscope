@@ -58,6 +58,17 @@ public class AgentTuition extends LocalAgent {
 
 
 
+
+
+    public int compare(AgentTuition a, AgentTuition b) {
+        // TODO Auto-generated method stub
+        return (b.tuitionsDone-a.tuitionsDone);
+    }
+
+
+
+
+
     public AgentTuition(Parcel in) {
         super(in);
         district = in.readString();

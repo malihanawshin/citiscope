@@ -16,7 +16,7 @@ import java.util.Arrays;
  * Created by Sujoy on 4/10/2017.
  */
 
-public class Agent implements Parcelable{
+public class Agent implements Parcelable, Comparable<Agent>{
     public String name;
     public String phone;
     public String address;
@@ -242,5 +242,58 @@ public class Agent implements Parcelable{
         parcel.writeString(phone);
         parcel.writeString(address);
         parcel.writeString(email);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public int testInstanceTuition(Agent a, Agent b)
+    {
+        if(a instanceof AgentTuition) return ((AgentTuition) a).compare((AgentTuition)a, (AgentTuition)b);
+        return testInstanceDoctor(a, b);
+    }
+
+    public int testInstanceDoctor(Agent a, Agent b)
+    {
+        if(a instanceof AgentDoctor) return ((AgentDoctor) a).compare((AgentDoctor)a, (AgentDoctor)b);
+        return testInstanceBlood(a, b);
+    }
+
+    public int testInstanceBlood(Agent a, Agent b)
+    {
+        if(a instanceof AgentBloodDonation) return ((AgentBloodDonation) a).compare((AgentBloodDonation)a, (AgentBloodDonation)b);
+        return testInstanceApartment(a, b);
+    }
+
+    public int testInstanceApartment(Agent a, Agent b)
+    {
+        if(a instanceof AgentApartmentRenting)return ((AgentApartmentRenting) a).compare((AgentApartmentRenting)a, (AgentApartmentRenting)b);
+        return extendible(a, b);
+    }
+    public int extendible(Agent a, Agent b)
+    {
+        return 0;
+        //Do nothing
+    }
+    @Override
+    public int compareTo(Agent o) {
+        return testInstanceTuition(this, o);
     }
 }

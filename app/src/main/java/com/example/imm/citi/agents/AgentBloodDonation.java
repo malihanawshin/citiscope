@@ -30,6 +30,20 @@ public class AgentBloodDonation extends LocalAgent {
 
 
 
+
+
+
+    public int compare(AgentBloodDonation a, AgentBloodDonation b) {
+        // TODO Auto-generated method stub
+        return b.donationsDone-a.donationsDone;
+    }
+
+
+
+
+
+
+
     public AgentBloodDonation(Parcel in) {
         super(in);
         district = in.readString();

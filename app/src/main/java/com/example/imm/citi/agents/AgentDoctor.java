@@ -42,6 +42,12 @@ public class AgentDoctor extends LocalAgent {
 
 
 
+    public int compare(AgentDoctor a, AgentDoctor b) {
+        // TODO Auto-generated method stub
+        return (b.yearsInPractice-a.yearsInPractice);
+    }
+
+
 
 
 

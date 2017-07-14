@@ -33,6 +33,22 @@ public class AgentApartmentRenting extends LocalAgent {
 
 
 
+
+
+
+
+    public int compare(AgentApartmentRenting a, AgentApartmentRenting b) {
+        // TODO Auto-generated method stub
+        return Long.compare(a.price, b.price);
+    }
+
+
+
+
+
+
+
+
     public AgentApartmentRenting(Parcel in) {
         super(in);
         district = in.readString();

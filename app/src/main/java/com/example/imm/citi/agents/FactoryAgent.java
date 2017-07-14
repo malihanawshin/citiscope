@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public abstract class FactoryAgent {
 	Service service;
@@ -49,10 +50,10 @@ public abstract class FactoryAgent {
         else if(actionType.equals("search")){
             ArrayList<Agent> unsortedLocalAgents = search(service.getChosenOptions(), agents);
 
-            //ArrayList<LocalAgent> sortedLocalAgents = factory.sort(unsortedAgents);
+            ArrayList<Agent> sortedLocalAgents = sort(unsortedLocalAgents);
 
             ArrayList<ArrayList<Agent>> unsortedFinalAgents = new ArrayList<>();
-            unsortedFinalAgents.add(unsortedLocalAgents);
+            unsortedFinalAgents.add(sortedLocalAgents);
             unsortedFinalAgents.add(remoteAgents);
 
             agents = service.sortResult(unsortedFinalAgents);
@@ -66,6 +67,19 @@ public abstract class FactoryAgent {
             agProf.showAgents(agents);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected void checkBookmarks(ArrayList<Agent> agents) {
         bookmarkedIDs = new ArrayList<>();
@@ -241,9 +255,9 @@ public abstract class FactoryAgent {
 
     protected abstract Boolean checkUp(Agent temp, ArrayList<Pair<String, String>> chosenOptions);
 
-    ArrayList<LocalAgent> sort(ArrayList<LocalAgent> unsortedAgents){
-		
-		return null;
+    ArrayList<Agent> sort(ArrayList<Agent> unsortedAgents){
+        Collections.sort(unsortedAgents);
+        return unsortedAgents;
 	}
 
 
