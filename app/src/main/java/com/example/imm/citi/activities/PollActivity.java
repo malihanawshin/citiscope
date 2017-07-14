@@ -25,9 +25,12 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
 
     private RecyclerView nominationCardView;
     ArrayList<Nomination> nominations;
-    NominationListAdapter adapter;
+    public NominationListAdapter adapter;
     Button toVote;
-    private Poll poll;
+    public Poll poll;
+
+    private int tempVote;
+    private int tempPos;
 
 
     @Override
@@ -106,15 +109,40 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
 
     }
 
-    @Override
-    public void onVoteClick(Nomination nomination) {
-        //Todo vote count
-
+    public void showData(ArrayList<Nomination> noms) {
+        System.out.println("old " + nominations);
+        System.out.println("new " + noms);
+        if(noms!=nominations){
+            nominations.clear();
+            nominations.addAll(noms);
+        }
+        System.out.println("newest " + nominations);
+        adapter.notifyDataSetChanged();
     }
 
-    public void showData(ArrayList<Nomination> noms) {
-        nominations.clear();
-        nominations.addAll(noms);
+    @Override
+    public void onVoteClick(Nomination nomination, String action, int position) {
+        tempPos = position;
+        if(action.equals("Vote")){
+            nomination.updateVote("vote.php",this);
+            tempVote = 1;
+        }
+        else{
+            nomination.updateVote("unvote.php",this);
+            tempVote = -1;
+        }
+    }
+
+    public void afterVoteUpdated(Nomination nomination) {
+
+        for(Nomination nom: nominations){
+            if(nom.name.equals(nomination.name)){
+                nom.canVote = !nom.canVote;
+                nom.voteCount += tempVote;
+            }
+        }
+
+        nominations = poll.sortByVotes(nominations);
         adapter.notifyDataSetChanged();
     }
 }

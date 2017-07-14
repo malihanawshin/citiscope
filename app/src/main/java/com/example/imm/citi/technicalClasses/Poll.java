@@ -185,7 +185,8 @@ public class Poll {
                     }
 
                     loading.dismiss();
-                    sortByVotes(noms);
+                    noms = sortByVotes(noms);
+                    parent.showData(noms);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -215,15 +216,20 @@ public class Poll {
 
 
 
-    public void sortByVotes(ArrayList<Nomination> noms){
+    public ArrayList<Nomination> sortByVotes(ArrayList<Nomination> noms){
+        System.out.println("unsorted " + noms);
         Collections.sort(noms, new Comparator<Nomination>() {
             @Override
             public int compare(Nomination nom1, Nomination nom2) {
+                if(nom2.voteCount==nom1.voteCount){
+                    return nom1.name.compareTo(nom2.name);
+                }
                 return nom2.voteCount-nom1.voteCount;
             }
         });
 
-        parent.showData(noms);
+        System.out.println("sorted " + noms);
+        return noms;
     }
 
 

@@ -70,12 +70,14 @@ public class Nomination implements Parcelable{
 
         pollParent = act;
 
+        final Nomination tempNom = this;
+
         Database db = new Database();
         db.update(new RetrievalData(keys, vals, path, pollParent), false, new VolleyCallback() {
             @Override
             public void onSuccessResponse(String result) {
                 if(result.equals("true")){
-                    //parent.poll.createPoll();
+                    pollParent.afterVoteUpdated(tempNom);
                 }
                 else{
                     Toast.makeText(pollParent, "Sorry, something went wrong", Toast.LENGTH_LONG).show();
@@ -86,7 +88,7 @@ public class Nomination implements Parcelable{
 
     @Override
     public String toString() {
-        return name + " " + dateAdded;
+        return name + " " + voteCount;
     }
 
 
