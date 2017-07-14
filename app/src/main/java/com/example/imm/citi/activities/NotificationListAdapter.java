@@ -6,12 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Notification;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,6 +35,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter{
     public NotificationListAdapter(Context nContext,List<Notification> notifications,NotificationClickCallback nCallback){
 
         this.nContext = nContext;
+        parent = (Activity)nContext;
         this.notifications = notifications;
         this.nCallback = nCallback;
     }
@@ -68,7 +71,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter{
         }
 
         void bind(Notification notification){
-            notificationText.setText(notification.notificationItem);
+            notificationText.setText(notification.text);
             cancel.setOnClickListener(this);
         }
 

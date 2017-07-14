@@ -23,7 +23,8 @@ public class Nomination implements Parcelable{
     private Activity parent;
     PollActivity pollParent;
 
-    private final String ADDNOMFILE = "addNomination.php", UPDATENOMFILE = "updateNomination.php", REMOVENOMFILE = "removeNom.php";
+    private final String ADDNOMFILE = "addNomination.php", UPDATENOMFILE = "updateNomination.php",
+            REMOVENOMFILE = "removeNom.php", ADDNOTIFFILE = "addNotification.php";;
 
     public Nomination(){
         name = "Default";
@@ -77,7 +78,7 @@ public class Nomination implements Parcelable{
             @Override
             public void onSuccessResponse(String result) {
                 if(result.equals("true")){
-                 //   pollParent.afterVoteUpdated(tempNom);
+                    pollParent.afterVoteUpdated(tempNom);
                 }
                 else{
                     Toast.makeText(pollParent, "Sorry, something went wrong", Toast.LENGTH_LONG).show();
@@ -112,6 +113,9 @@ public class Nomination implements Parcelable{
             @Override
             public void onSuccessResponse(String result) {
                 if(result.equals("true")){
+                    if(User.admin){
+                        generateNotification();
+                    }
                     goToPoll();
                 }
                 else{
@@ -120,6 +124,40 @@ public class Nomination implements Parcelable{
             }
         });
     }
+
+    private void generateNotification() {
+        ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();
+
+        keys.add("name");
+        keys.add("type");
+        keys.add("email");
+
+        vals.add(name);
+        vals.add("Removal");
+        vals.add(nominator);
+
+        Database db = new Database();
+        db.update(new RetrievalData(keys, vals, ADDNOTIFFILE, parent), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String result) {
+                if(result.equals("true")){
+                }
+                else{
+                    Toast.makeText(parent, "Sorry, something went wrong", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     public void addNomination(){

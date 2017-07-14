@@ -8,42 +8,30 @@
     android:layout_height="match_parent"
     tools:context="com.example.imm.citi.activities.NotificationActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:textColor="@color/colorAccent"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:text="Recent Notifications"
-        />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="5dp"
-        >
-
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/notification_recycler"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scrollbars="vertical"
-            />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
 
-    </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/notification_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
 
     </ScrollView>
 

@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Nomination;
+import com.example.imm.citi.technicalClasses.User;
 
 import java.util.List;
 
@@ -98,7 +100,10 @@ public class NominationListAdapter extends RecyclerView.Adapter{
 
             switch(v.getId()){
                 case R.id.btnToVote:
-                    updateVote();
+                    if(User.loggedIn)
+                        updateVote();
+                    else
+                        Toast.makeText(parent, "Log in first", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.btnToSeeDetails:
                     showDetailsPage();

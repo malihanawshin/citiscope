@@ -100,8 +100,13 @@ public class BottomBarActivity extends AppCompatActivity {
     @OnClick(R.id.img_notification)
     public void showNotification() {
         if(!(this instanceof NotificationActivity)) {
-            startActivity(new Intent(this,NotificationActivity.class));
-            finish();
+            if(User.loggedIn) {
+                startActivity(new Intent(this, NotificationActivity.class));
+                finish();
+            }
+            else{
+                Toast.makeText(parent, "Log in first", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
