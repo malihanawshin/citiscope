@@ -75,7 +75,7 @@ public class Nomination implements Parcelable{
 
     @Override
     public String toString() {
-        return name;
+        return name + " " + dateAdded;
     }
 
     protected Nomination(Parcel in) {

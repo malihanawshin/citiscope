@@ -44,18 +44,33 @@
                     android:layout_width="90dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
+                    android:paddingRight="5dp"
                     android:text="Nominated By"
                     android:textColor="@color/colorAccent"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/set_nominator_name"
-                    android:layout_width="220dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorAccent"
-                    android:inputType="text"
-                    android:layout_toRightOf="@id/text_nominator_name" />
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/text_nominator_name">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/set_nominator_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:gravity="center_vertical"
+                            android:inputType="text"
+                            android:scrollHorizontally="false"
+                            android:singleLine="true"
+                            android:textColor="@color/colorAccent" />
+                    </LinearLayout>
+                </HorizontalScrollView>
 
             </RelativeLayout>
 
@@ -75,41 +90,70 @@
                     android:textStyle="bold"
                     />
 
-                <TextView
-                    android:id="@+id/set_nomination_details"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:maxLines="5"
-                    android:textColor="@color/colorAccent"
-                    android:layout_toRightOf="@id/text_nominations_details" />
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/text_nominations_details">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/set_nomination_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:inputType="textMultiLine"
+                            android:maxLines="5"
+                            android:textColor="@color/colorAccent" />
+                    </LinearLayout>
+                </ScrollView>
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginBottom="10dp"
-                >
+                android:layout_marginBottom="10dp">
 
                 <TextView
                     android:id="@+id/text_source_list"
                     android:layout_width="90dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="Source"
+                    android:text="Source List"
                     android:textColor="@color/colorAccent"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/set_source_list"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:maxLines="5"
-                    android:textColor="@color/colorAccent"
-                    android:layout_toRightOf="@id/text_source_list" />
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@+id/text_source_list"
+                    android:layout_toRightOf="@+id/text_source_list">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/set_source_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:gravity="center_vertical"
+                            android:inputType="textMultiLine"
+                            android:maxLines="5"
+                            android:textColor="@color/colorAccent" />
+                    </LinearLayout>
+                </ScrollView>
 
             </RelativeLayout>
 
@@ -130,17 +174,69 @@
                     android:textStyle="bold"
                     />
 
-                <TextView
-                    android:id="@+id/set_filter_list"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:maxLines="5"
-                    android:textColor="@color/colorAccent"
-                    android:layout_toRightOf="@id/text_filter_list" />
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/text_filter_list">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/set_filter_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:inputType="textMultiLine"
+                            android:maxLines="5"
+                            android:textColor="@color/colorAccent" />
+                    </LinearLayout>
+                </ScrollView>
 
             </RelativeLayout>
 
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/text_city_list"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Potential Filter List"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/text_city_list">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/set_city_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:inputType="textMultiLine"
+                            android:maxLines="5"
+                            android:textColor="@color/colorAccent" />
+                    </LinearLayout>
+                </ScrollView>
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/btnToEditNomination"

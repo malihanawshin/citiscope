@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Nomination;
@@ -96,9 +95,7 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
     @Override
     public void onSeeDetailsClick(Nomination nomination) {
         Intent intent = new Intent(this,NominationDetailsActivity.class);
-        Bundle b = new Bundle();
-        b.putParcelable("nomination", nomination);
-        intent.putExtra("nom", b);
+        intent.putExtra("nomination", nomination);
         parent.startActivity(intent);
 
     }
