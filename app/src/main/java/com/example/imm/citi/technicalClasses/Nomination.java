@@ -15,11 +15,14 @@ import java.util.ArrayList;
  */
 
 public class Nomination implements Parcelable{
-    private Activity parent;
     public String name, description, nominator, dateAdded;
     public ArrayList<String> sources, filters, cities;
     public int voteCount;
+    public Boolean canVote;
+
+    private Activity parent;
     PollActivity pollParent;
+
     private final String ADDNOMFILE = "addNomination.php", UPDATENOMFILE = "updateNomination.php", REMOVENOMFILE = "removeNom.php";
 
     public Nomination(){

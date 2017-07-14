@@ -80,6 +80,12 @@ public class NominationListAdapter extends RecyclerView.Adapter{
                 nominationDetails.setText(nomination.description);
                 voteCount.setText(""+nomination.voteCount);
 
+                if(nomination.canVote == true)
+                    toVote.setText("Vote");
+                else
+                    toVote.setText("Unvote");
+
+
                 toVote.setOnClickListener(this);
                 toViewDetails.setOnClickListener(this);
 
@@ -90,7 +96,7 @@ public class NominationListAdapter extends RecyclerView.Adapter{
 
             switch(v.getId()){
                 case R.id.btnToVote:
-                    countVote();
+                    //countVote();
                     break;
                 case R.id.btnToSeeDetails:
                     showDetailsPage();
