@@ -30,22 +30,22 @@
             android:orientation="horizontal"
             android:layout_gravity="right"
             android:background="@color/colorPrimary"
-            android:layout_margin="5dp"
+            android:layout_margin="1dp"
             android:gravity="center"
             >
 
         <TextView
             android:id="@+id/text_vote_count"
-            android:layout_width="60dp"
+            android:layout_width="45dp"
             android:layout_height="40dp"
             android:text="Votes"
             android:gravity="center"
             android:textColor="@color/colorAccent"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="18dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_upward_black_24dp"
             android:tint="@color/colorAccent"
@@ -82,7 +82,7 @@
                     android:gravity="center"
                     android:text="Nomination Details"
                     android:textColor="@android:color/white"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                      />
             </LinearLayout>
         </ScrollView>
