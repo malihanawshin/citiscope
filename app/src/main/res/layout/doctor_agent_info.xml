@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:maxLines="4"
+            android:hint="*"
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_degrees" />
 
@@ -82,6 +83,7 @@
             android:layout_toRightOf="@id/text_addresses"
             android:inputType="textMultiLine"
             android:maxLines="4"
+            android:hint="*"
             android:textColor="@color/colorAccent" />
 
     </RelativeLayout>

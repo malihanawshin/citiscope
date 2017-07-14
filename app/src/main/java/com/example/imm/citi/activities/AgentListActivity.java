@@ -54,9 +54,6 @@ public class AgentListActivity extends AppCompatActivity implements AgentListAda
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         agentlistview.setLayoutManager(manager);
 
-        //ScrollView scroll = (ScrollView) findViewById(R.id.scroll_view);
-        //scroll.getLayoutParams().height = MATCH_PARENT;
-
         setRecycler();
     }
 

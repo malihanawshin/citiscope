@@ -6,10 +6,14 @@ package com.example.imm.citi.technicalClasses;
 
 public class Notification {
 
-    String name;
+    public String notificationItem;
+
+    public Notification(){
+
+    }
 
     public Notification(String name){
-        this.name = name;
+        this.notificationItem = name;
     }
 
 }

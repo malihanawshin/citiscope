@@ -6,27 +6,39 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewConfiguration;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Authentication;
+import com.example.imm.citi.technicalClasses.Notification;
 import com.example.imm.citi.technicalClasses.User;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 import butterknife.OnClick;
 import butterknife.Optional;
 
 public class BottomBarActivity extends AppCompatActivity {
     Activity parent = this;
+    ArrayList<Notification> notifications;
+    TextView notificationIcon;
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+       // updateNotificationIcon(); TODO call this method to update the icon
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-
-
+        notificationIcon = (TextView) findViewById(R.id.txt_notification_count);
     }
 
     @Override
@@ -140,4 +152,16 @@ public class BottomBarActivity extends AppCompatActivity {
         }
     }
 
+    protected void updateNotificationIcon(){
+
+        //notifications = getNotified(); TODO to count notifications
+        int totalCount = notifications.size();
+
+        if(totalCount>0) {
+            notificationIcon.setVisibility(View.VISIBLE);
+            notificationIcon.setText( "" + totalCount);
+        }
+        else notificationIcon.setVisibility(View.GONE);
+
+    }
 }

@@ -23,11 +23,7 @@
         <activity
             android:name=".activities.HomeActivity"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activities.LoginActivity"
@@ -59,7 +55,18 @@
             android:name=".activities.AgMapActivity"
             android:label="@string/title_activity_nom_map" />
         <activity android:name=".activities.EditNominationActivity" />
-        <activity android:name=".activities.NominationDetailsActivity"></activity>
+        <activity android:name=".activities.NominationDetailsActivity" />
+
+        <activity android:name=".activities.SplashActivity"
+                  android:theme="@style/newTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

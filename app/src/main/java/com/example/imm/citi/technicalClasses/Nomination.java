@@ -77,7 +77,7 @@ public class Nomination implements Parcelable{
             @Override
             public void onSuccessResponse(String result) {
                 if(result.equals("true")){
-                    pollParent.afterVoteUpdated(tempNom);
+                 //   pollParent.afterVoteUpdated(tempNom);
                 }
                 else{
                     Toast.makeText(pollParent, "Sorry, something went wrong", Toast.LENGTH_LONG).show();

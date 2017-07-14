@@ -30,7 +30,7 @@ public class NominationListAdapter extends RecyclerView.Adapter{
 
     public interface NominationClickCallback{
         public void onSeeDetailsClick(Nomination nomination);
-        public void onVoteClick(Nomination nomination, String action, int position);
+        public void onVoteClick(Nomination nomination);
     }
 
     public NominationListAdapter(Context nContext,List <Nomination> items1, NominationClickCallback clickCallback){
@@ -80,14 +80,6 @@ public class NominationListAdapter extends RecyclerView.Adapter{
                 nominationDetails.setText(nomination.description);
                 voteCount.setText(""+nomination.voteCount);
 
-                System.out.println("dhet " + nomination.canVote + " " + nomination.name);
-
-                if(nomination.canVote == true)
-                    toVote.setText("Vote");
-                else
-                    toVote.setText("Unvote");
-
-
                 toVote.setOnClickListener(this);
                 toViewDetails.setOnClickListener(this);
 
@@ -98,7 +90,7 @@ public class NominationListAdapter extends RecyclerView.Adapter{
 
             switch(v.getId()){
                 case R.id.btnToVote:
-                    updateVote();
+                    countVote();
                     break;
                 case R.id.btnToSeeDetails:
                     showDetailsPage();
@@ -114,12 +106,17 @@ public class NominationListAdapter extends RecyclerView.Adapter{
             }
         }
 
-        public void updateVote(){
-            if ( nCallback!= null) {
+        public void countVote(){
+            if(toVote.getText().equals("Vote")) {
+                toVote.setText("Unvote");
+            }
+            else toVote.setText("Vote");
+
+            /*if ( nCallback!= null) {
                 int position = getAdapterPosition();
                 Nomination n = (Nomination) items.get(position);
-                nCallback.onVoteClick(n, toVote.getText().toString(), position);
-            }
+                nCallback.onVoteClick(n);
+            }*/
         }
     }
 }

@@ -61,7 +61,7 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         View root = findViewById(R.id.layout_add_agent);
-        Snackbar snackbar = Snackbar.make(root,"Please Use ; For Multiple Answers",Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(root,"* Use ; For Multiple Answers",Snackbar.LENGTH_LONG);
         snackbar.show();
 
 
