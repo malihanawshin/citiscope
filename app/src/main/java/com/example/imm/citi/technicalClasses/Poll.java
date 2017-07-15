@@ -239,7 +239,7 @@ public class Poll {
             @Override
             public void run() {
                 String agentType="Local";
-                loading = ProgressDialog.show(parent,"Please wait...","Fetching Nominations",false,false);
+                loading = ProgressDialog.show(parent,"Please wait...","Fetching Nominations",false,true);
             }
         });
     }

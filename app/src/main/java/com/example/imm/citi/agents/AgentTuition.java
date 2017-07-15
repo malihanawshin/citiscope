@@ -34,8 +34,15 @@ public class AgentTuition extends LocalAgent {
         college = college1;
         university = university1;
         occupation = occupation1;
-        profileLink = url1;
+        profileLink = httpify(url1);
         tuitionsDone = i;
+    }
+
+    private String httpify(String url1) {
+        if(url1.startsWith("https://") || url1.startsWith("http://")){
+            return url1;
+        }
+        else return "https://" + url1;
     }
 
     public void addArea(String area) {

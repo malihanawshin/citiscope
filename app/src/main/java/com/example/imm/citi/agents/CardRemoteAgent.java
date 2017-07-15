@@ -1,5 +1,9 @@
 package com.example.imm.citi.agents;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.imm.citi.activities.AgentListAdapter;
@@ -11,6 +15,10 @@ import java.util.ArrayList;
  */
 
 public class CardRemoteAgent extends CardAgent {
+    public CardRemoteAgent(Activity act) {
+        super(act);
+    }
+
     @Override
     public void setAttributes(AgentListAdapter.AgentViewHolder holder, Agent agent) {
         ArrayList<TextView> attInfos = holder.attributeInfos, attTexts = holder.attributeTexts;
@@ -18,8 +26,14 @@ public class CardRemoteAgent extends CardAgent {
 
         attTexts.get(0).setText("Visit");
         attInfos.get(0).setText(agRem.url);
-        attInfos.get(0).setClickable(true);
-        //Linkify.addLinks(attInfos.get(0), Linkify.WEB_URLS);
+        attInfos.get(0).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(agRem.url));
+            parent.startActivity(intent);
+            }
+
+        });
 
         attTexts.get(1).setText("");
         attInfos.get(1).setText("");

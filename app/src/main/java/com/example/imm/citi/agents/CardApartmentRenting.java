@@ -1,5 +1,6 @@
 package com.example.imm.citi.agents;
 
+import android.app.Activity;
 import android.widget.TextView;
 
 import com.example.imm.citi.activities.AgentListAdapter;
@@ -11,6 +12,10 @@ import java.util.ArrayList;
  */
 
 public class CardApartmentRenting extends CardAgent {
+    public CardApartmentRenting(Activity act) {
+        super(act);
+    }
+
     @Override
     public void setAttributes(AgentListAdapter.AgentViewHolder holder, Agent agent) {
         ArrayList<TextView> attInfos = holder.attributeInfos, attTexts = holder.attributeTexts;

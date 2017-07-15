@@ -161,7 +161,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
             attributeTexts.add(attText);
 
             attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_9);
-            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_4);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_9);
             attributeInfos.add(attInfo);
             attributeTexts.add(attText);
 
@@ -340,27 +340,27 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         CardAgent card = null;
 
         if(agent instanceof AgentTuition){
-            card = new CardTuition();
+            card = new CardTuition(parent);
 //            AgentTuition agTui = (AgentTuition) agent;
 //            System.out.println("TUITION AGENT " + agTui.name + " " + agTui.occupation);
         }
         else if(agent instanceof AgentApartmentRenting){
-            card = new CardApartmentRenting();
+            card = new CardApartmentRenting(parent);
 //            AgentApartmentRenting agApt = (AgentApartmentRenting) agent;
 //            System.out.println("TUITION AGENT " + agApt.price + " " + agApt.size);
         }
         else if(agent instanceof AgentBloodDonation){
-            card = new CardBloodDonation();
+            card = new CardBloodDonation(parent);
 //            AgentApartmentRenting agApt = (AgentApartmentRenting) agent;
 //            System.out.println("TUITION AGENT " + agApt.price + " " + agApt.size);
         }
         else if(agent instanceof AgentDoctor){
-            card = new CardDoctor();
+            card = new CardDoctor(parent);
 //            AgentApartmentRenting agApt = (AgentApartmentRenting) agent;
 //            System.out.println("TUITION AGENT " + agApt.price + " " + agApt.size);
         }
         else if(agent instanceof RemoteAgent){
-            card = new CardRemoteAgent();
+            card = new CardRemoteAgent(parent);
         }
         return card;
     }

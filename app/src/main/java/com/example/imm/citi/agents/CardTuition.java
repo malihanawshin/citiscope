@@ -1,7 +1,12 @@
 package com.example.imm.citi.agents;
 
-import android.text.util.Linkify;
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.imm.citi.activities.AgentListAdapter;
 
@@ -12,10 +17,14 @@ import java.util.ArrayList;
  */
 
 public class CardTuition extends CardAgent {
+    public CardTuition(Activity act) {
+        super(act);
+    }
+
     @Override
     public void setAttributes(AgentListAdapter.AgentViewHolder holder, Agent agent) {
         ArrayList<TextView> attInfos = holder.attributeInfos, attTexts = holder.attributeTexts;
-        AgentTuition agTui = (AgentTuition) agent;
+        final AgentTuition agTui = (AgentTuition) agent;
 
         attTexts.get(0).setText("City");
         attInfos.get(0).setText(agTui.district);
@@ -45,10 +54,21 @@ public class CardTuition extends CardAgent {
         attInfos.get(8).setText(agTui.occupation);
 
         attTexts.get(9).setText("Tuitions Done");
-        attInfos.get(9).setText(agTui.tuitionsDone);
+        attInfos.get(9).setText(agTui.tuitionsDone + "");
 
         attTexts.get(10).setText("Profile Link");
         attInfos.get(10).setText(agTui.profileLink);
-        Linkify.addLinks(attInfos.get(10), Linkify.WEB_URLS);
+        attInfos.get(10).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(agTui.profileLink));
+                try{
+                    parent.startActivity(intent);
+                }catch (ActivityNotFoundException e){
+                    Toast.makeText(parent, "Invalid Link", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        });
     }
 }

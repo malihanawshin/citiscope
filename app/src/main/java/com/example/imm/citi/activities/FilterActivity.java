@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.agents.Agent;
@@ -46,9 +45,6 @@ public class FilterActivity extends AppCompatActivity {
         district = intent.getStringExtra("chosenService");
 
         ll = (LinearLayout) findViewById(R.id.ll_filters);
-
-
-        Toast.makeText(this, service, Toast.LENGTH_SHORT).show();
 
         setFilters();
         setListeners();

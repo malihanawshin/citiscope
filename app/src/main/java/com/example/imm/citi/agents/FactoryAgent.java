@@ -272,7 +272,7 @@ public abstract class FactoryAgent {
                 if(actionType.equals("bookmark")){
                     agentType="Bookmarked";
                 }
-                loading = ProgressDialog.show(parent,"Please wait...","Fetching " + agentType + " Agents",false,false);
+                loading = ProgressDialog.show(parent,"Please wait...","Fetching " + agentType + " Agents",false,true);
             }
         });
     }

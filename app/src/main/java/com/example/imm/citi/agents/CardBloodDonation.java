@@ -1,5 +1,6 @@
 package com.example.imm.citi.agents;
 
+import android.app.Activity;
 import android.widget.TextView;
 
 import com.example.imm.citi.activities.AgentListAdapter;
@@ -11,6 +12,10 @@ import java.util.ArrayList;
  */
 
 public class CardBloodDonation extends CardAgent {
+    public CardBloodDonation(Activity act) {
+        super(act);
+    }
+
     @Override
     public void setAttributes(AgentListAdapter.AgentViewHolder holder, Agent agent) {
         ArrayList<TextView> attInfos = holder.attributeInfos, attTexts = holder.attributeTexts;
@@ -19,7 +24,7 @@ public class CardBloodDonation extends CardAgent {
         attTexts.get(0).setText("City");
         attInfos.get(0).setText(agBld.district);
 
-        attTexts.get(1).setText("Blood Type");
+        attTexts.get(1).setText("Blood Group");
         attInfos.get(1).setText(agBld.bloodType);
 
         attTexts.get(2).setText("Smoking Habit");
