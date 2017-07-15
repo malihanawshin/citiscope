@@ -51,10 +51,8 @@
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/view_nomination_name"
                         android:inputType="text"
-                        android:hint="*"
                         android:textColor="@color/colorAccent"
-                        android:textSize="15sp"
-                        />
+                        android:textSize="15sp" />
 
                 </RelativeLayout>
 
@@ -79,10 +77,8 @@
                         android:layout_toRightOf="@id/view_nominations_details"
                         android:inputType="textMultiLine"
                         android:maxLines="5"
-                        android:hint="*"
                         android:textColor="@color/colorAccent"
-                        android:textSize="15sp"
-                        />
+                        android:textSize="15sp" />
 
                 </RelativeLayout>
 

@@ -19,7 +19,7 @@ public class NominationDetailsActivity extends AppCompatActivity {
     Nomination nomination;
     Button edit;
 
-    TextView nomName, nominator, nomDesc, nomSources, nomFilters, nomCities;
+    TextView nomName, nominator, nomDate, nomDesc, nomSources, nomFilters, nomCities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class NominationDetailsActivity extends AppCompatActivity {
     private void setTexts() {
         nomName = (TextView) findViewById(R.id.text_nomination_name) ;
         nominator = (TextView) findViewById(R.id.set_nominator_name) ;
+        nomDate = (TextView) findViewById(R.id.set_nominatoion_date) ;
         nomDesc = (TextView) findViewById(R.id.set_nomination_details) ;
         nomSources = (TextView) findViewById(R.id.set_source_list) ;
         nomFilters = (TextView) findViewById(R.id.set_filter_list) ;
@@ -49,6 +50,7 @@ public class NominationDetailsActivity extends AppCompatActivity {
 
         nomName.setText(nomination.name);
         nominator.setText(nomination.nominator);
+        nomDate.setText(nomination.dateAdded);
         nomDesc.setText(nomination.description);
         nomSources.setText(getStringFromArray(nomination.sources));
         nomFilters.setText(getStringFromArray(nomination.filters));
