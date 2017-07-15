@@ -25,17 +25,15 @@ public class NotificationListAdapter extends RecyclerView.Adapter{
 
     private List<Notification> notifications;
     private Context nContext;
-    private Activity parent;
     private NotificationClickCallback nCallback;
 
     public interface NotificationClickCallback{
-        public void onCrossClick(Notification n);
+        public void onCrossClick(int position);
     }
 
     public NotificationListAdapter(Context nContext,List<Notification> notifications,NotificationClickCallback nCallback){
 
         this.nContext = nContext;
-        parent = (Activity)nContext;
         this.notifications = notifications;
         this.nCallback = nCallback;
     }
@@ -87,8 +85,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter{
         private void cancelNotification() {
             if ( nCallback!= null) {
                 int position = getAdapterPosition();
-                Notification n = (Notification) notifications.get(position);
-                nCallback.onCrossClick(n);
+                nCallback.onCrossClick(position);
             }
         }
     }

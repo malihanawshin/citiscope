@@ -128,8 +128,10 @@ public class NotificationActivity extends BottomBarActivity implements Notificat
     }
 
     @Override
-    public void onCrossClick(final Notification notif) {
+    public void onCrossClick(final int position) {
         ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();
+
+        final Notification notif = notifList.get(position);
 
         keys.add("id");
         vals.add(notif.id);
@@ -140,9 +142,9 @@ public class NotificationActivity extends BottomBarActivity implements Notificat
             public void onSuccessResponse(String result) {
                 if(result.equals("true")){
                     Toast.makeText(parent, "Notification has been deleted", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(parent, NotificationActivity.class);
-                    parent.startActivity(intent);
-                    parent.finish();
+                    notifList.remove(position);
+                    adapter.notifyItemRemoved(position);
+                    UpdateNotification(notifList.size());
                 }
                 else{
                     Toast.makeText(parent, "Sorry, something went wrong", Toast.LENGTH_SHORT).show();

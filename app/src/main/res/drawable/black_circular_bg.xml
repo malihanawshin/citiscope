@@ -4,11 +4,11 @@
     android:shape="oval">
 
     <solid
-        android:color="#795548"/>
+        android:color="@color/colorPrimaryDarkForFAB"/>
 
     <stroke
         android:width="2dp"
-        android:color="#ffecb3"/>
+        android:color="@color/colorAccent"/>
 
     <size
         android:width="120dp"

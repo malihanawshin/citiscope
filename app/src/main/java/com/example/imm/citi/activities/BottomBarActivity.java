@@ -3,6 +3,7 @@ package com.example.imm.citi.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,32 +14,45 @@ import android.widget.Toast;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.Authentication;
+import com.example.imm.citi.technicalClasses.Database;
 import com.example.imm.citi.technicalClasses.Notification;
+import com.example.imm.citi.technicalClasses.RetrievalData;
 import com.example.imm.citi.technicalClasses.User;
+import com.example.imm.citi.technicalClasses.VolleyCallback;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Optional;
 
 public class BottomBarActivity extends AppCompatActivity {
     Activity parent = this;
     ArrayList<Notification> notifications;
-    TextView notificationIcon;
+
+    private final String FETCHNOTIFFILE = "getNotifications.php";
+
+    @Nullable
+    @BindView(R.id.txt_notification_count)TextView notificationIcon;
 
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-       // updateNotificationIcon(); TODO call this method to update the icon
+        updateNotificationIcon();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        //notificationIcon = (TextView) bindView(R.id.txt_notification_count);
+      //  ButterKnife.bind(this);
 
-        notificationIcon = (TextView) findViewById(R.id.txt_notification_count);
     }
 
     @Override
@@ -159,12 +173,35 @@ public class BottomBarActivity extends AppCompatActivity {
 
     protected void updateNotificationIcon(){
 
-        //notifications = getNotified(); TODO to count notifications
-        int totalCount = notifications.size();
+        ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();
 
-        if(totalCount>0) {
+        keys.add("email");
+        vals.add(User.Email);
+
+        Database db = new Database();
+        db.retrieve(new RetrievalData(keys, vals, FETCHNOTIFFILE, parent), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    ArrayList<Notification> notifs = new ArrayList<>();
+
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("result");
+
+                    UpdateNotification(result.length());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    protected void UpdateNotification(int count){
+        if (count != 0) {
             notificationIcon.setVisibility(View.VISIBLE);
-            notificationIcon.setText( "" + totalCount);
+            notificationIcon.setText( "" + count);
         }
         else notificationIcon.setVisibility(View.GONE);
 
