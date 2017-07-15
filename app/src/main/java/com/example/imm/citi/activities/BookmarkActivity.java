@@ -53,8 +53,6 @@ public class BookmarkActivity extends AppCompatActivity implements AgentListAdap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agent_list);
 
-        //Intent intent = getIntent();
-        //agents = intent.getBundleExtra("agent").getParcelableArrayList("agents");
         setTitle("Bookmarks");
 
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,9 +74,6 @@ public class BookmarkActivity extends AppCompatActivity implements AgentListAdap
 
     private void setRecycler() {
         agents = new ArrayList<>();
-//        agents.add(new Agent());
-//        agents.add(new Agent());
-//        agents.add(new Agent());
         adapter = new AgentListAdapter(this,agents,this, flag);
         agentlistview.setAdapter(adapter);
     }

@@ -53,5 +53,8 @@ public class CardApartmentRenting extends CardAgent {
 
         attTexts.get(9).setText("");
         attInfos.get(9).setText("");
+
+        attTexts.get(10).setText("");
+        attInfos.get(10).setText("");
     }
 }

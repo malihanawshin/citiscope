@@ -230,7 +230,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
                 RemoteAgent remAg = (RemoteAgent) agent;
 
 //                System.out.println("srvname: " + remAg.serviceName);
-                remAg.removeRemoteBookmark(parent);
+                remAg.removeRemoteBookmark(parent, bookmark);
             }
             else if(agent instanceof LocalAgent){
                 LocalAgent locAg = (LocalAgent) agent;
@@ -325,15 +325,11 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
     }
 
     private void setBookmark(AgentViewHolder holder, Agent agent) {
-        if(agent instanceof LocalAgent){
-            LocalAgent locAg = (LocalAgent) agent;
-
-//            System.out.println(locAg.name + locAg.isBookmarked());
-            if(locAg.isBookmarked()){
-                System.out.println("eta bookmarked " + locAg.name);
-                holder.bookmark.setText("Unbookmark");
-            }
+        if(agent.isBookmarked()){
+            System.out.println("eta bookmarked " + agent.name);
+            holder.bookmark.setText("Unbookmark");
         }
+
     }
 
     private CardAgent getCard(Agent agent) {

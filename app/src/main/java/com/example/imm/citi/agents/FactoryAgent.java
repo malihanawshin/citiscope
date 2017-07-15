@@ -168,6 +168,8 @@ public abstract class FactoryAgent {
                                 if(bookmarkedIDs.contains(id)){
                                     RemoteAgent remAg = new RemoteAgent(getServiceName());
                                     remAg.setAttr(obj.getString("Name"), obj.getString("Phone"), obj.getString("Link"), obj.getString("Location"), obj.getString("Email"));
+                                    remAg.setBookmarked();
+                                    remAg.setID(id);
                                     agents.add(remAg);
                                 }
                             } catch (JSONException e) {

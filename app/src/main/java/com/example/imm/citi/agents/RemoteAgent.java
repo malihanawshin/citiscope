@@ -64,8 +64,9 @@ public class RemoteAgent extends Agent{
 
 
 
-    public void removeRemoteBookmark(Activity act) {
+    public void removeRemoteBookmark(Activity act, Button bookmark) {
         parent = act;
+        bookmarkBtn = bookmark;
 
         ArrayList<String> keys = new ArrayList<>();
         ArrayList<String> vals = new ArrayList<>();
@@ -85,6 +86,7 @@ public class RemoteAgent extends Agent{
                     Toast.makeText(parent,"Bookmark cannot be removed",Toast.LENGTH_LONG).show();
                 else{
                     Toast.makeText(parent,"Bookmark successfully removed",Toast.LENGTH_LONG).show();
+                    bookmarkBtn.setText("Bookmark");
                 }
             }
         });

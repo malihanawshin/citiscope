@@ -17,18 +17,8 @@ import java.util.ArrayList;
  */
 
 public class LocalAgent extends Agent {
-    Boolean bookmarked=false;
     final String BKFILE = "bookmarkLocal.php", UNBKFILE = "unbookmarkLocal.php";
     private Button bookmarkBtn;
-
-    public void setBookmarked(){
-        bookmarked=true;
-        System.out.println("bookmarked " + name);
-    }
-
-    public Boolean isBookmarked(){
-        return bookmarked;
-    }
 
 
 
