@@ -34,22 +34,22 @@
             android:gravity="center"
             >
 
-        <TextView
-            android:id="@+id/text_vote_count"
-            android:layout_width="45dp"
-            android:layout_height="40dp"
-            android:text="Votes"
-            android:gravity="center"
-            android:textColor="@color/colorAccent"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/text_vote_count"
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:text="Votes"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="18dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_upward_black_24dp"
-            android:tint="@color/colorAccent"
-            />
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_upward_black_24dp"
+                android:tint="@color/colorAccent"
+                />
 
         </LinearLayout>
 
@@ -83,7 +83,7 @@
                     android:text="Nomination Details"
                     android:textColor="@android:color/white"
                     android:textSize="15sp"
-                     />
+                    />
             </LinearLayout>
         </ScrollView>
 

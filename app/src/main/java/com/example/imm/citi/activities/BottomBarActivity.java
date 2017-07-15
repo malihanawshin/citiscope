@@ -179,7 +179,7 @@ public class BottomBarActivity extends AppCompatActivity {
         vals.add(User.Email);
 
         Database db = new Database();
-        db.retrieve(new RetrievalData(keys, vals, FETCHNOTIFFILE, parent), true, new VolleyCallback() {
+        db.retrieve(new RetrievalData(keys, vals, FETCHNOTIFFILE, parent), false, new VolleyCallback() {
             @Override
             public void onSuccessResponse(String response) {
                 try {

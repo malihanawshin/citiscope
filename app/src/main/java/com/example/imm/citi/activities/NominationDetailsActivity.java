@@ -88,6 +88,7 @@ public class NominationDetailsActivity extends AppCompatActivity {
         if(User.loggedIn){
             if(User.Email.equals(nomination.nominator)){
                 Intent intent = new Intent(NominationDetailsActivity.this,EditNominationActivity.class);
+                intent.putExtra("title","Edit Nomination");
                 intent.putExtra("nomination", nomination);
                 startActivity(intent);
             }

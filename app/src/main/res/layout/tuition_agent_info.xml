@@ -33,6 +33,7 @@
             android:maxLines="4"
             android:textColor="@color/colorAccent"
             android:hint="*"
+
             />
 
     </RelativeLayout>
@@ -123,6 +124,7 @@
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_subjects"
             android:hint="*"
+            android:textSize="15sp"
             />
 
     </RelativeLayout>
@@ -147,7 +149,9 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_school_name" />
+            android:layout_toRightOf="@id/text_school_name"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -172,7 +176,9 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_college_name" />
+            android:layout_toRightOf="@id/text_college_name"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -196,7 +202,7 @@
             android:id="@+id/edit_university_name"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-
+            android:textSize="15sp"
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_university_name" />
 
@@ -222,7 +228,7 @@
             android:id="@+id/edit_occupation"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-
+            android:textSize="15sp"
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_occupation" />
 
@@ -250,7 +256,9 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_tuitions" />
+            android:layout_toRightOf="@id/text_tuitions"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -276,7 +284,9 @@
             android:layout_height="wrap_content"
             android:inputType="textUri"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_link" />
+            android:layout_toRightOf="@id/text_link"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 

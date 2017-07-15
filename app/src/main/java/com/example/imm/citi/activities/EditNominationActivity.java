@@ -1,6 +1,7 @@
 package com.example.imm.citi.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,7 +36,12 @@ public class EditNominationActivity extends AppCompatActivity{
         setTexts();
         setListener();
 
-        setTitle("Edit Nomination");
+        String title = getIntent().getStringExtra("title");
+        setTitle(title);
+
+        View root = findViewById(R.id.layout_edit_nomination);
+        Snackbar snackbar = Snackbar.make(root,"* Use ; For Multiple Answers",Snackbar.LENGTH_LONG);
+        snackbar.show();
 
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

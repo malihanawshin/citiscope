@@ -29,7 +29,9 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorAccent"
             android:inputType="text"
-            android:layout_toRightOf="@id/text_blood_type" />
+            android:layout_toRightOf="@id/text_blood_type"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -55,7 +57,9 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_smoking" />
+            android:layout_toRightOf="@id/text_smoking"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -81,7 +85,9 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_donations" />
+            android:layout_toRightOf="@id/text_donations"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -107,7 +113,9 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_since_donated" />
+            android:layout_toRightOf="@id/text_since_donated"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 

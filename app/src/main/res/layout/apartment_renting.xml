@@ -28,7 +28,9 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_apartment_area" />
+            android:layout_toRightOf="@id/text_apartment_area"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -53,7 +55,9 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_property_type" />
+            android:layout_toRightOf="@id/text_property_type"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -79,7 +83,9 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_price" />
+            android:layout_toRightOf="@id/text_price"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -105,7 +111,9 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_toRightOf="@id/text_area_m2"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -131,7 +139,9 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_floor" />
+            android:layout_toRightOf="@id/text_floor"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 
@@ -157,7 +167,9 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_room" />
+            android:layout_toRightOf="@id/text_room"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
 

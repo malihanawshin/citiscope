@@ -34,7 +34,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/agent_recycler"
             android:layout_width="match_parent"
-            android:layout_height="420dp"
+            android:layout_height="450dp"
             android:layout_gravity="center_vertical"
             android:scrollbars="horizontal"
             android:layout_below="@+id/spinner_service"
@@ -47,8 +47,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_gravity="bottom|right"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="15dp"
             android:visibility="visible">
 
             <android.support.design.widget.FloatingActionButton

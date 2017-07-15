@@ -69,6 +69,7 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
                 if(User.loggedIn){
                     if(!User.admin){
                         Intent intent = new Intent(PollActivity.this,EditNominationActivity.class);
+                        intent.putExtra("title","Add Nomination");
                         startActivity(intent);
                     }
                     else{

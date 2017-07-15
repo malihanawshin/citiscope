@@ -119,14 +119,14 @@ public class FilterActivity extends AppCompatActivity {
         btnFilterConfirm.setEnabled(true);
     }
 
-    @Override
+    /*@Override
     protected void onRestart() {
         super.onRestart();
         ll.removeAllViews();
         srv = new Service(service, this, district);
         srv.fetchFilters();
     }
-
+*/
 /*    private void setFilters() {
         srv = new Service(service, this, chosenService);
         srv.fetchFilters();
