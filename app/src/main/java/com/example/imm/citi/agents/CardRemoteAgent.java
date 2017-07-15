@@ -19,6 +19,7 @@ public class CardRemoteAgent extends CardAgent {
         attTexts.get(0).setText("Visit");
         attInfos.get(0).setText(agRem.url);
         attInfos.get(0).setClickable(true);
+        //Linkify.addLinks(attInfos.get(0), Linkify.WEB_URLS);
 
         attTexts.get(1).setText("");
         attInfos.get(1).setText("");
@@ -31,5 +32,23 @@ public class CardRemoteAgent extends CardAgent {
 
         attTexts.get(4).setText("");
         attInfos.get(4).setText("");
+
+        attTexts.get(5).setText("");
+        attInfos.get(5).setText("");
+
+        attTexts.get(6).setText("");
+        attInfos.get(6).setText("");
+
+        attTexts.get(7).setText("");
+        attInfos.get(7).setText("");
+
+        attTexts.get(8).setText("");
+        attInfos.get(8).setText("");
+
+        attTexts.get(9).setText("");
+        attInfos.get(9).setText("");
+
+        attTexts.get(10).setText("");
+        attInfos.get(10).setText("");
     }
 }

@@ -116,8 +116,8 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         }
 
         private void identifyAttributes(View itemView) {
-            attributeInfos = new ArrayList<>(5);
-            attributeTexts = new ArrayList<>(5);
+            attributeInfos = new ArrayList<>(11);
+            attributeTexts = new ArrayList<>(11);
 
             TextView attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_1);
             TextView attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_1);
@@ -141,6 +141,37 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
 
             attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_5);
             attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_5);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+
+
+            attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_6);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_6);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+
+            attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_7);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_7);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+
+            attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_8);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_8);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+
+            attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_9);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_4);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+
+            attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_10);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_10);
+            attributeInfos.add(attInfo);
+            attributeTexts.add(attText);
+
+            attInfo = (TextView) itemView.findViewById(R.id.info_agent_attribute_11);
+            attText = (TextView) itemView.findViewById(R.id.text_agent_attribute_11);
             attributeInfos.add(attInfo);
             attributeTexts.add(attText);
         }
@@ -191,7 +222,7 @@ public class AgentListAdapter extends RecyclerView.Adapter<AgentListAdapter.Agen
         private void removeBookmark() {
             System.out.println("here to REMOVE BOOKMARK");
             if(!User.loggedIn){
-                Toast.makeText(parent, "Sign in First", Toast.LENGTH_SHORT).show();
+                Toast.makeText(parent, "Log in First", Toast.LENGTH_SHORT).show();
                 return;
             }
 

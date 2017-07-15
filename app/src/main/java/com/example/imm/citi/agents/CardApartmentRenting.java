@@ -16,19 +16,37 @@ public class CardApartmentRenting extends CardAgent {
         ArrayList<TextView> attInfos = holder.attributeInfos, attTexts = holder.attributeTexts;
         AgentApartmentRenting agApt = (AgentApartmentRenting) agent;
 
-        attTexts.get(0).setText("Price");
-        attInfos.get(0).setText(agApt.price+"");
+        attTexts.get(0).setText("City");
+        attInfos.get(0).setText(agApt.district);
 
-        attTexts.get(1).setText("Size");
-        attInfos.get(1).setText(agApt.size+" sq m");
+        attTexts.get(1).setText("Area");
+        attInfos.get(1).setText(agApt.area);
 
-        attTexts.get(2).setText("Floor");
-        attInfos.get(2).setText(agApt.floor+"");
+        attTexts.get(2).setText("Property Type");
+        attInfos.get(2).setText(agApt.propertyType);
 
-        attTexts.get(3).setText("Room Number");
-        attInfos.get(3).setText(agApt.roomNo+"");
+        attTexts.get(3).setText("Price");
+        attInfos.get(3).setText(agApt.price+"");
 
-        attTexts.get(4).setText("");
-        attInfos.get(4).setText("");
+        attTexts.get(4).setText("Size");
+        attInfos.get(4).setText(agApt.size+" sq m");
+
+        attTexts.get(5).setText("Floor");
+        attInfos.get(5).setText(agApt.floor+"");
+
+        attTexts.get(6).setText("Room Number");
+        attInfos.get(6).setText(agApt.roomNo+"");
+
+        attTexts.get(7).setText("");
+        attInfos.get(7).setText("");
+
+        attTexts.get(8).setText("");
+        attInfos.get(8).setText("");
+
+        attTexts.get(9).setText("");
+        attInfos.get(9).setText("");
+
+        attTexts.get(9).setText("");
+        attInfos.get(9).setText("");
     }
 }
