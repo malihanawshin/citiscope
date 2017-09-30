@@ -16,12 +16,16 @@ import android.widget.TextView;
 
 import com.example.imm.citi.R;
 import com.example.imm.citi.agents.Agent;
+import com.example.imm.citi.technicalClasses.Database;
+import com.example.imm.citi.technicalClasses.RetrievalData;
 import com.example.imm.citi.technicalClasses.Service;
 import com.example.imm.citi.technicalClasses.User;
+import com.example.imm.citi.technicalClasses.VolleyCallback;
 
 import java.util.ArrayList;
 
 public class FilterActivity extends AppCompatActivity {
+    private static final String SERVICEPOPPHP = "updateServicePopularity.php";
     String service;
     Button btnFilterConfirm;
     Service srv;
@@ -93,6 +97,21 @@ public class FilterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 User user = new User();
                 user.search(srv);
+
+                updateRating();
+            }
+        });
+    }
+
+    private void updateRating() {
+        ArrayList<String> keys = new ArrayList<>(), vals = new ArrayList<>();
+        keys.add("service");
+        vals.add(service);
+
+        Database db = new Database();
+        db.retrieve(new RetrievalData(keys, vals, SERVICEPOPPHP, this), false, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String result) {
             }
         });
     }

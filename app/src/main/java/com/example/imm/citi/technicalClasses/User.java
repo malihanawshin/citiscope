@@ -1,10 +1,7 @@
 package com.example.imm.citi.technicalClasses;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
-
-import com.example.imm.citi.activities.FilterActivity;
 
 import java.util.ArrayList;
 
@@ -23,41 +20,13 @@ public class User {
 
 
 
-    public void selectService(String service, String district, Activity activity){
-        Intent intent = new Intent(activity, FilterActivity.class);
-        intent.putExtra("service", service);
-        intent.putExtra("district", district);
-        activity.startActivity(intent);
-    }
-
     public void search(Service srv) {
         srv.fetchResult();
     }
-//
-//    public void bookmark(Agent agent, Activity parent){
-//        agent.addBookmarker(parent);
-//    }
-//
-//    public void unbookmark(Agent agent, Activity parent){
-//        agent.removeBookmarker(parent);
-//    }
-//
-//    public void vote(Nomination nom, String tempPath, PollActivity parent){
-//        nom.updateVote(tempPath, parent);
-//    }
-//
-//    public void addNomination(String name, String desc, Activity parent, ArrayList<String> sources){
-//        Poll poll = new Poll();
-//        poll.addNomination(name, desc, parent, sources);
-//    }
-//
+
     public void editProfile(String name, String phone, String bio, Activity act){
         Profile prof = new Profile();
         prof.updateDatabase(name, phone, bio, act);
-    }
-
-    public void resetPassword(String name, String pwd, Authentication auth){
-        auth.resetPassword(name, pwd);
     }
 
 
