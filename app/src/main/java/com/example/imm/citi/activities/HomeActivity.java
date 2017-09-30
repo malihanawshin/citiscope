@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -39,6 +40,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
 
     private Spinner spnCity;
     private RecyclerView serviceview;
+    private SwipeRefreshLayout homeRefreshLayout;
     int size;
 
     private final String DISTRICTFILE = "districts.php";
@@ -58,6 +60,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
 
         spnCity = (Spinner) findViewById(R.id.spn_city);
         serviceview = (RecyclerView) findViewById(R.id.services);
+        homeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.homeRefreshLayout);
 
         GridLayoutManager manager = new GridLayoutManager(this,2);
         serviceview.setLayoutManager(manager);
@@ -218,6 +221,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
                     adapter.notifyDataSetChanged();
 
                     setRadioGroup();
+                    setRefreshLayout();
 
 
                     //createButtons();
@@ -228,8 +232,27 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         });
     }
 
+    private void setRefreshLayout() {
+        homeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Refresh items
+                refreshItems();
+            }
+        });
 
 
+    }
+
+    void refreshItems() {
+        getServices(district);
+
+        onItemsLoadComplete();
+    }
+
+    void onItemsLoadComplete() {
+        homeRefreshLayout.setRefreshing(false);
+    }
 
 
     private void getSession() {
