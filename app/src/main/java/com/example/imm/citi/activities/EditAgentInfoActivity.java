@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.DigitsKeyListener;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,8 @@ import com.example.imm.citi.technicalClasses.User;
 import com.example.imm.citi.technicalClasses.UserAgentInput;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EditAgentInfoActivity extends AppCompatActivity {
 
@@ -201,6 +204,7 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         edtName = (EditText) findViewById(R.id.edit_agent_name);
         edtEmail = (EditText) findViewById(R.id.edit_agent_email);
         edtPhone = (EditText) findViewById(R.id.edit_agent_phone);
+        edtPhone.setKeyListener(new DigitsKeyListener());
         edtAddress = (EditText) findViewById(R.id.edit_agent_address);
         edtDistrict = (EditText) findViewById(R.id.edit_agent_district);
 
@@ -261,6 +265,10 @@ public class EditAgentInfoActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter a Phone Number", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if(!verifyPhone(edtPhone.getText().toString())){
+            Toast.makeText(this, "Invalid Phone Number", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if(edtAddress.getText().toString().equals("")){
             Toast.makeText(this, "Please enter a Location", Toast.LENGTH_SHORT).show();
             return false;
@@ -291,6 +299,35 @@ public class EditAgentInfoActivity extends AppCompatActivity {
 
         return flag;
     }
+
+
+    private Boolean verifyPhone(String phone1) {
+        System.out.println("AREH PHONE DEKHTESE TO " + phone1);
+
+        if(phone1.equals("")) return true;
+        String prefix="";
+        Pattern pat = Pattern.compile("(.*?)01[56789]{1}[0-9]{8}$");
+        Matcher mat = pat.matcher(phone1);
+        if(mat.find()==true)
+        {
+            System.out.println(phone1);
+            prefix = mat.group(1);
+            if(prefix.equals("") || prefix.equals("+88")) return true;
+        }
+        Toast.makeText(this,"Invalid Phone Number",Toast.LENGTH_LONG).show();
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
     private UserAgentInput getUserInput() {
