@@ -11,6 +11,33 @@
 
     <include layout="@layout/spinners"/>
 
+    <RadioGroup
+        android:id="@+id/rdGrpSorter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view_below"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Sort By Name" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sort By Popularity" />
+    </RadioGroup>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/services"
         android:layout_width="match_parent"

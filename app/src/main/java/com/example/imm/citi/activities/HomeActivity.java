@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import butterknife.ButterKnife;
 
@@ -71,6 +74,25 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
 
         fillSpinner();
         getOverflowMenu();
+    }
+
+    private void setRadioGroup() {
+        RadioGroup sorters = (RadioGroup)findViewById(R.id.rdGrpSorter);
+        sorters.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+                RadioButton checkedRb = (RadioButton)group.findViewById(checkedId);
+                boolean isChecked = checkedRb.isChecked();
+                if (isChecked)
+                {
+                    if(checkedRb.getText().toString().equals("Sort By Name"))
+                        sortServicesByName(items);
+                    else
+                        sortServicesByPopularity(items);
+                }
+            }
+        });
     }
 
     private void setRecycler() {
@@ -186,7 +208,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
                             try {
                                 JSONObject serviceInfo = result.getJSONObject(i);
                                 serv.add(serviceInfo.getString("ServiceName"));
-                                items.add(new ServiceFeature(serviceInfo.getString("ServiceName"), serviceInfo.getString("Logo")));
+                                items.add(new ServiceFeature(serviceInfo.getString("ServiceName"), serviceInfo.getString("Logo"), serviceInfo.getInt("Popularity")));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -194,6 +216,8 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
                     }
                     System.out.println(items);
                     adapter.notifyDataSetChanged();
+
+                    setRadioGroup();
 
 
                     //createButtons();
@@ -224,4 +248,19 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
             User.setAttributes(email, name, phone, bio, this);
         }
     }
+
+
+
+    private void sortServicesByPopularity(ArrayList<ServiceFeature> sfArr){
+        Collections.sort(sfArr, ServiceFeature.servicePopularityComparator);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void sortServicesByName(ArrayList<ServiceFeature> sfArr){
+        Collections.sort(sfArr, ServiceFeature.serviceNameComparator);
+        adapter.notifyDataSetChanged();
+    }
+
+
+
 }
