@@ -103,12 +103,15 @@ public class Profile {
     }
 
     private Boolean verifyPhone(String phone1) {
+        System.out.println("AREH PHONE DEKHTESE TO " + phone1);
+
         if(phone1.equals("")) return true;
         String prefix="";
-        Pattern pat = Pattern.compile("(.*?)01[56789]{1}[0-9]{8}");
+        Pattern pat = Pattern.compile("(.*?)01[56789]{1}[0-9]{8}$");
         Matcher mat = pat.matcher(phone1);
         if(mat.find()==true)
         {
+            System.out.println(phone1);
             prefix = mat.group(1);
             if(prefix.equals("") || prefix.equals("+88")) return true;
         }

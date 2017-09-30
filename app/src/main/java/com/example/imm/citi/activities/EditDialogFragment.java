@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.method.DigitsKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,9 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         mEditText = (EditText) view.findViewById(R.id.text_new_name);
         mEditText.setText(text);
+        if(edittype.equals("phone")){
+            mEditText.setKeyListener(new DigitsKeyListener());
+        }
         ok = (Button) view.findViewById(R.id.btn_dialog_ok);
         ok.setOnClickListener(this);
 
@@ -109,5 +113,9 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
             }
             dismiss();
         }
+    }
+
+    private boolean eligiblePhoneNumber(String newTxt) {
+        return false;
     }
 }
