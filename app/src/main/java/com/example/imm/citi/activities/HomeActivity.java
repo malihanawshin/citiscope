@@ -251,6 +251,8 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
     }
 
     void onItemsLoadComplete() {
+        RadioButton rdName = (RadioButton) findViewById(R.id.radio1);
+        rdName.setChecked(true);
         homeRefreshLayout.setRefreshing(false);
     }
 

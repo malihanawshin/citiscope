@@ -32,6 +32,8 @@ public class Database {
     private RetrievalData rd;
     private String toastMsg;
 
+    private StringRequest stringRequest;
+
     private ProgressDialog loading;
     private String proMsg;
 
@@ -39,7 +41,7 @@ public class Database {
         String url = PATH + rd.file;
         //System.out.println("RD: " + rd);
 
-        final StringRequest stringRequest = new StringRequest(
+        stringRequest = new StringRequest(
                 Request.Method.POST,
                 url,
                 new Response.Listener<String>() {
@@ -126,7 +128,7 @@ public class Database {
         rd.parent.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                loading = ProgressDialog.show(rd.parent,"Please wait...", proMsg + "...",false,false);
+                loading = ProgressDialog.show(rd.parent, "Please wait...", proMsg + "...", false, false);
             }
         });
     }
@@ -140,4 +142,22 @@ public class Database {
             }
         });
     }
+
+    /*
+        private void showProgress(String str){
+        proMsg = str;
+        rd.parent.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                loading = ProgressDialog.show(rd.parent, "Please wait...", proMsg + "...", false, true, new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        stringRequest.cancel();
+                    }
+                });
+            }
+        });
+    }
+
+     */
 }

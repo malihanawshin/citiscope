@@ -41,12 +41,12 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/homeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="356dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/services"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="308dp"
             android:scrollbars="vertical" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
