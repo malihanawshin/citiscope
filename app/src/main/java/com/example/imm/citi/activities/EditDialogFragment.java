@@ -1,5 +1,6 @@
 package com.example.imm.citi.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -31,6 +32,7 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
     private Button ok;
     private String text;
 
+    @SuppressLint("ValidFragment")
     public EditDialogFragment(String edittype, String s){
         this.edittype=edittype;
         text = s;
