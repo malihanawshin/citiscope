@@ -39,7 +39,7 @@ public class CitiMail {
 
     public CitiMail(String toEmailList, String code) {
         fromEmail = "citiscopeapp@gmail.com";
-        fromPassword = "epocsitic";
+        fromPassword = "iticepocs32";
         this.toEmailList = toEmailList;
         emailSubject = "Confirmation Code";
         emailBody = "This is your confirmation code: " + code + "\n\rThank you for using Citiscope.";
