@@ -10,6 +10,12 @@
     android:id="@+id/layout_edit_nomination"
     >
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="false">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="500dp"
@@ -17,13 +23,7 @@
         android:background="@color/colorPrimary"
         android:padding="16dp"
         >
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="false">
-
+        
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
 
             </LinearLayout>
 
-        </ScrollView>
+
 
                 <Button
                     android:id="@+id/btnToSaveNomination"
@@ -188,5 +188,6 @@
 
     </LinearLayout>
 
+</ScrollView>
 
 </LinearLayout>

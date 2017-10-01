@@ -44,6 +44,7 @@
             android:id="@+id/fab_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_gravity="bottom|right"
@@ -54,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
-                app:backgroundTint="@color/colorPrimaryDarkForFAB"
+                app:backgroundTint="@color/colorFAB"
 
                 />
 
@@ -65,7 +66,7 @@
                 android:elevation="16dp"
                 android:text="+"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDarkForFAB"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
