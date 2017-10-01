@@ -1,11 +1,13 @@
 package com.example.imm.citi.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +46,7 @@ public class NominationDetailsActivity extends AppCompatActivity {
         nominator = (TextView) findViewById(R.id.set_nominator_name) ;
         nomDate = (TextView) findViewById(R.id.set_nominatoion_date) ;
         nomDesc = (TextView) findViewById(R.id.set_nomination_details) ;
-        nomSources = (TextView) findViewById(R.id.set_source_list) ;
+        //nomSources = (TextView) findViewById(R.id.set_source_list) ;
         nomFilters = (TextView) findViewById(R.id.set_filter_list) ;
         nomCities = (TextView) findViewById(R.id.set_city_list) ;
 
@@ -52,11 +54,37 @@ public class NominationDetailsActivity extends AppCompatActivity {
         nominator.setText(nomination.nominator);
         nomDate.setText(nomination.dateAdded);
         nomDesc.setText(nomination.description);
-        nomSources.setText(getStringFromArray(nomination.sources));
+        //nomSources.setText(getStringFromArray(nomination.sources));
         nomFilters.setText(getStringFromArray(nomination.filters));
         nomCities.setText(getStringFromArray(nomination.cities));
+
+        setSources();
     }
 
+
+    private void setSources(){
+        View llSources =  findViewById(R.id.ll_sources);
+
+        for(final String link: nomination.sources){
+            TextView source = new TextView(this);
+            source.setText(link);
+            LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            llParams.setMargins(0, 0, 0, 15);
+            source.setLayoutParams(llParams);
+
+            source.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View arg0) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(link));
+                    startActivity(intent);
+                }
+
+            });
+
+            ((LinearLayout) llSources).addView(source);
+        }
+
+    }
 
     private String getStringFromArray(ArrayList<String> arr) {
         String str = "";
