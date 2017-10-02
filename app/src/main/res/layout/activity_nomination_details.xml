@@ -54,7 +54,7 @@
                     android:id="@+id/set_nominator_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
+                    android:clickable="true"
                     android:gravity="center_vertical"
                     android:inputType="text"
                     android:scrollHorizontally="false"

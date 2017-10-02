@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class Nomination implements Parcelable{
     public String name, description, nominator, dateAdded;
+    public String nominatorName, nominatorPhone, nominatorBio;
     public ArrayList<String> sources, filters, cities;
     public int voteCount;
     public Boolean canVote;
@@ -25,6 +26,7 @@ public class Nomination implements Parcelable{
 
     private final String ADDNOMFILE = "addNomination.php", UPDATENOMFILE = "updateNomination.php",
             REMOVENOMFILE = "removeNom.php", ADDNOTIFFILE = "addNotification.php";;
+
 
     public Nomination(){
         name = "Default";
@@ -43,6 +45,15 @@ public class Nomination implements Parcelable{
         filters = filters1;
         cities = cities1;
         dateAdded = date;
+    }
+
+    public void setNominator(String nominatorName, String nominatorPhone, String nominatorBio) {
+        this.nominatorName = nominatorName;
+        this.nominatorPhone = nominatorPhone;
+        this.nominatorBio = nominatorBio;
+
+
+        System.out.println("mmm " + this.nominatorName + " " + this.nominatorPhone);
     }
 
 
@@ -266,6 +277,9 @@ public class Nomination implements Parcelable{
         filters = in.createStringArrayList();
         cities = in.createStringArrayList();
         dateAdded = in.readString();
+        nominatorName = in.readString();
+        nominatorPhone = in.readString();
+        nominatorBio = in.readString();
     }
 
     public static final Creator<Nomination> CREATOR = new Creator<Nomination>() {
@@ -295,5 +309,9 @@ public class Nomination implements Parcelable{
         parcel.writeStringList(filters);
         parcel.writeStringList(cities);
         parcel.writeString(dateAdded);
+        parcel.writeString(nominatorName);
+        parcel.writeString(nominatorPhone);
+        parcel.writeString(nominatorBio);
     }
+
 }

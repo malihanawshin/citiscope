@@ -17,34 +17,53 @@ import com.example.imm.citi.technicalClasses.User;
 public class ProfileDisplayActivity extends AppCompatActivity {
     private TextView txtName, txtBio;
     private ImageView imgPhone, imgEmail;
+    private String phone, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_display);
 
+
         txtName = (TextView) findViewById(R.id.prof_dis_name);
         txtBio = (TextView) findViewById(R.id.prof_dis_bio);
-
-        txtName.setText(User.Name);
-        txtBio.setText(User.Bio);
 
         imgPhone = (ImageView) findViewById(R.id.img_user_call);
         imgEmail = (ImageView) findViewById(R.id.img_user_email);
 
+
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        if(name==null)
+            setUserProfile();
+        else{
+            System.out.println("naem nul na");
+            txtName.setText(name);
+            txtBio.setText(intent.getStringExtra("bio"));
+            phone = intent.getStringExtra("phone");
+            email = intent.getStringExtra("email");
+        }
+
         imgPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startCall(User.Phone);
+                startCall(phone);
             }
         });
 
         imgEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendMail(User.Email);
+                sendMail(email);
             }
         });
+    }
+
+    private void setUserProfile() {
+        txtName.setText(User.Name);
+        txtBio.setText(User.Bio);
+        phone = User.Phone;
+        email = User.Email;
     }
 
     private void sendMail(String emailAddress) {

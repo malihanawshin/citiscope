@@ -46,19 +46,29 @@ public class NominationDetailsActivity extends AppCompatActivity {
         nominator = (TextView) findViewById(R.id.set_nominator_name) ;
         nomDate = (TextView) findViewById(R.id.set_nominatoion_date) ;
         nomDesc = (TextView) findViewById(R.id.set_nomination_details) ;
-        //nomSources = (TextView) findViewById(R.id.set_source_list) ;
         nomFilters = (TextView) findViewById(R.id.set_filter_list) ;
         nomCities = (TextView) findViewById(R.id.set_city_list) ;
 
         nomName.setText(nomination.name);
-        nominator.setText(nomination.nominator);
+        nominator.setText(nomination.nominatorName);
         nomDate.setText(nomination.dateAdded);
         nomDesc.setText(nomination.description);
-        //nomSources.setText(getStringFromArray(nomination.sources));
         nomFilters.setText(getStringFromArray(nomination.filters));
         nomCities.setText(getStringFromArray(nomination.cities));
 
         setSources();
+
+        nominator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentB = new Intent(NominationDetailsActivity.this,ProfileDisplayActivity.class);
+                intentB.putExtra("name", nomination.nominatorName);
+                intentB.putExtra("email", nomination.nominator);
+                intentB.putExtra("phone", nomination.nominatorPhone);
+                intentB.putExtra("bio", nomination.nominatorBio);
+                startActivity(intentB);
+            }
+        });
     }
 
 

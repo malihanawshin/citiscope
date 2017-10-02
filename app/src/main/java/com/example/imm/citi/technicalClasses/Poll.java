@@ -73,11 +73,17 @@ public class Poll {
                                 String desc = nomData.getString("Description");
                                 String nom = nomData.getString("Nominator");
                                 String date = nomData.getString("Date");
+
+                                String nominatorName = nomData.getString("NominatorName");
+                                String nominatorPhone = nomData.getString("NominatorPhone");
+                                String nominatorBio = nomData.getString("NominatorBio");
+
                                 int votes = Integer.parseInt(nomData.getString("VoteCount"));
 
                                 Nomination temp = new Nomination();
                                 temp.setAttributes(name, desc, new ArrayList<String>(), nom, votes, new ArrayList<String>(), new ArrayList<String>(), date);
                                 temp.canVote = !nomData.getBoolean("Voted");
+                                temp.setNominator(nominatorName, nominatorPhone, nominatorBio);
                                 noms.add(temp);
                             }
                         } catch (JSONException e) {
