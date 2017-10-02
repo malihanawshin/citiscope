@@ -42,7 +42,10 @@ public class CitiMail {
         fromPassword = "iticepocs32";
         this.toEmailList = toEmailList;
         emailSubject = "Confirmation Code";
-        emailBody = "This is your confirmation code: " + code + "\n\rThank you for using Citiscope.";
+
+        StringBuilder strBld = new StringBuilder("This is your confirmation code: <b>" + code + "</b>").append(System.lineSeparator());
+        strBld.append("<br>Thank you for using CITISCOPE.");
+        emailBody = strBld.toString();
 
         emailProperties = System.getProperties();
         emailProperties.put("mail.smtp.port", emailPort);
