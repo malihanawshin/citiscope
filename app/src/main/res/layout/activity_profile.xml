@@ -392,6 +392,18 @@
 
             </RelativeLayout>
 
+
+            <Button
+                android:id="@+id/btnDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Display My Profile"
+                android:textColor="@color/colorPrimary" />
+
+
         </LinearLayout>
 
     </ScrollView>

@@ -43,9 +43,30 @@ public class CitiMail {
         this.toEmailList = toEmailList;
         emailSubject = "Confirmation Code";
 
-        StringBuilder strBld = new StringBuilder("This is your confirmation code: <b>" + code + "</b>").append(System.lineSeparator());
-        strBld.append("<br>Thank you for using CITISCOPE.");
+        StringBuilder strBld = new StringBuilder("<p>Your Confirmation Code:</p><p> <b>" + code + "</b></p>").append(System.lineSeparator());
+        strBld.append("<i>Thank you for using CITISCOPE.</i>");
+
+        String sth = "<html>" +
+                "                    <head>" +
+                "                        <title>CITISCOPE</title>" +
+                "                    </head>" +
+                "                    <style>" +
+                "                                p {" +
+                "                            font-family: &quot;Calibri&quot;, Sans-serif;" +
+                "                        }" +
+                "                    </style>" +
+                "                    <body>" +
+                "                        <img src=&quot;@drawable/mail_logo&quot; alt=&quot;citiscope&quot; style=&quot;width:400px;height:90px;display: block;margin:auto;&quot;>" +
+                "                        <p style=&quot;font-size: 28px;&quot; align=&quot;center&quot;>Your Confirmation Code</p>" +
+                "                        <div style=&quot;background-color:#e2d6f5;padding:0px;display: block;margin:auto; width: 150px&quot;>" +
+                "                            <p style=&quot;font-size: 28px;&quot; align=&quot;center&quot;><b>"+code+"</b></p>" +
+                "                        </div>" +
+                "                        <p style=&quot;font-size: 25px&quot; align=&quot;center&quot;>Thank you for using CITISCOPE</p>" +
+                "                    </body>" +
+                "                </html>";
+
         emailBody = strBld.toString();
+        //emailBody = sth;
 
         emailProperties = System.getProperties();
         emailProperties.put("mail.smtp.port", emailPort);
