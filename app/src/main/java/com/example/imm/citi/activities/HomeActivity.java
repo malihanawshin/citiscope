@@ -236,18 +236,10 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
         homeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Refresh items
-                refreshItems();
+                getServices(district);
+                onItemsLoadComplete();
             }
         });
-
-
-    }
-
-    void refreshItems() {
-        getServices(district);
-
-        onItemsLoadComplete();
     }
 
     void onItemsLoadComplete() {

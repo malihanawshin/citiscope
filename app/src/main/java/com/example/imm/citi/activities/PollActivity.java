@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -23,6 +24,7 @@ import butterknife.ButterKnife;
 
 public class PollActivity extends BottomBarActivity implements NominationListAdapter.NominationClickCallback{
 
+    private SwipeRefreshLayout pollRefreshLayout;
     private RecyclerView nominationCardView;
     ArrayList<Nomination> nominations;
     public NominationListAdapter adapter;
@@ -45,6 +47,8 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
         setContentView(R.layout.activity_poll);
         setTitle("Poll");
         ButterKnife.bind(this);
+
+        pollRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.pollRefreshLayout);
 
         nominationCardView=(RecyclerView) findViewById(R.id.nominations_recycler);
 
@@ -111,15 +115,35 @@ public class PollActivity extends BottomBarActivity implements NominationListAda
     }
 
     public void showData(ArrayList<Nomination> noms) {
-        System.out.println("old " + nominations);
-        System.out.println("new " + noms);
         if(noms!=nominations){
             nominations.clear();
             nominations.addAll(noms);
         }
-        System.out.println("newest " + nominations);
+
         adapter.notifyDataSetChanged();
+        setRefreshLayout();
     }
+
+
+    private void setRefreshLayout() {
+        pollRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                System.out.println("EIHANE ASCHE");
+                onItemsLoadComplete();
+                poll.createPoll();
+            }
+        });
+    }
+
+    void onItemsLoadComplete() {
+        pollRefreshLayout.setRefreshing(false);
+    }
+
+
+
+
+
 
     @Override
     public void onVoteClick(Nomination nomination, String action, int position) {
