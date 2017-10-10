@@ -29,6 +29,12 @@
             android:layout_marginTop="25dp"
             android:orientation="vertical">
 
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/notificationRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"            >
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/notification_recycler"
@@ -37,7 +43,11 @@
                 android:layout_marginBottom="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
+                android:paddingBottom="80dp"
                 android:scrollbars="vertical" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
         </LinearLayout>
 
