@@ -46,30 +46,12 @@ public class FilterActivity extends AppCompatActivity {
         service = intent.getStringExtra("servicename");
         setTitle(service);
 
-        district = intent.getStringExtra("chosenService");
+        district = intent.getStringExtra("chosenDistrict");
 
         ll = (LinearLayout) findViewById(R.id.ll_filters);
 
         setFilters();
         setListeners();
-
-      /*  FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.add(R.id.frmTitleFilter, new TitleFragment());
-        fragmentTransaction.commit();
-
-        Intent intent = getIntent();
-        service = intent.getStringExtra("service");
-        chosenService = intent.getStringExtra("chosenService");
-
-        txtCaption = (TextView) findViewById(R.id.txtFilterCaption);
-        txtCaption.setText(txtCaption.getText().toString()+ " (" + service + ")");
-        ll = (LinearLayout) findViewById(R.id.ll_filters);
-
-        setFilters();
-        setListeners();
-*/
-
     }
 
     @Override

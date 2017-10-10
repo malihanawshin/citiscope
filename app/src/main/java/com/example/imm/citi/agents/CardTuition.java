@@ -3,11 +3,14 @@ package com.example.imm.citi.agents;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.imm.citi.R;
 import com.example.imm.citi.activities.AgentListAdapter;
 
 import java.util.ArrayList;
@@ -58,6 +61,8 @@ public class CardTuition extends CardAgent {
 
         attTexts.get(10).setText("Profile Link");
         attInfos.get(10).setText(agTui.profileLink);
+        attInfos.get(10).setTextColor(ContextCompat.getColor(parent, R.color.colorTextLink));
+        attInfos.get(10).setPaintFlags(attInfos.get(0).getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         attInfos.get(10).setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);

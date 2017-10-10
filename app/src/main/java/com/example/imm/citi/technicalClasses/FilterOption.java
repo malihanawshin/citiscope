@@ -7,8 +7,8 @@ import java.util.ArrayList;
  */
 
 public class FilterOption {
-    String filter;
-    ArrayList<String> options;
+    public String filter;
+    public ArrayList<String> options;
 
     public FilterOption(String fil, String op) {
         filter = fil;

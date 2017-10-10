@@ -22,7 +22,7 @@
             android:textColor="@color/colorTextDark"
             android:textStyle="bold" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edit_speciality"
             android:layout_width="220dp"
             android:layout_height="wrap_content"

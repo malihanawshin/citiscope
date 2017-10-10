@@ -22,7 +22,7 @@
             android:textColor="@color/colorTextDark"
             android:textStyle="bold" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edit_tui_area"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
@@ -51,9 +51,12 @@
             android:gravity="center_vertical"
             android:text="Mediums"
             android:textColor="@color/colorTextDark"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edit_medium"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
@@ -83,7 +86,7 @@
             android:textColor="@color/colorTextDark"
             android:textStyle="bold" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edit_class"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
@@ -110,7 +113,7 @@
             android:textColor="@color/colorTextDark"
             android:textStyle="bold" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edit_subjects"
             android:layout_width="220dp"
             android:layout_height="wrap_content"

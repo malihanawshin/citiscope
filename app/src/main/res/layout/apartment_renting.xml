@@ -22,7 +22,7 @@
             android:textColor="@color/colorTextDark"
             android:textStyle="bold" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edit_apartment_area"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
@@ -43,11 +43,12 @@
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
+            android:paddingRight="3dp"
             android:text="Property Type"
             android:textColor="@color/colorTextDark"
             android:textStyle="bold" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/edit_property_type"
             android:layout_width="220dp"
             android:layout_height="wrap_content"

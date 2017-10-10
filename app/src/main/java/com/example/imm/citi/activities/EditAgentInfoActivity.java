@@ -7,9 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.method.DigitsKeyListener;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +27,16 @@ import com.example.imm.citi.agents.CreatorBloodDonation;
 import com.example.imm.citi.agents.CreatorDoctor;
 import com.example.imm.citi.agents.CreatorTuition;
 import com.example.imm.citi.agents.LocalAgent;
+import com.example.imm.citi.technicalClasses.Database;
+import com.example.imm.citi.technicalClasses.FilterOption;
+import com.example.imm.citi.technicalClasses.RetrievalData;
 import com.example.imm.citi.technicalClasses.User;
 import com.example.imm.citi.technicalClasses.UserAgentInput;
+import com.example.imm.citi.technicalClasses.VolleyCallback;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -42,17 +53,29 @@ public class EditAgentInfoActivity extends AppCompatActivity {
 
     private Button btnSave;
 
-    private EditText edtName, edtEmail, edtPhone, edtAddress, edtDistrict;
+    private EditText edtName, edtEmail, edtPhone, edtAddress;
+    private AutoCompleteTextView edtDistrict;
 
-    private EditText bldType, bldSmoke, bldDonNo, bldLastDon;
-    private EditText aptArea, aptType, aptPrice, aptSize, aptFloor, aptRoom;
-    private EditText docSpec, docAddresses, docDegrees, docHospital, docYears;
-    private EditText tuiAreas, tuiMediums, tuiClasses, tuiSubjects, 
-                        tuiSchool, tuiCollege, tuiUniversity, tuiOccupation, tuiDone, tuiProfile;
+    private AutoCompleteTextView bldType, bldSmoke;
+    private EditText bldDonNo, bldLastDon;
+    private Spinner bldSmokeHabit;
+
+    private AutoCompleteTextView aptArea, aptType;
+    private EditText aptPrice, aptSize, aptFloor, aptRoom;
+
+    private AutoCompleteTextView docSpec;
+    private EditText docAddresses, docDegrees, docHospital, docYears;
+
+    private AutoCompleteTextView tuiAreas, tuiMediums, tuiClasses, tuiSubjects;
+    private EditText tuiSchool, tuiCollege, tuiUniversity, tuiOccupation, tuiDone, tuiProfile;
 
     LocalAgent locAg;
     CreatorAgent creaAg;
     private String id;
+
+
+    ArrayList<FilterOption> filOps;
+    final String FILTEROPTIONFILE = "filterAndOption.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +95,6 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         service = intent.getStringExtra("servicename");
         locAg = intent.getParcelableExtra("agent");
 
-        System.out.println("SERVICE: " + service);
-        System.out.println("AGENT in EDIT: " + locAg);
-
         if(locAg==null){
             id = "1";
         }
@@ -88,47 +108,48 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         donation = (LinearLayout) findViewById(R.id.layout_donation);
         doctor = (LinearLayout) findViewById(R.id.layout_doctor);
 
-        setCommonEditTexts();
 
-        if(service.equals("Tuition")) {
-            tuition.setVisibility(View.VISIBLE);
-            serviceLabel.setText("Tuition");
-            setTuitionEditTexts();
-            creaAg = new CreatorTuition(this);
-        }
-        else if(service.equals("Doctor")) {
-            doctor.setVisibility(View.VISIBLE);
-            serviceLabel.setText("Doctor");
-            setDoctorEditTexts();
-            creaAg = new CreatorDoctor(this);
-        }
-        else if(service.equals("Apartment Renting")) {
-            renting.setVisibility(View.VISIBLE);
-            serviceLabel.setText("Apartment Renting");
-            setApartmentRentingEditTexts();
-            creaAg = new CreatorApartmentRenting(this);
-        }
-        else if(service.equals("Blood Donation")) {
-            donation.setVisibility(View.VISIBLE);
-            serviceLabel.setText("Blood Donation");
-            setBloodDonationEditTexts();
-            creaAg = new CreatorBloodDonation(this);
-        }
-
-        setButtonListener();
+        filOps = new ArrayList<>();
+        fetchFilters();
     }
 
+
+
+    private void setAutoCompleteToText(AutoCompleteTextView txtView, String filter) {
+        ArrayList<String> options = getStringByFilter(filter);
+        String[] strings = options.toArray(new String[options.size()]);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strings);
+        txtView.setAdapter(adapter);
+        txtView.setThreshold(1);
+
+        System.out.println("Filter: " + filter + " --> Options: " + options);
+    }
+
+    private ArrayList<String> getStringByFilter(String filter) {
+        for(FilterOption filop: filOps){
+            if(filop.filter.equals(filter)){
+                return filop.options;
+            }
+        }
+        return new ArrayList<>();
+    }
+
+
+
+
     private void setTuitionEditTexts() {
-        tuiAreas = (EditText) findViewById(R.id.edit_tui_area);
-        tuiMediums = (EditText) findViewById(R.id.edit_medium);
-        tuiClasses = (EditText) findViewById(R.id.edit_class);
-        tuiSubjects = (EditText) findViewById(R.id.edit_subjects);
+        tuiAreas = (AutoCompleteTextView) findViewById(R.id.edit_tui_area);
+        tuiMediums = (AutoCompleteTextView) findViewById(R.id.edit_medium);
+        tuiClasses = (AutoCompleteTextView) findViewById(R.id.edit_class);
+        tuiSubjects = (AutoCompleteTextView) findViewById(R.id.edit_subjects);
         tuiSchool = (EditText) findViewById(R.id.edit_school_name);
         tuiCollege = (EditText) findViewById(R.id.edit_college_name);
         tuiUniversity = (EditText) findViewById(R.id.edit_university_name);
         tuiOccupation = (EditText) findViewById(R.id.edit_occupation);
         tuiDone = (EditText) findViewById(R.id.edit_tuitions);
         tuiProfile = (EditText) findViewById(R.id.edit_link);
+
+        setAutoCompleteTuition();
 
         if(locAg!=null){
             AgentTuition agTui = (AgentTuition) locAg;
@@ -146,12 +167,21 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         }
 }
 
+    private void setAutoCompleteTuition() {
+        setAutoCompleteToText(tuiMediums, "Medium");
+        setAutoCompleteToText(tuiClasses, "Class");
+        setAutoCompleteToText(tuiAreas, "Area");
+        setAutoCompleteToText(tuiSubjects, "Subject");
+    }
+
     private void setDoctorEditTexts() {
         docAddresses = (EditText) findViewById(R.id.edit_doc_addresses);
         docDegrees = (EditText) findViewById(R.id.edit_degrees);
         docHospital = (EditText) findViewById(R.id.edit_hospital);
-        docSpec = (EditText) findViewById(R.id.edit_speciality);
+        docSpec = (AutoCompleteTextView) findViewById(R.id.edit_speciality);
         docYears = (EditText) findViewById(R.id.edit_practice);
+
+        setAutoCompleteDoctor();
 
         if(locAg!=null){
             AgentDoctor agDoc = (AgentDoctor) locAg;
@@ -164,13 +194,19 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         }
     }
 
+    private void setAutoCompleteDoctor() {
+        setAutoCompleteToText(docSpec, "Specialization");
+    }
+
     private void setApartmentRentingEditTexts() {
-        aptArea = (EditText) findViewById(R.id.edit_apartment_area);
-        aptType = (EditText) findViewById(R.id.edit_property_type);
+        aptArea = (AutoCompleteTextView) findViewById(R.id.edit_apartment_area);
+        aptType = (AutoCompleteTextView) findViewById(R.id.edit_property_type);
         aptPrice = (EditText) findViewById(R.id.edit_price);
         aptSize = (EditText) findViewById(R.id.edit_area_m2);
         aptFloor = (EditText) findViewById(R.id.edit_floor);
         aptRoom = (EditText) findViewById(R.id.edit_room);
+
+        setAutoCompleteApartmentRenting();
 
         if(locAg!=null){
             AgentApartmentRenting agApt = (AgentApartmentRenting)locAg;
@@ -184,20 +220,32 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         }
     }
 
+    private void setAutoCompleteApartmentRenting() {
+        setAutoCompleteToText(aptArea, "Area");
+        setAutoCompleteToText(aptType, "Property Type");
+    }
+
     private void setBloodDonationEditTexts() {
-        bldType = (EditText) findViewById(R.id.edit_blood_type);
-        bldSmoke = (EditText) findViewById(R.id.edit_smoking);
+        bldType = (AutoCompleteTextView) findViewById(R.id.edit_blood_type);
+//        bldSmoke = (EditText) findViewById(R.id.edit_smoking);
+        bldSmokeHabit = (Spinner) findViewById(R.id.spn_smoking);
         bldDonNo = (EditText) findViewById(R.id.edit_donations);
         bldLastDon = (EditText) findViewById(R.id.edit_since_donated);
+
+        setAutoCompleteBloodDonation();
 
         if(locAg!=null){
             AgentBloodDonation agBld = (AgentBloodDonation) locAg;
             edtDistrict.setText(agBld.district);
             bldType.setText(agBld.bloodType);
-            bldSmoke.setText(agBld.smokingHabit);
+//            bldSmoke.setText(agBld.smokingHabit);
             bldDonNo.setText(agBld.donationsDone+"");
             bldLastDon.setText(agBld.daysSinceLastDonated+"");
         }
+    }
+
+    private void setAutoCompleteBloodDonation() {
+        setAutoCompleteToText(bldType, "Blood Group");
     }
 
     private void setCommonEditTexts() {
@@ -206,7 +254,9 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         edtPhone = (EditText) findViewById(R.id.edit_agent_phone);
         edtPhone.setKeyListener(new DigitsKeyListener());
         edtAddress = (EditText) findViewById(R.id.edit_agent_address);
-        edtDistrict = (EditText) findViewById(R.id.edit_agent_district);
+        edtDistrict = (AutoCompleteTextView) findViewById(R.id.edit_agent_district);
+
+        setAutoCompleteToText(edtDistrict, "District");
 
         if(locAg!=null){
             edtName.setText(locAg.name);
@@ -439,7 +489,7 @@ public class EditAgentInfoActivity extends AppCompatActivity {
 
     private UserAgentInput getBloodDonationInput(UserAgentInput userInput) {
         userInput.addBloodDonationAttributes(edtDistrict.getText().toString(), bldType.getText().toString(),
-                bldSmoke.getText().toString(), bldDonNo.getText().toString(), bldLastDon.getText().toString());
+                bldSmokeHabit.getSelectedItem().toString(), bldDonNo.getText().toString(), bldLastDon.getText().toString());
 
         return userInput;
     }
@@ -493,5 +543,103 @@ public class EditAgentInfoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) onBackPressed();
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void fetchFilters() {
+        ArrayList<String> keys = new ArrayList<>();
+        ArrayList<String> vals = new ArrayList<>();
+
+        keys.add("service");
+        vals.add(service);
+
+        Database db = new Database();
+        db.retrieve(new RetrievalData(keys, vals, FILTEROPTIONFILE, this), true, new VolleyCallback() {
+            @Override
+            public void onSuccessResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("result");
+
+                    if (result.length() != 0) {
+                        System.out.println("OLELE " + result + " X " + result.length());
+                        for (int i = 0; i < result.length(); i++) {
+                            try {
+                                JSONObject obj = result.getJSONObject(i);
+                                addToFilOps(obj.getString("Filter"), obj.getString("Option"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    for(FilterOption fo: filOps){
+                        System.out.println("Filter Option > > > > > " + fo);
+                    }
+
+                    setPage();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void setPage() {
+        setCommonEditTexts();
+
+        if(service.equals("Tuition")) {
+            tuition.setVisibility(View.VISIBLE);
+            serviceLabel.setText("Tuition");
+            setTuitionEditTexts();
+            creaAg = new CreatorTuition(this);
+        }
+        else if(service.equals("Doctor")) {
+            doctor.setVisibility(View.VISIBLE);
+            serviceLabel.setText("Doctor");
+            setDoctorEditTexts();
+            creaAg = new CreatorDoctor(this);
+        }
+        else if(service.equals("Apartment Renting")) {
+            renting.setVisibility(View.VISIBLE);
+            serviceLabel.setText("Apartment Renting");
+            setApartmentRentingEditTexts();
+            creaAg = new CreatorApartmentRenting(this);
+        }
+        else if(service.equals("Blood Donation")) {
+            donation.setVisibility(View.VISIBLE);
+            serviceLabel.setText("Blood Donation");
+            setBloodDonationEditTexts();
+            creaAg = new CreatorBloodDonation(this);
+        }
+
+        setButtonListener();
+    }
+
+    private void addToFilOps(String filter, String option) {
+        for(FilterOption fo: filOps){
+            if(fo.filter.equals(filter)) {
+                fo.add(option);
+                return;
+            }
+        }
+
+        filOps.add(new FilterOption(filter, option));
     }
 }
