@@ -51,7 +51,7 @@ public class BottomBarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //notificationIcon = (TextView) bindView(R.id.txt_notification_count);
-      //  ButterKnife.bind(this);
+        //  ButterKnife.bind(this);
 
     }
 
@@ -136,7 +136,7 @@ public class BottomBarActivity extends AppCompatActivity {
     @Optional
     @OnClick(R.id.img_profile)
     public void showProfile() {
-       // Toast.makeText(parent, User.loggedIn + "__" + User.Email,Toast.LENGTH_LONG).show();
+        // Toast.makeText(parent, User.loggedIn + "__" + User.Email,Toast.LENGTH_LONG).show();
 
         if(!(this instanceof ProfileActivity)) {
             if(User.loggedIn){

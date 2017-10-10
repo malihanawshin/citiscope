@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class NominationDetailsActivity extends AppCompatActivity {
     Nomination nomination;
-    Button edit;
+    Button btn_edit,btn_remove;
 
     TextView nomName, nominator, nomDate, nomDesc, nomSources, nomFilters, nomCities;
 
@@ -29,18 +29,23 @@ public class NominationDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nomination_details);
-
         setTitle("Nomination Details");
-
         Intent intent = getIntent();
         nomination = intent.getParcelableExtra("nomination");
-
         System.out.println("nomnom " + nomination);
         setTexts();
 
+        btn_edit = (Button) findViewById(R.id.btnToEditNomination);
+        btn_remove = (Button) findViewById(R.id.btnToRemoveNomination);
+
+        if(!User.loggedIn||!User.Email.equals(nomination.nominator)) {
+            btn_edit.setAlpha(.5f);
+            btn_edit.setClickable(false);
+            btn_remove.setAlpha(.5f);
+            btn_remove.setClickable(false);
+        }
 
         if(getSupportActionBar()!=null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     private void setTexts() {

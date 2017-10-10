@@ -3,7 +3,9 @@ package com.example.imm.citi.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -67,6 +69,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
 
         ViewTreeObserver vto = serviceview.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onGlobalLayout() {
                 serviceview.getViewTreeObserver().removeOnGlobalLayoutListener(this);
@@ -157,6 +160,7 @@ public class HomeActivity extends BottomBarActivity implements ServiceListAdapte
                             }
                         }
                         spnAdapter = new ArrayAdapter<String>(parent, android.R.layout.simple_spinner_item, districts);
+                        spnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spnCity.setAdapter(spnAdapter);
                     }
 
