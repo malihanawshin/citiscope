@@ -1,9 +1,9 @@
 package com.example.imm.citi.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -32,6 +32,7 @@ public class NotificationActivity extends BottomBarActivity implements Notificat
     ArrayList <Notification> notifList;
     NotificationListAdapter adapter;
     ImageButton toRemove;
+    private SwipeRefreshLayout homeRefreshLayout;
 
     private Activity parent = this;
 
@@ -49,6 +50,8 @@ public class NotificationActivity extends BottomBarActivity implements Notificat
         setContentView(R.layout.activity_notification);
         setTitle("Notification");
         ButterKnife.bind(this);
+
+        homeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.notificationRefreshLayout);
 
         recyclerView = (RecyclerView) findViewById(R.id.notification_recycler);
         toRemove = (ImageButton) findViewById(R.id.btnToRemoveNotification);
@@ -107,6 +110,7 @@ public class NotificationActivity extends BottomBarActivity implements Notificat
             Toast.makeText(parent, "You have no new Notifications", Toast.LENGTH_SHORT).show();
         }
         adapter.notifyDataSetChanged();
+        setRefreshLayout();
     }
 
     private void setRecycler() {
@@ -114,6 +118,23 @@ public class NotificationActivity extends BottomBarActivity implements Notificat
         adapter = new NotificationListAdapter(this,notifList,this);
         recyclerView.setAdapter(adapter);
     }
+
+
+
+    private void setRefreshLayout() {
+        homeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchNotifications();
+                onItemsLoadComplete();
+            }
+        });
+    }
+
+    void onItemsLoadComplete() {
+        homeRefreshLayout.setRefreshing(false);
+    }
+
 
 
     @Override
