@@ -19,22 +19,22 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Areas"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_tui_area"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/text_area"
-            android:textSize="15sp"
-            android:inputType="textMultiLine"
-            android:maxLines="4"
-            android:textColor="@color/colorAccent"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/text_area"
+            android:layout_toRightOf="@+id/text_area"
             android:hint="*"
+            android:inputType="textMultiLine"
 
-            />
+            android:maxLines="4"
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -50,23 +50,21 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Mediums"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_medium"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/text_medium"
+            android:layout_toRightOf="@+id/text_medium"
+            android:hint="*"
             android:inputType="textMultiLine"
             android:maxLines="4"
-            android:textSize="15sp"
-            android:textColor="@color/colorAccent"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/text_medium"
-            android:layout_toEndOf="@+id/text_medium"
-            android:hint="*"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -82,20 +80,18 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Interested Classes"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_class"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
-            android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_class"
             android:hint="*"
-            />
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:textColor="@color/colorTextDark" />
 
     </RelativeLayout>
 
@@ -111,21 +107,19 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Subjects"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_subjects"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:maxLines="4"
-            android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_subjects"
             android:hint="*"
-            android:textSize="15sp"
-            />
+            android:inputType="textMultiLine"
+            android:maxLines="4"
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -141,17 +135,16 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="School"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorTextDark"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_school_name"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_school_name"
-            android:textSize="15sp"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -167,18 +160,16 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="College"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_college_name"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_college_name"
-            android:textSize="15sp"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -194,17 +185,16 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="University"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_university_name"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_university_name" />
+            android:layout_toRightOf="@id/text_university_name"
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -220,17 +210,16 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Occupation"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_occupation"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_occupation" />
+            android:layout_toRightOf="@id/text_occupation"
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -246,19 +235,17 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Tuitions done"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_tuitions"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_tuitions"
-            android:textSize="15sp"
-            />
+            android:inputType="number"
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -274,19 +261,17 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Profile/blog Link"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_link"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:inputType="textUri"
-            android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_link"
-            android:textSize="15sp"
-            />
+            android:inputType="textUri"
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 

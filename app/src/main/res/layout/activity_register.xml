@@ -79,9 +79,9 @@
                     android:layout_centerVertical="true"
                     android:ems="10"
                     android:hint="Email"
-                    android:textColorHint="@android:color/white"
                     android:inputType="textEmailAddress"
-                    />
+                    android:textColor="@color/colorTextDark"
+                    android:textColorHint="@android:color/white" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -97,17 +97,17 @@
                 >
 
                 <EditText
-                    android:layout_marginTop="30dp"
                     android:id="@+id/eTxtPwd1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginTop="30dp"
                     android:ems="10"
                     android:hint="Password"
-                    android:textColorHint="@android:color/white"
                     android:inputType="textPassword"
-                    />
+                    android:textColor="@color/colorTextDark"
+                    android:textColorHint="@android:color/white" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -122,17 +122,17 @@
                 >
 
                 <EditText
-                    android:layout_marginTop="30dp"
                     android:id="@+id/eTxtPwd2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginTop="30dp"
                     android:ems="10"
                     android:hint="Confirm Password"
-                    android:textColorHint="@android:color/white"
                     android:inputType="textPassword"
-                    />
+                    android:textColor="@color/colorTextDark"
+                    android:textColorHint="@android:color/white" />
 
             </android.support.design.widget.TextInputLayout>
 

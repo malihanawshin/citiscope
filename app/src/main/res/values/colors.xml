@@ -2,7 +2,11 @@
 <resources>
     <color name="colorPrimary">#f4f7ff</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#482164</color>
-    <color name="colorPrimaryDarkForFAB">#5c047b</color>
-    <color name="colorFAB">#bf7af0</color>
+    <color name="colorAccent">#88030a</color>
+    <color name="colorPrimaryDarkForFAB">#7b0434</color>
+    <color name="colorFAB">#ff2d50</color>
+    <color name="colorPollItem">#7c3c3c</color>
+    <color name="colorTextDark">#000000</color>
+    <color name="colorTextLink">#f2787e</color>
+    <color name="colorAgentItem">#642e31</color>
 </resources>

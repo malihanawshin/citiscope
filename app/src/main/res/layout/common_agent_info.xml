@@ -43,7 +43,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="Agent Name"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorTextDark"
                     android:textStyle="bold" />
 
                 <EditText
@@ -52,9 +52,8 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/text_agent_name"
                     android:inputType="text"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="15sp"
-                    />
+                    android:textColor="@color/colorTextDark"
+                    android:textSize="15sp" />
 
             </RelativeLayout>
 
@@ -69,7 +68,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="Email"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorTextDark"
                     android:textStyle="bold" />
 
                 <EditText
@@ -78,9 +77,8 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/text_agent_email"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="15sp"
-                    />
+                    android:textColor="@color/colorTextDark"
+                    android:textSize="15sp" />
 
             </RelativeLayout>
 
@@ -95,7 +93,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="Phone no."
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorTextDark"
                     android:textStyle="bold" />
 
                 <EditText
@@ -104,9 +102,8 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/text_agent_phone"
                     android:inputType="phone"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="15sp"
-                    />
+                    android:textColor="@color/colorTextDark"
+                    android:textSize="15sp" />
 
             </RelativeLayout>
 
@@ -121,7 +118,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="Address"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorTextDark"
                     android:textStyle="bold" />
 
                 <EditText
@@ -131,7 +128,7 @@
                     android:layout_toRightOf="@id/text_agent_address"
                     android:inputType="text"
                     android:maxLines="3"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorTextDark"
                     android:textSize="15sp" />
 
             </RelativeLayout>
@@ -147,7 +144,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:text="District"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorTextDark"
                     android:textStyle="bold" />
 
                 <EditText
@@ -158,9 +155,8 @@
                     android:inputType="text"
                     android:maxLines="3"
                     android:singleLine="false"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="15sp"
-                    />
+                    android:textColor="@color/colorTextDark"
+                    android:textSize="15sp" />
 
             </RelativeLayout>
 

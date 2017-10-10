@@ -6,17 +6,17 @@
         android:background="@color/colorPrimary"
         tools:context="com.example.imm.citi.activities.AgentListActivity">
 
-        <TextView
-            android:id="@+id/text_card_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="Agent's List"
-            android:textColor="@color/colorAccent"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+     <TextView
+         android:id="@+id/text_card_name"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="10dp"
+         android:layout_marginTop="10dp"
+         android:gravity="center"
+         android:text="Agent's List"
+         android:textColor="@color/colorTextDark"
+         android:textSize="16sp"
+         android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/spinner_service"

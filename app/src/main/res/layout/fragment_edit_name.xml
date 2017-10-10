@@ -28,12 +28,11 @@
         android:id="@+id/text_new_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
         android:inputType="text"
-        android:textColor="@color/colorAccent"
-        />
+        android:textColor="@color/colorTextDark" />
 
     <Button
         android:id="@+id/btn_dialog_ok"

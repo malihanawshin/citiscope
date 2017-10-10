@@ -1,8 +1,10 @@
 package com.example.imm.citi.activities;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,6 +80,9 @@ public class NominationDetailsActivity extends AppCompatActivity {
         for(final String link: nomination.sources){
             TextView source = new TextView(this);
             source.setText(link);
+            source.setTextColor(ContextCompat.getColor(this, R.color.colorTextLink));
+            source.setPaintFlags(source.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+
             LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             llParams.setMargins(0, 0, 0, 15);
             source.setLayoutParams(llParams);

@@ -19,18 +19,16 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Speciality"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_speciality"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_speciality"
-            android:textSize="15sp"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -46,21 +44,19 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Degrees"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_degrees"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/text_degrees"
+            android:hint="*"
             android:inputType="textMultiLine"
             android:maxLines="4"
-            android:hint="*"
-            android:textColor="@color/colorAccent"
-            android:layout_toRightOf="@id/text_degrees"
-            android:textSize="15sp"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -76,21 +72,19 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Chamber Addresses"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_doc_addresses"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/text_addresses"
+            android:hint="*"
             android:inputType="textMultiLine"
             android:maxLines="4"
-            android:hint="*"
-            android:textColor="@color/colorAccent"
-            android:textSize="15sp"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -106,18 +100,16 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Hospital Name"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_hospital"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_hospital"
-            android:textSize="15sp"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -133,19 +125,17 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="Years in Practice"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            />
+            android:textColor="@color/colorTextDark"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edit_practice"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/text_practice"
-            android:textSize="15sp"
-            />
+            android:inputType="number"
+            android:textColor="@color/colorTextDark"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 

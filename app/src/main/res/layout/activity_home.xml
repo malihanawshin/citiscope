@@ -11,6 +11,15 @@
 
     <include layout="@layout/spinners"/>
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent" />
+
     <RadioGroup
         android:id="@+id/rdGrpSorter"
         android:layout_width="match_parent"
@@ -37,6 +46,15 @@
             android:layout_weight="1"
             android:text="Sort By Popularity" />
     </RadioGroup>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/colorAccent" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/homeRefreshLayout"

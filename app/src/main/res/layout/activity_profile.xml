@@ -63,7 +63,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="username"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorTextDark"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -124,7 +124,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="abc@gmail.com"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorTextDark"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -176,7 +176,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="set phone no"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorTextDark"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -239,7 +239,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="write details about you"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorTextDark"
                         android:textSize="14sp" />
 
                 </LinearLayout>

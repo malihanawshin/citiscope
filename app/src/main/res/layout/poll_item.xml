@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
+    android:layout_marginBottom="20dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    app:cardBackgroundColor="@color/colorAccent"
-    app:cardCornerRadius="4dp"
+    android:layout_marginTop="5dp"
+    app:cardBackgroundColor="@color/colorPollItem"
 
-    >
+    app:cardCornerRadius="4dp">
 
     <LinearLayout
         android:id="@+id/xml_agent_info"
@@ -19,7 +19,7 @@
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPollItem"
         android:orientation="vertical"
         android:paddingBottom="0dp"
         android:paddingTop="5dp">
@@ -27,19 +27,18 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_gravity="right"
-            android:background="@color/colorPrimary"
             android:layout_margin="1dp"
+            android:background="@color/colorPrimary"
             android:gravity="center"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_vote_count"
                 android:layout_width="45dp"
                 android:layout_height="40dp"
-                android:text="Votes"
                 android:gravity="center"
+                android:text="Votes"
                 android:textColor="@color/colorAccent"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -48,8 +47,7 @@
                 android:layout_width="18dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_upward_black_24dp"
-                android:tint="@color/colorAccent"
-                />
+                android:tint="@color/colorAccent" />
 
         </LinearLayout>
 
@@ -82,8 +80,7 @@
                     android:gravity="center"
                     android:text="Nomination Details"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp"
-                    />
+                    android:textSize="15sp" />
             </LinearLayout>
         </ScrollView>
 
