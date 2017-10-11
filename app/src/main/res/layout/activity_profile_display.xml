@@ -65,7 +65,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="20dp"
+                android:padding="24dp"
+                android:textSize="18dp"
                 android:text="TextView"
                 android:textColor="@color/colorTextDark" />
         </LinearLayout>
