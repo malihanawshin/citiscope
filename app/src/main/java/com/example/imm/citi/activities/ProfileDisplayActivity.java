@@ -25,7 +25,7 @@ public class ProfileDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_display);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        setTitle("Profile");
 
         txtName = (TextView) findViewById(R.id.prof_dis_name);
         txtBio = (TextView) findViewById(R.id.prof_dis_bio);
