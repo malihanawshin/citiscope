@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -163,7 +162,8 @@ public class AgentProfileActivity extends AppCompatActivity implements AgentList
                                 e.printStackTrace();
                             }
                         }
-                        spnAdapter = new ArrayAdapter<String>(parent, android.R.layout.simple_spinner_item, serviceNames);
+                        spnAdapter = new ArrayAdapter<String>(parent, R.layout.spinner_item, serviceNames);
+                        spnAdapter.setDropDownViewResource(R.layout.spinner_item);
                         spnCity.setAdapter(spnAdapter);
                     }
 

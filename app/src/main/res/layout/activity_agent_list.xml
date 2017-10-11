@@ -14,22 +14,21 @@
          android:layout_marginTop="10dp"
          android:gravity="center"
          android:text="Agent's List"
-         android:textColor="@color/colorTextDark"
+         android:textColor="@color/colorAccent"
          android:textSize="16sp"
          android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/spinner_service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
+     <Spinner
+         android:id="@+id/spinner_service"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/text_card_name"
+         android:layout_centerHorizontal="true"
 
-            android:padding="8dp"
-            android:spinnerMode="dropdown"
-            android:visibility="visible"
-            android:layout_below="@+id/text_card_name"
-            />
+
+         android:layout_weight="1"
+         android:spinnerMode="dropdown"
+         android:visibility="visible" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/agent_recycler"
@@ -71,6 +70,9 @@
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
+
+
         </FrameLayout>
 
     </RelativeLayout>
+

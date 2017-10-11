@@ -123,7 +123,8 @@ public class BookmarkActivity extends AppCompatActivity implements AgentListAdap
                                 e.printStackTrace();
                             }
                         }
-                        spnAdapter = new ArrayAdapter<String>(parent, android.R.layout.simple_spinner_item, serviceNames);
+                        spnAdapter = new ArrayAdapter<String>(parent, R.layout.spinner_item, serviceNames);
+                        spnAdapter.setDropDownViewResource(R.layout.spinner_item);
                         spnCity.setAdapter(spnAdapter);
                     }
 
