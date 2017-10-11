@@ -274,7 +274,7 @@
                 android:background="@color/colorAccent"
                 android:text="Display Profile"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"  />
 
             <View
                 android:layout_width="match_parent"
