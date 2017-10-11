@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -60,6 +61,7 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
         super.onViewCreated(view, savedInstanceState);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         mEditText = (EditText) view.findViewById(R.id.text_new_name);
+
         mEditText.setText(text);
         if(edittype.equals("phone")){
             mEditText.setKeyListener(new DigitsKeyListener());
@@ -72,7 +74,11 @@ public class EditDialogFragment extends DialogFragment implements View.OnClickLi
         title = (TextView) view.findViewById(R.id.dialog_title);
         if(getType()=="name") title.setText("Enter new username");
         else if (getType()=="phone") title.setText("Enter phone no ");
-        else if (getType()=="bio") title.setText("Write about you!");
+        else if (getType()=="bio") {
+            title.setText("Write about you!");
+            mEditText.setSingleLine(false);
+            mEditText.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
+        }
     }
 
     @Override

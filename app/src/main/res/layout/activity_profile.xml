@@ -25,38 +25,34 @@
 
 
             <RelativeLayout
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
-                >
+                android:layout_marginTop="15dp">
 
                 <ImageView
                     android:id="@+id/icon_account"
                     android:layout_width="56dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/user"
                     android:padding="16dp"
-                    android:tint="@color/colorAccent"
-                    />
+                    android:src="@drawable/user"
+                    android:tint="@color/colorAccent" />
 
                 <LinearLayout
                     android:id="@+id/linear_one"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_toRightOf="@id/icon_account"
                     android:layout_toLeftOf="@+id/icon_edit_name"
-                    android:orientation="vertical"
+                    android:layout_toRightOf="@id/icon_account"
                     android:gravity="center_vertical"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Username"
-                        android:textSize="16sp"
                         android:textColor="@color/colorAccent"
-                        android:textStyle="bold"
-                        />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/edt_name"
@@ -72,11 +68,11 @@
                     android:id="@+id/icon_edit_name"
                     android:layout_width="56dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_create_black_24dp"
-                    android:padding="16dp"
-                    android:tint="@color/colorAccent"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true" />
+                    android:padding="16dp"
+                    android:src="@drawable/ic_create_black_24dp"
+                    android:tint="@color/colorAccent" />
 
             </RelativeLayout>
 
@@ -201,46 +197,56 @@
 
 
             <RelativeLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
-                >
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/icon_bio"
                     android:layout_width="56dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/seller"
                     android:padding="16dp"
-                    android:tint="@color/colorAccent"
-                    />
+                    android:src="@drawable/seller"
+                    android:tint="@color/colorAccent" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_toRightOf="@id/icon_bio"
                     android:layout_toLeftOf="@+id/icon_edit_bio"
-                    android:orientation="vertical"
+                    android:layout_toRightOf="@id/icon_bio"
                     android:gravity="center_vertical"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bio"
-                        android:textSize="16sp"
                         android:textColor="@color/colorAccent"
+                        android:textSize="16sp"
                         android:textStyle="bold"
 
                         />
 
-                    <TextView
-                        android:id="@+id/edt_bio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="write details about you"
-                        android:textColor="@color/colorTextDark"
-                        android:textSize="14sp" />
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/edt_bio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="write details about you"
+                                android:textColor="@color/colorTextDark"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </HorizontalScrollView>
 
                 </LinearLayout>
 
@@ -248,13 +254,26 @@
                     android:id="@id/icon_edit_bio"
                     android:layout_width="56dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_create_black_24dp"
-                    android:padding="16dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/colorAccent"
-                    />
+                    android:padding="16dp"
+                    android:src="@drawable/ic_create_black_24dp"
+                    android:tint="@color/colorAccent" />
 
             </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/btnDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorAccent"
+                android:text="Display Profile"
+                android:textColor="@android:color/white" />
 
             <View
                 android:layout_width="match_parent"
@@ -392,20 +411,6 @@
 
             </RelativeLayout>
 
-
-            <Button
-                android:id="@+id/btnDisplay"
-                android:text="Display Profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginBottom="25dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/colorAccent"
-                android:textColor="@android:color/white"
-                />
 
 
         </LinearLayout>
