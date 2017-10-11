@@ -31,7 +31,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"
-        android:inputType="text"
+        android:maxLines="3"
+        android:inputType="text|textMultiLine"
         android:textColor="@color/colorTextDark" />
 
     <Button
