@@ -9,7 +9,6 @@
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
     app:cardBackgroundColor="@color/colorPollItem"
-
     app:cardCornerRadius="4dp">
 
     <LinearLayout
