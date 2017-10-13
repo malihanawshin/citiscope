@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.method.DigitsKeyListener;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -431,6 +432,10 @@ public class EditAgentInfoActivity extends AppCompatActivity {
         }
         if(tuiDone.getText().toString().equals("")){
             Toast.makeText(this, "Please enter the number of Tuitions you have done", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!tuiProfile.getText().toString().equals("") && !URLUtil.isValidUrl(tuiProfile.getText().toString())){
+            Toast.makeText(this, "Please enter a valid url", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

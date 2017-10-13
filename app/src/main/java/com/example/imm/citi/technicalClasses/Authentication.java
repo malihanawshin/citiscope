@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.example.imm.citi.activities.HomeActivity;
-import com.example.imm.citi.activities.LoginActivity;
 import com.example.imm.citi.activities.SuperRegRes;
 
 import org.json.JSONArray;
@@ -96,10 +95,10 @@ public class Authentication {
             public void onSuccessResponse(String result) {
                 if(result.equals("true")){
                     Toast.makeText(parent,"Your password has been successfully changed",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(parent, LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    parent.startActivity(intent);
+                    Intent intent = new Intent(parent, HomeActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     parent.finish();
+                    parent.startActivity(intent);
                 }
                 else
                     Toast.makeText(resAct,"Sorry something went wrong",Toast.LENGTH_LONG).show();

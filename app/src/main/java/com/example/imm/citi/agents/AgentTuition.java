@@ -1,6 +1,7 @@
 package com.example.imm.citi.agents;
 
 import android.os.Parcel;
+import android.webkit.URLUtil;
 
 import java.util.ArrayList;
 
@@ -39,7 +40,9 @@ public class AgentTuition extends LocalAgent {
     }
 
     private String httpify(String url1) {
-        if(url1.startsWith("https://") || url1.startsWith("http://")){
+        if(!URLUtil.isValidUrl(url1))
+            return "";
+        if(url1.startsWith("https://") || url1.startsWith("http://") ){
             return url1;
         }
         else return "https://" + url1;

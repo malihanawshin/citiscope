@@ -105,6 +105,8 @@ public class UserAgentInput {
         arr.add(tuiDone);
         arr.add(tuiProfile);
 
+        System.out.println("tuition: " + arr);
+
         return arr;
     }
 
