@@ -16,7 +16,7 @@ import com.example.imm.citi.R;
 import com.example.imm.citi.technicalClasses.User;
 
 public class ProfileDisplayActivity extends AppCompatActivity {
-    private TextView txtName, txtBio;
+    private TextView txtName, txtBio, txtEmail, txtPhone;
     private ImageView imgPhone, imgEmail;
     private String phone, email;
 
@@ -29,6 +29,8 @@ public class ProfileDisplayActivity extends AppCompatActivity {
 
         txtName = (TextView) findViewById(R.id.prof_dis_name);
         txtBio = (TextView) findViewById(R.id.prof_dis_bio);
+        txtPhone = (TextView) findViewById(R.id.info_nominator_phone);
+        txtEmail = (TextView) findViewById(R.id.info_nominator_mail);
 
         imgPhone = (ImageView) findViewById(R.id.img_user_call);
         imgEmail = (ImageView) findViewById(R.id.img_user_email);
@@ -42,6 +44,8 @@ public class ProfileDisplayActivity extends AppCompatActivity {
             System.out.println("naem nul na");
             txtName.setText(name);
             txtBio.setText(intent.getStringExtra("bio"));
+            txtPhone.setText(intent.getStringExtra("phone"));
+            txtEmail.setText(intent.getStringExtra("email"));
             phone = intent.getStringExtra("phone");
             email = intent.getStringExtra("email");
         }
@@ -71,6 +75,8 @@ public class ProfileDisplayActivity extends AppCompatActivity {
     private void setUserProfile() {
         txtName.setText(User.Name);
         txtBio.setText(User.Bio);
+        txtPhone.setText(User.Phone);
+        txtEmail.setText(User.Email);
         phone = User.Phone;
         email = User.Email;
     }
